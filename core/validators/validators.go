@@ -8,7 +8,7 @@ import (
 	validation "github.com/go-ozzo/ozzo-validation/v4"
 )
 
-var ErrUnsupportedValueType = validation.NewError("validation_unsupported_value_type", "Invalid or unsupported value type.")
+var ErrUnsupportedValueType = validation.NewError("validation_unsupported_value_type", "无效或不支持的值类型。")
 
 // JoinValidationErrors attempts to join the provided [validation.Errors] arguments.
 //

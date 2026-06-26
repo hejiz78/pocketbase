@@ -37,30 +37,30 @@ func recordAuthWithOTP(e *core.RequestEvent) error {
 	// ---
 	event.OTP, err = e.App.FindOTPById(form.OTPId)
 	if err != nil {
-		return e.BadRequestError("Invalid or expired OTP", err)
+		return e.BadRequestError("OTP无效或已过期", err)
 	}
 
 	if event.OTP.CollectionRef() != collection.Id {
-		return e.BadRequestError("Invalid or expired OTP", errors.New("the OTP is for a different collection"))
+		return e.BadRequestError("OTP无效或已过期", errors.New("该OTP属于其他集合"))
 	}
 
 	if event.OTP.HasExpired(collection.OTP.DurationTime()) {
-		return e.BadRequestError("Invalid or expired OTP", errors.New("the OTP is expired"))
+		return e.BadRequestError("OTP无效或已过期", errors.New("该OTP已过期"))
 	}
 
 	event.Record, err = e.App.FindRecordById(event.OTP.CollectionRef(), event.OTP.RecordRef())
 	if err != nil {
-		return e.BadRequestError("Invalid or expired OTP", fmt.Errorf("missing auth record: %w", err))
+		return e.BadRequestError("OTP无效或已过期", fmt.Errorf("缺少认证记录: %w", err))
 	}
 
 	// since otps are usually simple digit numbers, enforce an extra rate limit rule as basic enumeration protection
 	err = checkRateLimit(e, "@pb_otp_"+event.Record.Id, core.RateLimitRule{MaxRequests: 5, Duration: 180})
 	if err != nil {
-		return e.TooManyRequestsError("Too many attempts, please try again later with a new OTP.", nil)
+		return e.TooManyRequestsError("尝试次数过多，请稍后使用新的OTP重试。", nil)
 	}
 
 	if !event.OTP.ValidatePassword(form.Password) {
-		return e.BadRequestError("Invalid or expired OTP", errors.New("incorrect password"))
+		return e.BadRequestError("OTP无效或已过期", errors.New("密码不正确"))
 	}
 	// ---
 

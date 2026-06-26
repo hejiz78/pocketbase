@@ -696,7 +696,7 @@ func checkUniqueRuleLabel(value any) error {
 		if conflicts {
 			return validation.Errors{
 				strconv.Itoa(i): validation.Errors{
-					"label": validation.NewError("validation_conflicting_rate_limit_rule", "Rate limit rule configuration with label {{.label}} already exists or conflicts with another rule.").
+					"label": validation.NewError("validation_conflicting_rate_limit_rule", "标签为 {{.label}} 的速率限制规则配置已存在或与其他规则冲突。").
 						SetParams(map[string]any{"label": rule.Label}),
 				},
 			}

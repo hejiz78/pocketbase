@@ -189,7 +189,7 @@ func (f *PasswordField) ValidateValue(ctx context.Context, app App, record *Reco
 	length := len([]rune(fp.Plain))
 
 	if length < f.Min {
-		return validation.NewError("validation_min_text_constraint", fmt.Sprintf("Must be at least %d character(s)", f.Min))
+		return validation.NewError("validation_min_text_constraint", fmt.Sprintf("至少需要%d个字符", f.Min))
 	}
 
 	maxLength := f.Max
@@ -197,13 +197,13 @@ func (f *PasswordField) ValidateValue(ctx context.Context, app App, record *Reco
 		maxLength = 71
 	}
 	if length > maxLength {
-		return validation.NewError("validation_max_text_constraint", fmt.Sprintf("Must be less than %d character(s)", maxLength))
+		return validation.NewError("validation_max_text_constraint", fmt.Sprintf("必须少于%d个字符", maxLength))
 	}
 
 	if f.Pattern != "" {
 		match, _ := regexp.MatchString(f.Pattern, fp.Plain)
 		if !match {
-			return validation.NewError("validation_invalid_format", "Invalid value format")
+			return validation.NewError("validation_invalid_format", "无效的值格式")
 		}
 	}
 

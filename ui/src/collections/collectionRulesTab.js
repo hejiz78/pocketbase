@@ -6,7 +6,7 @@ export function collectionRulesTab(upsertData) {
 
     const systemRuleTooltip = () =>
         app.attrs.tooltip(
-            upsertData.originalCollection?.system ? "System collection rule cannot be changed." : null,
+            upsertData.originalCollection?.system ? "系统集合规则无法更改。" : null,
             "top-left",
         );
 
@@ -24,19 +24,19 @@ export function collectionRulesTab(upsertData) {
                     { className: "flex txt-hint txt-sm" },
                     t.span(
                         { className: "txt" },
-                        "All rules follow the ",
+                        "所有规则遵循",
                         t.a({
                             target: "_blank",
                             rel: "noopener noreferrer",
                             href: import.meta.env.PB_RULES_SYNTAX_DOCS,
-                            textContent: "PocketBase filter syntax and operators",
+                            textContent: "PocketBase 筛选语法和运算符",
                         }),
-                        ".",
+                        "。",
                     ),
                     t.strong({
                         tabIndex: -1,
                         className: "m-l-auto link-hint",
-                        textContent: () => (local.showRulesInfo ? "Hide available fields" : "Show available fields"),
+                        textContent: () => (local.showRulesInfo ? "隐藏可用字段" : "显示可用字段"),
                         onclick: () => (local.showRulesInfo = !local.showRulesInfo),
                     }),
                 ),
@@ -46,7 +46,7 @@ export function collectionRulesTab(upsertData) {
                         { className: "alert warning m-t-sm" },
                         t.div(
                             { className: "content" },
-                            t.p(null, "The following record fields are available:"),
+                            t.p(null, "以下记录字段可用："),
                             t.div({ className: "flex flex-wrap gap-5" }, () => {
                                 const identifiers = app.utils.getAllCollectionIdentifiers(upsertData.collection);
                                 return identifiers.map((f) => {
@@ -56,9 +56,9 @@ export function collectionRulesTab(upsertData) {
                             t.hr({ className: "m-t-10 m-b-10" }),
                             t.p(
                                 null,
-                                "The request fields could be accessed with the special ",
+                                "请求字段可通过特殊的 ",
                                 t.strong(null, "@request"),
-                                " fields:",
+                                " 字段访问：",
                             ),
                             t.div(
                                 { className: "flex flex-wrap gap-5" },
@@ -70,16 +70,16 @@ export function collectionRulesTab(upsertData) {
                             t.hr({ className: "m-t-10 m-b-10" }),
                             t.p(
                                 null,
-                                "You could also add constraints and query other collections using the ",
+                                "您还可以使用 ",
                                 t.strong(null, "@collection"),
-                                " field:",
+                                " 字段添加约束并查询其他集合：",
                             ),
                             t.div(
                                 { className: "flex flex-wrap gap-5" },
                                 t.code(null, "@collection.ANY_COLLECTION_NAME.*"),
                             ),
                             t.hr({ className: "m-t-10 m-b-10" }),
-                            t.p(null, "Example rule:"),
+                            t.p(null, "示例规则："),
                             () => {
                                 const dateField = upsertData.collection.fields?.find(
                                     (f) => f.type == "date" || f.type == "autodate",
@@ -99,7 +99,7 @@ export function collectionRulesTab(upsertData) {
             t.div(
                 { className: "col-12", ariaDescription: systemRuleTooltip() },
                 app.components.ruleField({
-                    label: "List/Search rule",
+                    label: "列表/搜索规则",
                     name: "listRule",
                     autocomplete: autocomplete,
                     disabled: () => upsertData.originalCollection?.system,
@@ -110,7 +110,7 @@ export function collectionRulesTab(upsertData) {
             t.div(
                 { className: "col-12", ariaDescription: systemRuleTooltip() },
                 app.components.ruleField({
-                    label: "View rule",
+                    label: "查看规则",
                     name: "viewRule",
                     autocomplete: autocomplete,
                     disabled: () => upsertData.originalCollection?.system,
@@ -129,12 +129,12 @@ export function collectionRulesTab(upsertData) {
                         { className: "col-12", ariaDescription: systemRuleTooltip() },
                         app.components.ruleField({
                             label: [
-                                t.span({ className: "txt", textContent: "Create rule" }),
+                                t.span({ className: "txt", textContent: "创建规则" }),
                                 t.i({
                                     hidden: () => upsertData.collection.createRule == null,
                                     className: "ri-information-line link-hint",
                                     ariaDescription: app.attrs.tooltip(
-                                        "The main record fields hold the values that are going to be inserted in the database.",
+                                        "主记录字段保存将插入数据库的值。",
                                     ),
                                 }),
                             ],
@@ -149,12 +149,12 @@ export function collectionRulesTab(upsertData) {
                         { className: "col-12", ariaDescription: systemRuleTooltip() },
                         app.components.ruleField({
                             label: [
-                                t.span({ className: "txt", textContent: "Update rule" }),
+                                t.span({ className: "txt", textContent: "更新规则" }),
                                 t.i({
                                     hidden: () => upsertData.collection.updateRule == null,
                                     className: "ri-information-line link-hint",
                                     ariaDescription: app.attrs.tooltip(
-                                        "The main record fields hold the old/existing record field values.\nTo target the newly submitted ones you can use @request.body.*.",
+                                        "主记录字段保存旧的/现有的记录字段值。\n要定位新提交的值，可使用 @request.body.*。",
                                     ),
                                 }),
                             ],
@@ -168,7 +168,7 @@ export function collectionRulesTab(upsertData) {
                     t.div(
                         { className: "col-12", ariaDescription: systemRuleTooltip() },
                         app.components.ruleField({
-                            label: "Delete rule",
+                            label: "删除规则",
                             name: "deleteRule",
                             autocomplete: autocomplete,
                             disabled: () => upsertData.originalCollection?.system,
@@ -199,7 +199,7 @@ export function collectionRulesTab(upsertData) {
                             local.showAuthRules = !local.showAuthRules;
                         },
                     },
-                    t.span({ className: "txt" }, "Additional auth collection rules"),
+                    t.span({ className: "txt" }, "额外的认证集合规则"),
                     t.i({
                         ariaHidden: true,
                         className: () => (local.showAuthRules ? "ri-arrow-drop-up-line" : "ri-arrow-drop-down-line"),
@@ -212,7 +212,7 @@ export function collectionRulesTab(upsertData) {
                         t.div(
                             { className: "col-12", ariaDescription: systemRuleTooltip() },
                             app.components.ruleField({
-                                label: "Authentication rule",
+                                label: "认证规则",
                                 name: "authRule",
                                 placeholder: "",
                                 autocomplete: autocomplete,
@@ -224,27 +224,27 @@ export function collectionRulesTab(upsertData) {
                                 { className: "field-help" },
                                 t.p(
                                     null,
-                                    "This rule is executed every time ",
-                                    t.strong(null, "before authentication"),
-                                    " allowing you to restrict who can authenticate.",
+                                    "此规则在每次",
+                                    t.strong(null, "认证前"),
+                                    "执行，允许您限制谁可以进行认证。",
                                 ),
                                 t.p(
                                     null,
-                                    "For example, to allow only verified users you can set it to ",
+                                    "例如，要仅允许已验证用户，您可以将其设置为 ",
                                     t.code(null, "verified = true"),
-                                    ".",
+                                    "。",
                                 ),
-                                t.p(null, "Leave it empty to allow anyone with an account to authenticate."),
+                                t.p(null, "留空则允许任何拥有账户的用户进行认证。"),
                                 t.p(
                                     null,
-                                    `To disable authentication entirely you can change it to "Set superusers only".`,
+                                    `要完全禁用认证，您可以将其更改为"仅限超级用户"。`,
                                 ),
                             ),
                         ),
                         t.div(
                             { className: "col-12", ariaDescription: systemRuleTooltip() },
                             app.components.ruleField({
-                                label: "Manage rule",
+                                label: "管理规则",
                                 name: "manageRule",
                                 autocomplete: autocomplete,
                                 disabled: () => upsertData.originalCollection?.system,
@@ -255,15 +255,15 @@ export function collectionRulesTab(upsertData) {
                                 { className: "field-help" },
                                 t.p(
                                     null,
-                                    "This rule is executed in addition to the ",
-                                    t.strong(null, "create"),
-                                    " and ",
-                                    t.strong(null, "update"),
-                                    " API rules.",
+                                    "此规则在 ",
+                                    t.strong(null, "创建"),
+                                    " 和 ",
+                                    t.strong(null, "更新"),
+                                    " API 规则之外额外执行。",
                                 ),
                                 t.p(
                                     null,
-                                    "It enables superuser-like permissions to allow fully managing the auth record(s), eg. changing the password without requiring to enter the old one, directly updating the verified state or email, etc.",
+                                    "它启用类似超级用户的权限，允许完全管理认证记录，例如无需输入旧密码即可更改密码、直接更新验证状态或邮箱等。",
                                 ),
                             ),
                         ),

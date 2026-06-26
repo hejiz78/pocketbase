@@ -92,7 +92,7 @@ function filePreviewModal(urlOrFactory) {
                     data: data.url, // note: the reactive value doesn't trigger reload of the object
                     title: () => data.filename,
                 },
-                "Cannot preview the file.",
+                "无法预览此文件。",
             );
         }),
         t.footer(
@@ -101,7 +101,7 @@ function filePreviewModal(urlOrFactory) {
                 {
                     type: "button",
                     className: "link-hint filename-link",
-                    ariaDescription: app.attrs.tooltip("Open in new tab"),
+                    ariaDescription: app.attrs.tooltip("在新标签页中打开"),
                     onclick: () => openInNewTab(),
                 },
                 t.span({ className: "txt" }, () => data.filename),
@@ -112,7 +112,7 @@ function filePreviewModal(urlOrFactory) {
                     className: "btn transparent m-l-auto",
                     onclick: () => app.modals.close(),
                 },
-                t.span({ className: "txt" }, "Close"),
+                t.span({ className: "txt" }, "关闭"),
             ),
         ),
     );

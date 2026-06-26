@@ -187,7 +187,7 @@ func (f *TextField) ValidateValue(ctx context.Context, app App, record *Record) 
 		if !record.IsNew() {
 			oldVal := record.LastSavedPK()
 			if oldVal != newVal {
-				return validation.NewError("validation_pk_change", "The record primary key cannot be changed.")
+				return validation.NewError("validation_pk_change", "记录的主键无法更改。")
 			}
 			if oldVal != "" {
 				// no need to further validate because the id can't be updated
@@ -210,7 +210,7 @@ func (f *TextField) ValidateValue(ctx context.Context, app App, record *Record) 
 					Limit(1).
 					Row(&exists)
 				if exists > 0 || (err != nil && !errors.Is(err, sql.ErrNoRows)) {
-					return validation.NewError("validation_pk_invalid", "The record primary key is invalid or already exists.")
+					return validation.NewError("validation_pk_invalid", "记录的主键无效或已存在。")
 				}
 			}
 		}
@@ -235,7 +235,7 @@ func (f *TextField) ValidatePlainValue(value string) error {
 	length := len([]rune(value))
 
 	if f.Min > 0 && length < f.Min {
-		return validation.NewError("validation_min_text_constraint", "Must be at least {{.min}} character(s).").
+		return validation.NewError("validation_min_text_constraint", "至少需要{{.min}}个字符。").
 			SetParams(map[string]any{"min": f.Min})
 	}
 
@@ -245,14 +245,14 @@ func (f *TextField) ValidatePlainValue(value string) error {
 	}
 
 	if max > 0 && length > max {
-		return validation.NewError("validation_max_text_constraint", "Must be no more than {{.max}} character(s).").
+		return validation.NewError("validation_max_text_constraint", "不能超过{{.max}}个字符。").
 			SetParams(map[string]any{"max": max})
 	}
 
 	if f.Pattern != "" {
 		match, _ := regexp.MatchString(f.Pattern, value)
 		if !match {
-			return validation.NewError("validation_invalid_format", "Invalid value format.")
+			return validation.NewError("validation_invalid_format", "无效的值格式。")
 		}
 	}
 
@@ -261,7 +261,7 @@ func (f *TextField) ValidatePlainValue(value string) error {
 	if f.PrimaryKey && f.Pattern != defaultLowercaseRecordIdPattern {
 		for _, ch := range forbiddenPKCharacters {
 			if strings.Contains(value, ch) {
-				return validation.NewError("validation_forbidden_pk_character", "'{{.ch}}' is not a valid primary key character.").
+				return validation.NewError("validation_forbidden_pk_character", "'{{.ch}}'不是有效的主键字符。").
 					SetParams(map[string]any{"ch": ch})
 			}
 		}
@@ -269,7 +269,7 @@ func (f *TextField) ValidatePlainValue(value string) error {
 		if largestReservedPKLength >= length {
 			for _, reserved := range caseInsensitiveReservedPKs {
 				if strings.EqualFold(value, reserved) {
-					return validation.NewError("validation_reserved_pk", "The primary key '{{.reserved}}' is reserved and cannot be used.").
+					return validation.NewError("validation_reserved_pk", "主键'{{.reserved}}'是保留的，不能使用。").
 						SetParams(map[string]any{"reserved": reserved})
 				}
 			}
@@ -285,7 +285,7 @@ func (f *TextField) ValidateSettings(ctx context.Context, app App, collection *C
 		validation.Field(&f.Id, validation.By(DefaultFieldIdValidationRule)),
 		validation.Field(&f.Name,
 			validation.By(DefaultFieldNameValidationRule),
-			validation.When(f.PrimaryKey, validation.In(idColumn).Error(`The primary key must be named "id".`)),
+			validation.When(f.PrimaryKey, validation.In(idColumn).Error(`主键必须命名为"id"。`)),
 		),
 		validation.Field(&f.Help, validation.By(DefaultFieldHelpValidationRule)),
 		validation.Field(&f.PrimaryKey, validation.By(f.checkOtherFieldsForPK(collection))),
@@ -312,7 +312,7 @@ func (f *TextField) checkOtherFieldsForPK(collection *Collection) validation.Rul
 			}
 
 			if totalPrimaryKeys > 1 {
-				return validation.NewError("validation_unsupported_composite_pk", "Composite PKs are not supported and the collection must have only 1 PK.")
+				return validation.NewError("validation_unsupported_composite_pk", "不支持复合主键，集合只能有1个主键。")
 			}
 		}
 
@@ -337,7 +337,7 @@ func (f *TextField) checkAutogeneratePattern(value any) error {
 		if err := f.ValidatePlainValue(generated); err != nil {
 			return validation.NewError(
 				"validation_invalid_autogenerate_pattern_value",
-				fmt.Sprintf("The provided autogenerate pattern could produce invalid field values, ex.: %q", generated),
+				fmt.Sprintf("提供的自动生成模式可能会产生无效的字段值，例如：%q", generated),
 			)
 		}
 	}

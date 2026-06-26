@@ -5,12 +5,12 @@ export function pageInstaller(route) {
     const tokenPayload = getTokenPayload(token);
 
     if (tokenPayload.type != "auth" || isTokenExpired(token)) {
-        app.toasts.error("The installer token is invalid or has expired.");
+        app.toasts.error("安装令牌无效或已过期。");
         window.location.hash = "#/";
         return;
     }
 
-    app.store.title = "Setup your PocketBase instance";
+    app.store.title = "设置您的 PocketBase 实例";
 
     const data = store({
         email: "",
@@ -71,8 +71,8 @@ export function pageInstaller(route) {
         app.modals.confirm(
             t.h6(
                 null,
-                `Note that we don't perform validations for the uploaded backup files. Proceed with caution and only if you trust the file source.\n\n`
-                    + `Do you really want to upload and initialize "${file.name}"?`,
+                `请注意，我们不会对上传的备份文件进行验证。请谨慎操作，仅在信任文件来源的情况下继续。\n\n`
+                    + `您确定要上传并初始化 "${file.name}" 吗？`,
             ),
             () => {
                 uploadBackup(file);
@@ -102,7 +102,7 @@ export function pageInstaller(route) {
                 headers: { Authorization: token },
             });
 
-            app.toasts.info("Please wait while extracting the uploaded archive!");
+            app.toasts.info("请稍候，正在解压上传的归档文件！");
 
             // optimistic restore completion
             await new Promise((r) => setTimeout(r, 3000));
@@ -136,12 +136,12 @@ export function pageInstaller(route) {
                     submit(data);
                 },
             },
-            t.div({ className: "col-12 txt-center" }, "Create your first superuser account in order to continue:"),
+            t.div({ className: "col-12 txt-center" }, "创建您的第一个超级用户账户以继续："),
             t.div(
                 { className: "col-12" },
                 t.div(
                     { className: "field" },
-                    t.label({ htmlFor: "superuser_email" }, "Email"),
+                    t.label({ htmlFor: "superuser_email" }, "邮箱"),
                     t.input({
                         id: "superuser_email",
                         name: "email",
@@ -161,7 +161,7 @@ export function pageInstaller(route) {
                     { className: "fields" },
                     t.div(
                         { className: "field" },
-                        t.label({ htmlFor: "superuser_password" }, "Password"),
+                        t.label({ htmlFor: "superuser_password" }, "密码"),
                         t.input({
                             id: "superuser_password",
                             name: "password",
@@ -180,9 +180,7 @@ export function pageInstaller(route) {
                                 type: "button",
                                 tabIndex: -1,
                                 className: "btn sm transparent secondary circle tooltip-right",
-                                ariaLabel: app.attrs.tooltip(() =>
-                                    data.showPassword ? "Hide password" : "Show password"
-                                ),
+                                ariaLabel: app.attrs.tooltip(() => data.showPassword ? "隐藏密码" : "显示密码"),
                                 onclick: () => (data.showPassword = !data.showPassword),
                             },
                             t.i({
@@ -192,7 +190,7 @@ export function pageInstaller(route) {
                         ),
                     ),
                 ),
-                t.div({ className: "field-help" }, "Recommended at least 10 characters."),
+                t.div({ className: "field-help" }, "建议至少 10 个字符。"),
             ),
             t.div(
                 { className: "col-12" },
@@ -200,7 +198,7 @@ export function pageInstaller(route) {
                     { className: "fields" },
                     t.div(
                         { className: "field" },
-                        t.label({ htmlFor: "superuser_password_confirm" }, "Password confirm"),
+                        t.label({ htmlFor: "superuser_password_confirm" }, "确认密码"),
                         t.input({
                             id: "superuser_password_confirm",
                             name: "passwordConfirm",
@@ -218,9 +216,7 @@ export function pageInstaller(route) {
                                 type: "button",
                                 tabIndex: -1,
                                 className: "btn sm transparent secondary circle tooltip-right",
-                                ariaLabel: app.attrs.tooltip(() =>
-                                    data.showPasswordConfirm ? "Hide password" : "Show password"
-                                ),
+                                ariaLabel: app.attrs.tooltip(() => data.showPasswordConfirm ? "隐藏密码" : "显示密码"),
                                 onclick: () => (data.showPasswordConfirm = !data.showPasswordConfirm),
                             },
                             t.i({
@@ -238,7 +234,7 @@ export function pageInstaller(route) {
                         className: () => `btn lg next block ${data.isSubmitting ? "loading" : ""}`,
                         disabled: () => data.isBusy,
                     },
-                    t.span({ className: "txt" }, "Create superuser and login"),
+                    t.span({ className: "txt" }, "创建超级用户并登录"),
                     t.i({ className: "ri-arrow-right-line", ariaHidden: true }),
                 ),
             ),
@@ -253,7 +249,7 @@ export function pageInstaller(route) {
                     }`,
             },
             t.i({ className: "ri-upload-cloud-line", ariaHidden: true }),
-            t.span({ className: "txt" }, "Or initialize from backup"),
+            t.span({ className: "txt" }, "或从备份初始化"),
         ),
         t.input({
             id: fileInputId,

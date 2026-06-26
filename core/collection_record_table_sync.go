@@ -343,7 +343,7 @@ func createCollectionIndexes(app App, collection *Collection) error {
 			if !parsed.IsValid() {
 				errs[strconv.Itoa(i)] = validation.NewError(
 					"validation_invalid_index_expression",
-					"Invalid CREATE INDEX expression.",
+					"无效的CREATE INDEX表达式。",
 				)
 				continue
 			}
@@ -351,7 +351,7 @@ func createCollectionIndexes(app App, collection *Collection) error {
 			if _, err := txApp.DB().NewQuery(parsed.Build()).Execute(); err != nil {
 				errs[strconv.Itoa(i)] = validation.NewError(
 					"validation_invalid_index_expression",
-					fmt.Sprintf("Failed to create index %s - %v.", parsed.IndexName, err.Error()),
+					fmt.Sprintf("创建索引 %s 失败 - %v。", parsed.IndexName, err.Error()),
 				)
 				continue
 			}

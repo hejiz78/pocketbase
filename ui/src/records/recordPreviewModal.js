@@ -50,18 +50,18 @@ function copyJSON(record) {
     }
 
     app.utils.copyToClipboard(JSON.stringify(record, null, 2));
-    app.toasts.success("Record copied to clipboard!");
+    app.toasts.success("记录已复制到剪贴板！");
 }
 
 function recordPreviewModal(rawRecord, modalSettings) {
     if (!rawRecord?.id) {
-        app.toasts.error("Failed to load record.");
+        app.toasts.error("加载记录失败。");
         console.warn("[recordPreviewModal] missing required record id field:", rawRecord);
         return;
     }
 
     if (!rawRecord.collectionId && !rawRecord.collectionName) {
-        app.toasts.error("Failed to load record.");
+        app.toasts.error("加载记录失败。");
         console.warn("[recordPreviewModal] missing required collectionId or collectionName field:", rawRecord);
         return;
     }
@@ -140,11 +140,11 @@ function recordPreviewModal(rawRecord, modalSettings) {
             t.h6(
                 null,
                 t.strong(null, () => rawRecord?.collectionName || data.collection?.name),
-                " record preview",
+                " 记录预览",
             ),
             t.button(
                 {
-                    title: "More options",
+                    title: "更多选项",
                     className: () => `btn sm circle transparent m-l-auto ${data.isLoading ? "loading" : ""}`,
                     disabled: () => data.isLoading,
                     "html-popovertarget": uniqueId + "preview-dropdown",
@@ -163,7 +163,7 @@ function recordPreviewModal(rawRecord, modalSettings) {
                             },
                         },
                         t.i({ className: "ri-braces-line", ariaHidden: true }),
-                        t.span({ className: "txt" }, "Copy JSON"),
+                        t.span({ className: "txt" }, "复制JSON"),
                     );
                 },
             ),
@@ -216,7 +216,7 @@ function recordPreviewModal(rawRecord, modalSettings) {
                     className: "btn transparent m-r-auto",
                     onclick: () => app.modals.close(modal),
                 },
-                t.span({ className: "txt" }, "Close"),
+                t.span({ className: "txt" }, "关闭"),
             ),
             t.button(
                 {
@@ -226,7 +226,7 @@ function recordPreviewModal(rawRecord, modalSettings) {
                     onclick: () => downloadJSON(data.record),
                 },
                 t.i({ className: "ri-download-line", ariaHidden: true }),
-                t.span({ className: "txt" }, "Download JSON"),
+                t.span({ className: "txt" }, "下载JSON"),
             ),
         ),
     );

@@ -93,11 +93,11 @@ func (form *recordConfirmPasswordResetForm) checkToken(value any) error {
 
 	record, err := form.app.FindAuthRecordByToken(v, core.TokenTypePasswordReset)
 	if err != nil || record == nil {
-		return validation.NewError("validation_invalid_token", "Invalid or expired token.")
+		return validation.NewError("validation_invalid_token", "令牌无效或已过期。")
 	}
 
 	if record.Collection().Id != form.collection.Id {
-		return validation.NewError("validation_token_collection_mismatch", "The provided token is for different auth collection.")
+		return validation.NewError("validation_token_collection_mismatch", "提供的令牌属于不同的认证集合。")
 	}
 
 	return nil

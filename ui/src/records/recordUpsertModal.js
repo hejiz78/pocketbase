@@ -359,9 +359,9 @@ function recordUpsertModal(collection, rawRecord, modalSettings) {
 
             let msg;
             if (isNew) {
-                msg = `Successfully created ${collection.name} "${record.id}".`;
+                msg = `成功创建 ${collection.name} "${record.id}"。`;
             } else {
-                msg = `Successfully updated ${collection.name} "${record.id}".`;
+                msg = `成功更新 ${collection.name} "${record.id}"。`;
             }
             app.toasts.success(msg, { key: "recordSave" });
 
@@ -374,7 +374,7 @@ function recordUpsertModal(collection, rawRecord, modalSettings) {
             if (!err?.isAbort) {
                 data.isSaving = false;
                 app.checkApiError(err, false);
-                app.toasts.error(err.message || "Failed to save record.", { key: "recordSave" });
+                app.toasts.error(err.message || "保存记录失败。", { key: "recordSave" });
             }
         }
     }
@@ -453,20 +453,20 @@ function recordUpsertModal(collection, rawRecord, modalSettings) {
                             { className: "col-12" },
                             t.div(
                                 { className: "alert warning flex gap-sm" },
-                                t.div({ className: "content" }, "The record has previous unsaved changes."),
+                                t.div({ className: "content" }, "该记录有未保存的更改。"),
                                 t.button(
                                     {
                                         type: "button",
                                         className: "btn sm outline",
                                         onclick: () => restoreDraft(),
                                     },
-                                    t.span({ className: "txt" }, "Restore draft"),
+                                    t.span({ className: "txt" }, "恢复草稿"),
                                 ),
                                 t.button(
                                     {
                                         type: "button",
                                         className: "btn sm secondary transparent circle m-l-auto",
-                                        ariaLabel: app.attrs.tooltip("Discard draft", "left"),
+                                        ariaLabel: app.attrs.tooltip("放弃草稿", "left"),
                                         onclick: () => {
                                             deleteDraft();
                                         },
@@ -577,7 +577,7 @@ function recordUpsertModal(collection, rawRecord, modalSettings) {
                         disabled: () => data.isSaving,
                         onclick: () => app.modals.close(modal),
                     },
-                    t.span({ className: "txt" }, "Close"),
+                    t.span({ className: "txt" }, "关闭"),
                 ),
                 t.button(
                     {
@@ -588,7 +588,7 @@ function recordUpsertModal(collection, rawRecord, modalSettings) {
                         onclick: () => data.isLocked = false,
                     },
                     t.i({ className: "ri-lock-unlock-line", ariaHidden: true }),
-                    t.span({ className: "txt" }, "Unlock to save"),
+                    t.span({ className: "txt" }, "解锁以保存"),
                 ),
                 t.div(
                     {
@@ -602,13 +602,13 @@ function recordUpsertModal(collection, rawRecord, modalSettings) {
                             disabled: () => data.isLocked || data.isFormDisabled,
                             onclick: () => save(),
                         },
-                        t.span({ className: "txt" }, () => (data.isNew ? "Create" : "Save changes")),
+                        t.span({ className: "txt" }, () => (data.isNew ? "创建" : "保存更改")),
                     ),
                     t.button(
                         {
                             type: "button",
                             className: () => `btn p-5`,
-                            title: "Save options",
+                            title: "保存选项",
                             disabled: () => data.isLocked || data.isFormDisabled,
                             "html-popovertarget": uniqueId + "save_options",
                         },
@@ -625,7 +625,7 @@ function recordUpsertModal(collection, rawRecord, modalSettings) {
                                     save(false);
                                 },
                             },
-                            t.span({ className: "txt" }, "Save and continue"),
+                            t.span({ className: "txt" }, "保存并继续"),
                             t.small({ className: "txt-hint" }, "(Ctrl+S)"),
                         ),
                         t.hr(),
@@ -638,7 +638,7 @@ function recordUpsertModal(collection, rawRecord, modalSettings) {
                                     resetForm();
                                 },
                             },
-                            t.span({ className: "txt" }, "Reset form"),
+                            t.span({ className: "txt" }, "重置表单"),
                         ),
                     ),
                 ),
@@ -673,13 +673,13 @@ function recordUpsertModal(collection, rawRecord, modalSettings) {
 
                 return new Promise((r) => {
                     app.modals.confirm(
-                        "You have unsaved changes. Do you really want to discard them?",
+                        "您有未保存的更改。确定要放弃吗？",
                         () => {
                             deleteDraft();
                             return r(modalSettings.onbeforeclose?.(el));
                         },
                         () => r(false),
-                        { yesButton: "Yes, discard" },
+                        { yesButton: "是的，放弃" },
                     );
                 });
             },
@@ -699,12 +699,12 @@ function recordUpsertModal(collection, rawRecord, modalSettings) {
                     { className: "col-12 flex" },
                     t.h6(
                         { className: "modal-title" },
-                        t.span(null, () => (data.isNew ? "Create " : "Edit ")),
+                        t.span(null, () => (data.isNew ? "新建 " : "编辑 ")),
                         t.strong(
                             { className: "txt-ellipsis collection-name", style: "max-width: 220px" },
                             () => collection.name,
                         ),
-                        t.span(null, " record"),
+                        t.span(null, " 记录"),
                     ),
                     t.div({ className: "flex-fill" }),
                     () => {
@@ -716,7 +716,7 @@ function recordUpsertModal(collection, rawRecord, modalSettings) {
                             t.button(
                                 {
                                     type: "button",
-                                    title: "More options",
+                                    title: "更多选项",
                                     className: () => `btn sm circle transparent ${data.isLoading ? "loading" : ""}`,
                                     disabled: () => data.isLoading,
                                     "html-popovertarget": uniqueId + "modal-header-dropdown",
@@ -767,11 +767,11 @@ function recordUpsertModal(collection, rawRecord, modalSettings) {
                                             app.utils.copyToClipboard(
                                                 JSON.stringify(data.originalRecord, redactedReplacer, 2),
                                             );
-                                            app.toasts.success("Record copied to clipboard!");
+                                            app.toasts.success("记录已复制到剪贴板！");
                                         },
                                     },
                                     t.i({ className: "ri-braces-line", ariaHidden: true }),
-                                    t.span({ className: "txt" }, "Copy JSON"),
+                                    t.span({ className: "txt" }, "复制JSON"),
                                 ),
                                 () => {
                                     if (collection.type == "view") {
@@ -788,10 +788,10 @@ function recordUpsertModal(collection, rawRecord, modalSettings) {
 
                                                     if (data.hasChanges) {
                                                         app.modals.confirm(
-                                                            "You have unsaved changes. Do you really want to discard them?",
+                                                            "您有未保存的更改。确定要放弃吗？",
                                                             duplicate,
                                                             null,
-                                                            { yesButton: "Yes, discard" },
+                                                            { yesButton: "是的，放弃" },
                                                         );
                                                     } else {
                                                         duplicate();
@@ -799,7 +799,7 @@ function recordUpsertModal(collection, rawRecord, modalSettings) {
                                                 },
                                             },
                                             t.i({ className: "ri-file-copy-line", ariaHidden: true }),
-                                            t.span({ className: "txt" }, "Duplicate"),
+                                            t.span({ className: "txt" }, "复制"),
                                         ),
                                         t.hr(),
                                         deleteDropdownItem(collection, data, modalSettings),
@@ -827,11 +827,11 @@ function recordUpsertModal(collection, rawRecord, modalSettings) {
                                             data.activeTab == TAB_MAIN ? "active" : data.hasChanges ? "txt-warning" : ""
                                         }`,
                                     ariaDescription: app.attrs.tooltip(() =>
-                                        data.hasChanges && data.activeTab != TAB_MAIN ? "Has unsaved changes" : ""
+                                        data.hasChanges && data.activeTab != TAB_MAIN ? "有未保存的更改" : ""
                                     ),
                                     onclick: () => data.activeTab = TAB_MAIN,
                                 },
-                                t.span({ className: "txt" }, () => (data.isAuthCollection ? "Account" : "Main")),
+                                t.span({ className: "txt" }, () => (data.isAuthCollection ? "账户" : "主要")),
                             ),
                             t.button(
                                 {
@@ -840,7 +840,7 @@ function recordUpsertModal(collection, rawRecord, modalSettings) {
                                     className: () => `tab-item ${data.activeTab == TAB_AUTH_PROVIDERS ? "active" : ""}`,
                                     onclick: () => data.activeTab = TAB_AUTH_PROVIDERS,
                                 },
-                                t.span({ className: "txt" }, "Auth providers"),
+                                t.span({ className: "txt" }, "认证提供商"),
                             ),
                         ),
                     );
@@ -907,7 +907,7 @@ function resetTokenKeyDropdownItem(collection, data, modalSettings) {
                 data.record[field.name] = val;
             }
 
-            app.toasts.success("Successfully reset all tokens for the selected record.");
+            app.toasts.success("已成功重置所选记录的所有令牌。");
         } catch (err) {
             app.checkApiError(err);
         }
@@ -923,15 +923,15 @@ function resetTokenKeyDropdownItem(collection, data, modalSettings) {
             onclick: (e) => {
                 e.target.closest(".dropdown").hidePopover();
                 app.modals.confirm(
-                    "Do you really want to reset all issued tokens for the selected auth record?",
+                    "确定要重置所选认证记录的所有已签发令牌吗？",
                     resetTokenKey,
                     null,
-                    { yesButton: "Reset all tokens" },
+                    { yesButton: "重置所有令牌" },
                 );
             },
         },
         t.i({ className: "ri-reset-left-line", ariaHidden: true }),
-        t.span({ className: "txt" }, "Reset issued tokens"),
+        t.span({ className: "txt" }, "重置已签发令牌"),
     );
 }
 
@@ -952,7 +952,7 @@ function sendPasswordResetEmailDropdownItem(collection, data, modalSettings) {
 
             modalSettings.onpasswordresetsend?.(JSON.parse(JSON.stringify(data.originalRecord)));
 
-            app.toasts.success(`Successfully sent password reset email to ${data.originalRecord.email}.`);
+            app.toasts.success(`已成功发送密码重置邮件至 ${data.originalRecord.email}。`);
         } catch (err) {
             app.checkApiError(err);
         }
@@ -968,15 +968,15 @@ function sendPasswordResetEmailDropdownItem(collection, data, modalSettings) {
             onclick: (e) => {
                 e.target.closest(".dropdown").hidePopover();
                 app.modals.confirm(
-                    `Do you really want to send password reset email to ${data.originalRecord?.email}?`,
+                    `确定要发送密码重置邮件至 ${data.originalRecord?.email} 吗？`,
                     sendPasswordResetEmail,
                     null,
-                    { yesButton: "Send" },
+                    { yesButton: "发送" },
                 );
             },
         },
         t.i({ className: "ri-mail-lock-line", ariaHidden: true }),
-        t.span({ className: "txt" }, "Send password reset email"),
+        t.span({ className: "txt" }, "发送密码重置邮件"),
     );
 }
 
@@ -997,7 +997,7 @@ function sendVerificationDropdownItem(collection, data, modalSettings) {
 
             modalSettings.onverificationsend?.(JSON.parse(JSON.stringify(data.originalRecord)));
 
-            app.toasts.success(`Successfully sent verification email to ${data.originalRecord.email}.`);
+            app.toasts.success(`已成功发送验证邮件至 ${data.originalRecord.email}。`);
         } catch (err) {
             app.checkApiError(err);
         }
@@ -1013,15 +1013,15 @@ function sendVerificationDropdownItem(collection, data, modalSettings) {
             onclick: (e) => {
                 e.target.closest(".dropdown").hidePopover();
                 app.modals.confirm(
-                    `Do you really want to send verification email to ${data.originalRecord?.email}?`,
+                    `确定要发送验证邮件至 ${data.originalRecord?.email} 吗？`,
                     sendVerificationEmail,
                     null,
-                    { yesButton: "Send" },
+                    { yesButton: "发送" },
                 );
             },
         },
         t.i({ className: "ri-mail-check-line", ariaHidden: true }),
-        t.span({ className: "txt" }, "Send verification email"),
+        t.span({ className: "txt" }, "发送验证邮件"),
     );
 }
 
@@ -1036,7 +1036,7 @@ function impersonateDropdownItem(collection, data, modalSettings) {
             },
         },
         t.i({ className: "ri-id-card-line", ariaHidden: true }),
-        t.span({ className: "txt" }, "Impersonate"),
+        t.span({ className: "txt" }, "模拟身份"),
     );
 }
 
@@ -1057,7 +1057,7 @@ function deleteDropdownItem(collection, data, modalSettings) {
 
             modalSettings.ondelete?.(JSON.parse(JSON.stringify(data.originalRecord)));
 
-            app.toasts.success(`Successfully deleted record "${data.originalRecord.id}".`);
+            app.toasts.success(`已成功删除记录 "${data.originalRecord.id}"。`);
         } catch (err) {
             app.checkApiError(err);
         }
@@ -1073,18 +1073,18 @@ function deleteDropdownItem(collection, data, modalSettings) {
             onclick: (e) => {
                 e.target.closest(".dropdown").hidePopover();
                 app.modals.confirm(
-                    `Do you really want to delete the selected record?`,
+                    `确定要删除所选记录吗？`,
                     async () => {
                         await deleteRecord();
                         app.modals.close(e.target.closest(".modal"));
                     },
                     null,
-                    { yesButton: "Delete record" },
+                    { yesButton: "删除记录" },
                 );
             },
         },
         t.i({ className: "ri-delete-bin-7-line", ariaHidden: true }),
-        t.span({ className: "txt" }, "Delete"),
+        t.span({ className: "txt" }, "删除"),
     );
 }
 
@@ -1127,12 +1127,12 @@ function authFieldEmail(collection, data) {
                     {
                         type: "button",
                         className: () => `btn sm transparent ${data.record.emailVisibility ? "success" : "secondary"}`,
-                        ariaDescription: app.attrs.tooltip("Make email public or private", "top-right"),
+                        ariaDescription: app.attrs.tooltip("设置邮箱为公开或私密", "top-right"),
                         onclick: () => {
                             data.record.emailVisibility = !data.record.emailVisibility;
                         },
                     },
-                    t.span({ className: "txt" }, "Public: ", () => (data.record.emailVisibility ? "On" : "Off")),
+                    t.span({ className: "txt" }, "公开: ", () => (data.record.emailVisibility ? "开" : "关")),
                 ),
             ),
         ),
@@ -1172,13 +1172,13 @@ function authFieldVerified(collection, data) {
         }
 
         app.modals.confirm(
-            `Do you really want to manually change the verified account state from "${!data.record
-                .verified}" to "${data.record.verified}"?`,
+            `确定要手动将验证状态从 "${!data.record
+                .verified}" 更改为 "${data.record.verified}" 吗？`,
             null,
             () => {
                 data.record.verified = !data.record.verified;
             },
-            { yesButton: "Yes, " + (data.record.verified ? "verify" : "unverify") },
+            { yesButton: "是的，" + (data.record.verified ? "验证" : "取消验证") },
         );
     });
 
@@ -1250,7 +1250,7 @@ function authFieldPassword(collection, data) {
                     }
                 },
             }),
-            t.label({ htmlFor: uniqueId + "_change" }, t.span({ className: "txt" }, "change password")),
+            t.label({ htmlFor: uniqueId + "_change" }, t.span({ className: "txt" }, "修改密码")),
         ),
         app.components.slide(
             () => local.isNew || local.changePassword,
@@ -1261,7 +1261,7 @@ function authFieldPassword(collection, data) {
                     t.label(
                         { htmlFor: uniqueId + "_password" },
                         t.i({ className: "ri-lock-line", ariaHidden: true }),
-                        t.span({ className: "txt" }, "Password"),
+                        t.span({ className: "txt" }, "密码"),
                     ),
                     t.input({
                         type: "password",
@@ -1288,7 +1288,7 @@ function authFieldPassword(collection, data) {
                     t.label(
                         { htmlFor: uniqueId + "_password_confirm" },
                         t.i({ className: "ri-lock-line", ariaHidden: true }),
-                        t.span({ className: "txt" }, "Confirm"),
+                        t.span({ className: "txt" }, "确认密码"),
                     ),
                     t.input({
                         type: "password",
@@ -1330,10 +1330,10 @@ function authFieldPassword(collection, data) {
                             data.record.password = random;
                             data.record.passwordConfirm = random;
                             app.utils.copyToClipboard(random);
-                            app.toasts.info("Generated and copied random password to clipboard.");
+                            app.toasts.info("已生成并复制随机密码到剪贴板。");
                         },
                     },
-                    "Generate and set random password",
+                    "生成并设置随机密码",
                 ),
             ),
         ),
@@ -1371,13 +1371,13 @@ function authProvidersTab(collection, data) {
         const name = providerInfo.displayName || externalAuth.provider;
 
         app.modals.confirm(
-            `Do you really want to unlink the ${name} provider?`,
+            `确定要解除与 ${name} 提供商的关联吗？`,
             () => {
                 return app.pb
                     .collection("_externalAuths")
                     .delete(externalAuth.id)
                     .then(() => {
-                        app.toasts.success(`Successfully unlinked ${name}.`);
+                        app.toasts.success(`已成功解除与 ${name} 的关联。`);
                         loadExternalAuths(); // reload list
                     })
                     .catch((err) => {
@@ -1385,7 +1385,7 @@ function authProvidersTab(collection, data) {
                     });
             },
             null,
-            { yesButton: "Unlink" },
+            { yesButton: "解除关联" },
         );
     }
 
@@ -1407,7 +1407,7 @@ function authProvidersTab(collection, data) {
                     if (!local.externalAuths.length) {
                         return t.div(
                             { className: "list-item" },
-                            t.div({ className: "block txt-hint txt-center" }, "No external auth providers found."),
+                            t.div({ className: "block txt-hint txt-center" }, "未找到外部认证提供商。"),
                         );
                     }
 
@@ -1444,7 +1444,7 @@ function authProvidersTab(collection, data) {
                                     {
                                         type: "button",
                                         className: "btn sm secondary transparent circle",
-                                        ariaLabel: app.attrs.tooltip("Unlink", "left"),
+                                        ariaLabel: app.attrs.tooltip("解除关联", "left"),
                                         onclick: () => confirmAndUnlink(externalAuth),
                                     },
                                     t.i({ className: "ri-close-line", ariaHidden: true }),
@@ -1463,7 +1463,7 @@ function authProvidersTab(collection, data) {
                     className: "btn transparent m-r-auto",
                     onclick: () => app.modals.close(),
                 },
-                t.span({ className: "txt" }, "Close"),
+                t.span({ className: "txt" }, "关闭"),
             ),
         ),
     ];

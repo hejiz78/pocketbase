@@ -23,7 +23,7 @@ window.app.components.s3ConfigFields = function(propsArg = {}) {
         className: "",
         config: {}, // S3 config store (pass as a function in case the object is being replaced)
         configKey: "s3", // used for the fields error matching
-        toggleLabel: "Use S3 storage",
+        toggleLabel: "使用 S3 存储",
         testFilesystem: "storage",
         before: null,
         after: null,
@@ -88,7 +88,7 @@ window.app.components.s3ConfigFields = function(propsArg = {}) {
                     { className: "col-lg-6" },
                     t.div(
                         { className: "field" },
-                        t.label({ htmlFor: () => `${props.configKey}.endpoint` }, "Endpoint"),
+                        t.label({ htmlFor: () => `${props.configKey}.endpoint` }, "端点"),
                         t.input({
                             id: () => `${props.configKey}.endpoint`,
                             name: () => `${props.configKey}.endpoint`,
@@ -103,7 +103,7 @@ window.app.components.s3ConfigFields = function(propsArg = {}) {
                     { className: "col-lg-3" },
                     t.div(
                         { className: "field" },
-                        t.label({ htmlFor: () => `${props.configKey}.bucket` }, "Bucket"),
+                        t.label({ htmlFor: () => `${props.configKey}.bucket` }, "存储桶"),
                         t.input({
                             id: () => `${props.configKey}.bucket`,
                             name: () => `${props.configKey}.bucket`,
@@ -118,7 +118,7 @@ window.app.components.s3ConfigFields = function(propsArg = {}) {
                     { className: "col-lg-3" },
                     t.div(
                         { className: "field" },
-                        t.label({ htmlFor: () => `${props.configKey}.region` }, "Region"),
+                        t.label({ htmlFor: () => `${props.configKey}.region` }, "区域"),
                         t.input({
                             id: () => `${props.configKey}.region`,
                             name: () => `${props.configKey}.region`,
@@ -133,7 +133,7 @@ window.app.components.s3ConfigFields = function(propsArg = {}) {
                     { className: "col-lg-6" },
                     t.div(
                         { className: "field" },
-                        t.label({ htmlFor: () => `${props.configKey}.accessKey` }, "Access key"),
+                        t.label({ htmlFor: () => `${props.configKey}.accessKey` }, "访问密钥"),
                         t.input({
                             id: () => `${props.configKey}.accessKey`,
                             name: () => `${props.configKey}.accessKey`,
@@ -151,7 +151,7 @@ window.app.components.s3ConfigFields = function(propsArg = {}) {
                         {
                             className: () => `field ${props.config.enabled ? "" : "required"}`,
                         },
-                        t.label({ htmlFor: () => `${props.configKey}.secret` }, "Secret"),
+                        t.label({ htmlFor: () => `${props.configKey}.secret` }, "密钥"),
                         t.input({
                             id: () => `${props.configKey}.secret`,
                             name: () => `${props.configKey}.secret`,
@@ -184,11 +184,11 @@ window.app.components.s3ConfigFields = function(propsArg = {}) {
                         }),
                         t.label(
                             { htmlFor: () => `${props.configKey}.forcePathStyle` },
-                            t.span({ className: "txt" }, "Force path-style addressing"),
+                            t.span({ className: "txt" }, "强制路径样式寻址"),
                             t.i({
                                 className: "ri-information-line link-hint",
                                 ariaDescription: app.attrs.tooltip(
-                                    `Forces the request to use path-style addressing, eg. "https://s3.amazonaws.com/BUCKET/KEY" instead of the default "https://BUCKET.s3.amazonaws.com/KEY".`,
+                                    `强制请求使用路径样式寻址，例如 "https://s3.amazonaws.com/BUCKET/KEY" 而非默认的 "https://BUCKET.s3.amazonaws.com/KEY"。`,
                                 ),
                             }),
                         ),

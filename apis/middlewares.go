@@ -315,7 +315,7 @@ func superuserIPsWhitelist() *hook.Handler[*core.RequestEvent] {
 				ips := e.App.Settings().SuperuserIPs
 
 				if len(ips) > 0 && !isIPInList(ips, e.RealIP()) {
-					return e.ForbiddenError("", errors.New("superuser IP is not whitelisted"))
+					return e.ForbiddenError("", errors.New("超级用户IP不在白名单中"))
 				}
 			}
 

@@ -163,12 +163,12 @@ func (f *JSONField) ValidateValue(ctx context.Context, app App, record *Record) 
 	if int64(len(raw)) > maxSize {
 		return validation.NewError(
 			"validation_json_size_limit",
-			"The maximum allowed JSON size is {{.maxSize}} bytes",
+			"允许的最大JSON大小为{{.maxSize}}字节",
 		).SetParams(map[string]any{"maxSize": maxSize})
 	}
 
 	if is.JSON.Validate(raw) != nil {
-		return validation.NewError("validation_invalid_json", "Must be a valid json value")
+		return validation.NewError("validation_invalid_json", "必须是有效的JSON值")
 	}
 
 	rawStr := strings.TrimSpace(raw.String())

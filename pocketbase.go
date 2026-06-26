@@ -221,28 +221,28 @@ func (pb *PocketBase) eagerParseFlags(config *Config) error {
 		&pb.dataDirFlag,
 		"dir",
 		config.DefaultDataDir,
-		"the PocketBase data directory",
+		"PocketBase数据目录",
 	)
 
 	pb.RootCmd.PersistentFlags().StringVar(
 		&pb.encryptionEnvFlag,
 		"encryptionEnv",
 		config.DefaultEncryptionEnv,
-		"the env variable whose value of 32 characters will be used \nas encryption key for the app settings (default none)",
+		"环境变量，其32字符的值将用作\n应用设置的加密密钥（默认无）",
 	)
 
 	pb.RootCmd.PersistentFlags().BoolVar(
 		&pb.devFlag,
 		"dev",
 		config.DefaultDev,
-		"enable dev mode, aka. printing logs and sql statements to the console",
+		"启用开发模式，将日志和SQL语句输出到控制台",
 	)
 
 	pb.RootCmd.PersistentFlags().IntVar(
 		&pb.queryTimeout,
 		"queryTimeout",
 		int(config.DefaultQueryTimeout.Seconds()),
-		"the default SELECT queries timeout in seconds",
+		"默认SELECT查询超时时间（秒）",
 	)
 
 	return pb.RootCmd.ParseFlags(os.Args[1:])

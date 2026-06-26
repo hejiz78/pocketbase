@@ -66,7 +66,7 @@ func (e *ApiError) Is(target error) bool {
 // NewNotFoundError creates and returns 404 ApiError.
 func NewNotFoundError(message string, rawErrData any) *ApiError {
 	if message == "" {
-		message = "The requested resource wasn't found."
+		message = "请求的资源未找到。"
 	}
 
 	return NewApiError(http.StatusNotFound, message, rawErrData)
@@ -75,7 +75,7 @@ func NewNotFoundError(message string, rawErrData any) *ApiError {
 // NewBadRequestError creates and returns 400 ApiError.
 func NewBadRequestError(message string, rawErrData any) *ApiError {
 	if message == "" {
-		message = "Something went wrong while processing your request."
+		message = "处理您的请求时出了错误。"
 	}
 
 	return NewApiError(http.StatusBadRequest, message, rawErrData)
@@ -84,7 +84,7 @@ func NewBadRequestError(message string, rawErrData any) *ApiError {
 // NewForbiddenError creates and returns 403 ApiError.
 func NewForbiddenError(message string, rawErrData any) *ApiError {
 	if message == "" {
-		message = "You are not allowed to perform this request."
+		message = "您没有权限执行此请求。"
 	}
 
 	return NewApiError(http.StatusForbidden, message, rawErrData)
@@ -93,7 +93,7 @@ func NewForbiddenError(message string, rawErrData any) *ApiError {
 // NewUnauthorizedError creates and returns 401 ApiError.
 func NewUnauthorizedError(message string, rawErrData any) *ApiError {
 	if message == "" {
-		message = "Missing or invalid authentication."
+		message = "认证信息缺失或无效。"
 	}
 
 	return NewApiError(http.StatusUnauthorized, message, rawErrData)
@@ -102,7 +102,7 @@ func NewUnauthorizedError(message string, rawErrData any) *ApiError {
 // NewInternalServerError creates and returns 500 ApiError.
 func NewInternalServerError(message string, rawErrData any) *ApiError {
 	if message == "" {
-		message = "Something went wrong while processing your request."
+		message = "处理您的请求时出了错误。"
 	}
 
 	return NewApiError(http.StatusInternalServerError, message, rawErrData)
@@ -110,7 +110,7 @@ func NewInternalServerError(message string, rawErrData any) *ApiError {
 
 func NewTooManyRequestsError(message string, rawErrData any) *ApiError {
 	if message == "" {
-		message = "Too Many Requests."
+		message = "请求过于频繁。"
 	}
 
 	return NewApiError(http.StatusTooManyRequests, message, rawErrData)
@@ -213,7 +213,7 @@ func resolveSafeErrorItem(err any) any {
 	} else {
 		// fallback to the default public safe values
 		data["code"] = "validation_invalid_value"
-		data["message"] = "Invalid value."
+		data["message"] = "无效的值。"
 	}
 
 	if s, ok := err.(SafeErrorParamsResolver); ok {

@@ -65,7 +65,7 @@ func (form *backupUploadForm) checkUniqueName(value any) error {
 
 	// note: we use the original name because that is what we upload
 	if exists, err := form.fsys.Exists(v.OriginalName); err != nil || exists {
-		return validation.NewError("validation_backup_name_exists", "Backup file with the specified name already exists.")
+		return validation.NewError("validation_backup_name_exists", "指定名称的备份文件已存在。")
 	}
 
 	return nil

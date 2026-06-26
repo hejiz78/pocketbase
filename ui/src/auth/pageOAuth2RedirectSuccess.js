@@ -1,5 +1,5 @@
 export function pageOAuth2RedirectSuccess(route) {
-    app.store.title = "OAuth2 auth completed";
+    app.store.title = "OAuth2 认证完成";
 
     window.close();
 
@@ -9,8 +9,8 @@ export function pageOAuth2RedirectSuccess(route) {
             { className: "page-content" },
             t.header(
                 { className: "txt-center p-base" },
-                t.h3({ className: "primary-heading m-b-sm" }, "Auth completed."),
-                t.h6({ className: "secondary-heading" }, "You can close this window and go back to the app."),
+                t.h3({ className: "primary-heading m-b-sm" }, "认证完成。"),
+                t.h6({ className: "secondary-heading" }, "您可以关闭此窗口并返回应用。"),
             ),
         ),
     );

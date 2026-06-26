@@ -1,5 +1,5 @@
 export function pageSuperuserLogin(route) {
-    app.store.title = "Superuser login";
+    app.store.title = "超级用户登录";
 
     const data = store({
         authMethods: {},
@@ -120,7 +120,7 @@ async function authWithPassword(data) {
         } else if (err.status != 400) {
             app.checkApiError(err);
         } else {
-            app.toasts.error("Invalid login credentials.");
+            app.toasts.error("登录凭据无效。");
         }
     }
 
@@ -170,7 +170,7 @@ function authWithPasswordForm(data) {
                 { className: "fields" },
                 t.div(
                     { className: "field" },
-                    t.label({ htmlFor: "login_pass" }, "Password"),
+                    t.label({ htmlFor: "login_pass" }, "密码"),
                     t.input({
                         id: "login_pass",
                         name: "password",
@@ -187,7 +187,7 @@ function authWithPasswordForm(data) {
                             type: "button",
                             tabIndex: -1,
                             className: "btn sm transparent secondary circle tooltip-right",
-                            ariaLabel: app.attrs.tooltip(() => data.showPassword ? "Hide password" : "Show password"),
+                            ariaLabel: app.attrs.tooltip(() => data.showPassword ? "隐藏密码" : "显示密码"),
                             onclick: () => (data.showPassword = !data.showPassword),
                         },
                         t.i({
@@ -203,7 +203,7 @@ function authWithPasswordForm(data) {
                     className: "link-hint m-t-5",
                     onclick: (e) => e.stopPropagation(),
                 },
-                t.small(null, "Forgotten password"),
+                t.small(null, "忘记密码"),
             ),
         ),
         t.div(
@@ -213,7 +213,7 @@ function authWithPasswordForm(data) {
                     className: () => `btn lg block next ${data.isPasswordAuthSubmitting ? "loading" : ""}`,
                     disabled: () => data.isPasswordAuthSubmitting,
                 },
-                t.span({ className: "txt" }, () => (data.totalSteps > 1 ? "Next" : "Login")),
+                t.span({ className: "txt" }, () => (data.totalSteps > 1 ? "下一步" : "登录")),
                 t.i({ className: "ri-arrow-right-line", ariaHidden: true }),
             ),
         ),
@@ -262,7 +262,7 @@ function requestOTPForm(data) {
             { className: "col-12" },
             t.div(
                 { className: "field" },
-                t.label({ htmlFor: "otp_email" }, "Email"),
+                t.label({ htmlFor: "otp_email" }, "邮箱"),
                 t.input({
                     id: "otp_email",
                     name: "email",
@@ -282,7 +282,7 @@ function requestOTPForm(data) {
                     disabled: () => data.isOTPRequestSubmitting,
                 },
                 t.i({ className: "ri-mail-send-line", ariaHidden: true }),
-                t.span({ className: "txt" }, "Send OTP"),
+                t.span({ className: "txt" }, "发送验证码"),
             ),
         ),
     );
@@ -328,9 +328,9 @@ function authWithOTPForm(data) {
                     { className: "col-12" },
                     t.div(
                         { className: "content txt-center" },
-                        "Check your ",
+                        "请查看 ",
                         t.strong(null, data.otpEmail),
-                        " inbox and enter below the received One-time password (OTP).",
+                        " 的收件箱，并在下方输入收到的一次性密码（OTP）。",
                     ),
                 );
             }
@@ -339,7 +339,7 @@ function authWithOTPForm(data) {
             { className: "col-12" },
             t.div(
                 { className: "field" },
-                t.label({ htmlFor: "otp_id" }, "Id"),
+                t.label({ htmlFor: "otp_id" }, "ID"),
                 t.input({
                     id: "otp_id",
                     name: "otpId",
@@ -360,7 +360,7 @@ function authWithOTPForm(data) {
                 { className: "fields" },
                 t.div(
                     { className: "field" },
-                    t.label({ htmlFor: "otp_password" }, "One-time password"),
+                    t.label({ htmlFor: "otp_password" }, "一次性密码"),
                     t.input({
                         id: "otp_password",
                         name: "password",
@@ -377,7 +377,7 @@ function authWithOTPForm(data) {
                             type: "button",
                             tabIndex: -1,
                             className: "btn sm transparent secondary circle tooltip-right",
-                            ariaLabel: app.attrs.tooltip(() => data.showPassword ? "Hide password" : "Show password"),
+                            ariaLabel: app.attrs.tooltip(() => data.showPassword ? "隐藏密码" : "显示密码"),
                             onclick: () => (data.showPassword = !data.showPassword),
                         },
                         t.i({
@@ -394,7 +394,7 @@ function authWithOTPForm(data) {
                     className: () => `btn lg block next ${data.isOTPAuthSubmitting ? "loading" : ""}`,
                     disabled: () => data.isOTPAuthSubmitting,
                 },
-                t.span({ className: "txt" }, "Login"),
+                t.span({ className: "txt" }, "登录"),
                 t.i({ className: "ri-arrow-right-line", ariaHidden: true }),
             ),
             t.div(
@@ -409,7 +409,7 @@ function authWithOTPForm(data) {
                             data.otpPassword = "";
                         },
                     },
-                    "Request another OTP",
+                    "重新获取验证码",
                 ),
             ),
         ),

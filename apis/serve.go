@@ -270,7 +270,7 @@ func Serve(app core.App, config ServeConfig) error {
 
 	if listener == nil {
 		//nolint:staticcheck
-		return errors.New("The OnServe listener was not initialized. Did you forget to call the ServeEvent.Next() method?")
+		return errors.New("OnServe监听器未初始化。是否忘记调用ServeEvent.Next()方法？")
 	}
 
 	if config.ShowStartBanner {
@@ -279,7 +279,7 @@ func Serve(app core.App, config ServeConfig) error {
 
 		bold := color.New(color.Bold).Add(color.FgGreen)
 		bold.Printf(
-			"%s Server started at %s\n",
+			"%s 服务器已启动 %s\n",
 			strings.TrimSpace(date.String()),
 			color.CyanString("%s", baseURL),
 		)
@@ -289,7 +289,7 @@ func Serve(app core.App, config ServeConfig) error {
 			regular.Printf("└─ REST API:  %s\n", color.CyanString("%s/api/", baseURL))
 		} else {
 			regular.Printf("├─ REST API:  %s\n", color.CyanString("%s/api/", baseURL))
-			regular.Printf("└─ Dashboard: %s\n", color.CyanString("%s/_/", baseURL))
+			regular.Printf("└─ 管理面板: %s\n", color.CyanString("%s/_/", baseURL))
 		}
 	}
 

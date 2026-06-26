@@ -136,7 +136,7 @@ func (f *URLField) ValidateValue(ctx context.Context, app App, record *Record) e
 	}
 
 	if is.URL.Validate(val) != nil {
-		return validation.NewError("validation_invalid_url", "Must be a valid url")
+		return validation.NewError("validation_invalid_url", "必须是有效的URL")
 	}
 
 	// extract host/domain
@@ -144,12 +144,12 @@ func (f *URLField) ValidateValue(ctx context.Context, app App, record *Record) e
 
 	// only domains check
 	if len(f.OnlyDomains) > 0 && !slices.Contains(f.OnlyDomains, u.Host) {
-		return validation.NewError("validation_url_domain_not_allowed", "Url domain is not allowed")
+		return validation.NewError("validation_url_domain_not_allowed", "不允许此URL域名")
 	}
 
 	// except domains check
 	if len(f.ExceptDomains) > 0 && slices.Contains(f.ExceptDomains, u.Host) {
-		return validation.NewError("validation_url_domain_not_allowed", "Url domain is not allowed")
+		return validation.NewError("validation_url_domain_not_allowed", "不允许此URL域名")
 	}
 
 	return nil

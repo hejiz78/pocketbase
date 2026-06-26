@@ -202,7 +202,7 @@ func (form *RecordUpsert) checkOldPassword(value any) error {
 	}
 
 	if !form.record.Original().ValidatePassword(v) {
-		return validation.NewError("validation_invalid_old_password", "Missing or invalid old password.")
+		return validation.NewError("validation_invalid_old_password", "原密码缺失或无效。")
 	}
 
 	return nil

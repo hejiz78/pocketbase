@@ -19,7 +19,7 @@ func NewServeCommand(app core.App, showStartBanner bool) *cobra.Command {
 	command := &cobra.Command{
 		Use:          "serve [domain(s)]",
 		Args:         cobra.ArbitraryArgs,
-		Short:        "Starts the web server (default to 127.0.0.1:8090 if no domain is specified)",
+		Short:        "启动Web服务器（如果未指定域名，默认为127.0.0.1:8090）",
 		SilenceUsage: true,
 		RunE: func(command *cobra.Command, args []string) error {
 			// set default listener addresses if at least one domain is specified
@@ -56,21 +56,21 @@ func NewServeCommand(app core.App, showStartBanner bool) *cobra.Command {
 		&allowedOrigins,
 		"origins",
 		[]string{"*"},
-		"CORS allowed domain origins list",
+		"CORS允许的域名来源列表",
 	)
 
 	command.PersistentFlags().StringVar(
 		&httpAddr,
 		"http",
 		"",
-		"TCP address to listen for the HTTP server\n(if domain args are specified - default to 0.0.0.0:80, otherwise - default to 127.0.0.1:8090)",
+		"HTTP服务器监听的TCP地址\n（如果指定了域名参数 - 默认为0.0.0.0:80，否则 - 默认为127.0.0.1:8090）",
 	)
 
 	command.PersistentFlags().StringVar(
 		&httpsAddr,
 		"https",
 		"",
-		"TCP address to listen for the HTTPS server\n(if domain args are specified - default to 0.0.0.0:443, otherwise - default to empty string, aka. no TLS)\nThe incoming HTTP traffic also will be auto redirected to the HTTPS version",
+		"HTTPS服务器监听的TCP地址\n（如果指定了域名参数 - 默认为0.0.0.0:443，否则 - 默认为空字符串，即不启用TLS）\n传入的HTTP流量也将自动重定向到HTTPS版本",
 	)
 
 	return command

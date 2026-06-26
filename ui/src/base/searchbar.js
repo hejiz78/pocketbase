@@ -23,7 +23,7 @@ window.app.components.searchbar = function(propsArg = {}) {
         inert: undefined,
         value: "",
         className: "",
-        placeholder: "Search...",
+        placeholder: "搜索...",
         disabled: false,
         historyKey: "",
         autocomplete: undefined, // Array<string|Object> | function(word): Array<string|Object>,
@@ -111,7 +111,7 @@ window.app.components.searchbar = function(propsArg = {}) {
                             className: "btn sm pill warning",
                             hidden: () => props.value == local.value,
                         },
-                        "Search",
+                        "搜索",
                     ),
                     t.button(
                         {
@@ -119,7 +119,7 @@ window.app.components.searchbar = function(propsArg = {}) {
                             className: "btn sm pill secondary transparent",
                             onclick: () => clear(),
                         },
-                        "Clear",
+                        "清除",
                     ),
                 );
             }

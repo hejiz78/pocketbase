@@ -10,7 +10,7 @@ const defaultSettings = {
     collection: "", // model, id or name
     selectedIds: [],
     maxSelect: 1,
-    btnText: "Set selection",
+    btnText: "确认选择",
     onselect: function(records) {},
 };
 
@@ -297,7 +297,7 @@ function recordsPickerModal(settings = defaultSettings) {
                 {
                     type: "button",
                     className: "btn circle transparent",
-                    ariaLabel: app.attrs.tooltip("Add new record"),
+                    ariaLabel: app.attrs.tooltip("新建记录"),
                     onclick: () => {
                         app.modals.openRecordUpsert(data.collection);
                     },
@@ -343,7 +343,7 @@ function recordsPickerModal(settings = defaultSettings) {
                                 t.button(
                                     {
                                         className: "btn sm secondary transparent circle",
-                                        ariaLabel: app.attrs.tooltip("Edit"),
+                                        ariaLabel: app.attrs.tooltip("编辑"),
                                         onclick: (e) => {
                                             e.stopPropagation();
                                             app.modals.openRecordUpsert(data.collection, record);
@@ -371,11 +371,11 @@ function recordsPickerModal(settings = defaultSettings) {
                     },
                     t.div(
                         { className: "content txt-hint" },
-                        t.span({ className: "txt" }, "No records found."),
+                        t.span({ className: "txt" }, "未找到记录。"),
                         t.button({
                             type: "button",
                             className: "btn sm secondary",
-                            textContent: "Clear search",
+                            textContent: "清除搜索",
                             hidden: () => !data.searchTerm.trim().length,
                             onclick: () => {
                                 data.searchTerm = "";
@@ -388,9 +388,9 @@ function recordsPickerModal(settings = defaultSettings) {
                 { className: "block m-t-base" },
                 t.p(
                     { className: "txt-bold" },
-                    () => `Selected (${data.selected.length} of max ${settings.maxSelect || 1})`,
+                    () => `已选择 (${data.selected.length} / 最多 ${settings.maxSelect || 1})`,
                 ),
-                t.span({ className: "txt-hint", hidden: () => data.selected }, "No selected records."),
+                t.span({ className: "txt-hint", hidden: () => data.selected }, "未选择任何记录。"),
                 app.components.sortable({
                     className: "records-picker-selected-list",
                     data: () => data.selected,
@@ -401,7 +401,7 @@ function recordsPickerModal(settings = defaultSettings) {
                             t.span(
                                 {
                                     className: "link-hint",
-                                    title: "Remove",
+                                    title: "移除",
                                     role: "button",
                                     onclick: () => toggleSelected(record),
                                 },
@@ -423,7 +423,7 @@ function recordsPickerModal(settings = defaultSettings) {
                     className: "btn transparent m-r-auto",
                     onclick: () => close(),
                 },
-                t.span({ className: "txt" }, "Close"),
+                t.span({ className: "txt" }, "关闭"),
             ),
             // image thumb selector
             () => {
@@ -432,8 +432,8 @@ function recordsPickerModal(settings = defaultSettings) {
                 }
 
                 const options = [
-                    { value: "", label: "Original size" },
-                    { value: "100x100", label: "100x100 thumb" },
+                    { value: "", label: "原始尺寸" },
+                    { value: "100x100", label: "100x100 缩略图" },
                 ];
 
                 // find the related field and its thumbs
@@ -444,7 +444,7 @@ function recordsPickerModal(settings = defaultSettings) {
                 for (let thumb of thumbs) {
                     options.push({
                         value: thumb,
-                        label: `${thumb} thumb`,
+                        label: `${thumb} 缩略图`,
                     });
                 }
 

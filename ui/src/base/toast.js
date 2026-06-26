@@ -135,7 +135,7 @@ function addToast(textOrElem, options = {}) {
                     {
                         type: "button",
                         className: "m-l-auto btn circle sm transparent secondary toast-remove",
-                        title: "Clear",
+                        title: "清除",
                         onclick: () => removeToast(toastRef),
                     },
                     t.i({ className: "ri-close-line", ariaHidden: true }),

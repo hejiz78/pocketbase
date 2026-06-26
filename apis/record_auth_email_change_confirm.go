@@ -88,7 +88,7 @@ func (form *EmailChangeConfirmForm) checkPassword(value any) error {
 
 	authRecord, _, _ := form.parseToken()
 	if authRecord == nil || !authRecord.ValidatePassword(v) {
-		return validation.NewError("validation_invalid_password", "Missing or invalid auth record password.")
+		return validation.NewError("validation_invalid_password", "认证记录密码缺失或无效。")
 	}
 
 	return nil
@@ -99,23 +99,23 @@ func (form *EmailChangeConfirmForm) parseToken() (*core.Record, string, error) {
 	claims, _ := security.ParseUnverifiedJWT(form.Token)
 	newEmail, _ := claims[core.TokenClaimNewEmail].(string)
 	if newEmail == "" {
-		return nil, "", validation.NewError("validation_invalid_token_payload", "Invalid token payload - newEmail must be set.")
+		return nil, "", validation.NewError("validation_invalid_token_payload", "无效的令牌负载 - 必须设置newEmail。")
 	}
 
 	// verify that the token is not expired and its signature is valid
 	authRecord, err := form.app.FindAuthRecordByToken(form.Token, core.TokenTypeEmailChange)
 	if err != nil {
-		return nil, "", validation.NewError("validation_invalid_token", "Invalid or expired token.")
+		return nil, "", validation.NewError("validation_invalid_token", "令牌无效或已过期。")
 	}
 
 	if authRecord.Collection().Id != form.collection.Id {
-		return nil, "", validation.NewError("validation_token_collection_mismatch", "The provided token is for different auth collection.")
+		return nil, "", validation.NewError("validation_token_collection_mismatch", "提供的令牌属于不同的认证集合。")
 	}
 
 	// check if there are other users with the new email
 	_, err = form.app.FindAuthRecordByEmail(form.collection, newEmail)
 	if err == nil {
-		return nil, "", validation.NewError("validation_invalid_token_email", "The new email address is invalid.")
+		return nil, "", validation.NewError("validation_invalid_token_email", "新邮箱地址无效。")
 	}
 
 	return authRecord, newEmail, nil

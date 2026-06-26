@@ -75,8 +75,9 @@ function recordImpersonateModal(record) {
             { className: "modal-header" },
             t.h6(
                 null,
-                "Generate nonrenewable auth token for ",
+                "为 ",
                 t.strong(null, () => record.email || record.id),
+                " 生成不可续期认证令牌",
             ),
         ),
         t.div(
@@ -93,15 +94,14 @@ function recordImpersonateModal(record) {
                 },
                 t.div(
                     { className: "field" },
-                    t.label({ htmlFor: uniqueId + "_duration" }, "Token duration (in seconds)"),
+                    t.label({ htmlFor: uniqueId + "_duration" }, "令牌有效期（秒）"),
                     t.input({
                         id: uniqueId + "_duration",
                         type: "number",
                         name: "duration",
                         min: 0,
                         step: 1,
-                        placeholder: () =>
-                            `Default to the collection settings (${data.collection?.authToken?.duration || 0}s)`,
+                        placeholder: () => `默认使用集合设置 (${data.collection?.authToken?.duration || 0}秒)`,
                         value: (e) => data.duration || "",
                         oninput: (e) => (data.duration = parseInt(e.target.value, 10)),
                     }),
@@ -139,7 +139,7 @@ function recordImpersonateModal(record) {
                                 href: import.meta.env.PB_JS_SDK_URL,
                                 target: "_blank",
                                 rel: "noopener noreferrer",
-                                textContent: "JS SDK docs",
+                                textContent: "JS SDK 文档",
                             }),
                         ),
                     },
@@ -161,7 +161,7 @@ function recordImpersonateModal(record) {
                                 href: import.meta.env.PB_DART_SDK_URL,
                                 target: "_blank",
                                 rel: "noopener noreferrer",
-                                textContent: "Dart SDK docs",
+                                textContent: "Dart SDK 文档",
                             }),
                         ),
                     },
@@ -177,7 +177,7 @@ function recordImpersonateModal(record) {
                     disabled: () => data.isLoading,
                     onclick: () => app.modals.close(),
                 },
-                t.span({ className: "txt" }, "Close"),
+                t.span({ className: "txt" }, "关闭"),
             ),
             t.button(
                 {
@@ -187,7 +187,7 @@ function recordImpersonateModal(record) {
                     "className": () => `btn expanded-lg ${data.isLoading ? "loading" : ""}`,
                     "disabled": () => data.isLoading,
                 },
-                t.span({ className: "txt" }, "Generate token"),
+                t.span({ className: "txt" }, "生成令牌"),
             ),
             t.button(
                 {
@@ -196,7 +196,7 @@ function recordImpersonateModal(record) {
                     className: () => `btn secondary expanded-lg ${data.isLoading ? "loading" : ""}`,
                     onclick: () => reset(),
                 },
-                t.span({ className: "txt" }, "Generate new one"),
+                t.span({ className: "txt" }, "生成新令牌"),
             ),
         ),
     );

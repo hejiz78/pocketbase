@@ -205,13 +205,13 @@ func (f *RelationField) ValidateValue(ctx context.Context, app App, record *Reco
 	}
 
 	if f.MinSelect > 0 && len(ids) < f.MinSelect {
-		return validation.NewError("validation_not_enough_values", "Select at least {{.minSelect}}").
+		return validation.NewError("validation_not_enough_values", "至少选择{{.minSelect}}项").
 			SetParams(map[string]any{"minSelect": f.MinSelect})
 	}
 
 	maxSelect := max(f.MaxSelect, 1)
 	if len(ids) > maxSelect {
-		return validation.NewError("validation_too_many_values", "Select no more than {{.maxSelect}}").
+		return validation.NewError("validation_too_many_values", "最多选择{{.maxSelect}}项").
 			SetParams(map[string]any{"maxSelect": maxSelect})
 	}
 
@@ -219,7 +219,7 @@ func (f *RelationField) ValidateValue(ctx context.Context, app App, record *Reco
 	// ---
 	relCollection, err := app.FindCachedCollectionByNameOrId(f.CollectionId)
 	if err != nil {
-		return validation.NewError("validation_missing_rel_collection", "Relation connection is missing or cannot be accessed")
+		return validation.NewError("validation_missing_rel_collection", "关联连接缺失或无法访问")
 	}
 
 	var total int
@@ -229,7 +229,7 @@ func (f *RelationField) ValidateValue(ctx context.Context, app App, record *Reco
 		AndWhere(dbx.In("id", list.ToInterfaceSlice(ids)...)).
 		Row(&total)
 	if total != len(ids) {
-		return validation.NewError("validation_missing_rel_records", "Failed to find all relation records with the provided ids")
+		return validation.NewError("validation_missing_rel_records", "无法找到所有提供的ID对应的关联记录")
 	}
 	// ---
 
@@ -271,7 +271,7 @@ func (f *RelationField) checkCollectionId(app App, collection *Collection) valid
 			if oldField != nil && oldField.CollectionId != v {
 				return validation.NewError(
 					"validation_field_relation_change",
-					"The relation collection cannot be changed.",
+					"关联集合无法更改。",
 				)
 			}
 		}
@@ -282,7 +282,7 @@ func (f *RelationField) checkCollectionId(app App, collection *Collection) valid
 		if relCollection == nil || relCollection.Id != v {
 			return validation.NewError(
 				"validation_field_relation_missing_collection",
-				"The relation collection doesn't exist.",
+				"关联集合不存在。",
 			)
 		}
 
@@ -291,7 +291,7 @@ func (f *RelationField) checkCollectionId(app App, collection *Collection) valid
 		if !collection.IsView() && relCollection.IsView() {
 			return validation.NewError(
 				"validation_relation_field_non_view_base_collection",
-				"Only view collections are allowed to have relations to other views.",
+				"只有视图集合才能与其他视图建立关联。",
 			)
 		}
 

@@ -195,14 +195,14 @@ func (f *SelectField) ValidateValue(ctx context.Context, app App, record *Record
 
 	// check max selected items
 	if len(normalizedVal) > maxSelect {
-		return validation.NewError("validation_too_many_values", "Select no more than {{.maxSelect}}").
+		return validation.NewError("validation_too_many_values", "最多选择{{.maxSelect}}项").
 			SetParams(map[string]any{"maxSelect": maxSelect})
 	}
 
 	// check against the allowed values
 	for _, val := range normalizedVal {
 		if !slices.Contains(f.Values, val) {
-			return validation.NewError("validation_invalid_value", "Invalid value {{.value}}").
+			return validation.NewError("validation_invalid_value", "无效的值 {{.value}}").
 				SetParams(map[string]any{"value": val})
 		}
 	}

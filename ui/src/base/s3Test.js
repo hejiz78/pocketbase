@@ -65,7 +65,7 @@ window.app.components.s3Test = function(propsArg = {}) {
         clearTimeout(testTimeoutId);
         testTimeoutId = setTimeout(() => {
             app.pb.cancelRequest(testRequestKey);
-            data.testError = new Error("S3 test connection timeout.");
+            data.testError = new Error("S3 测试连接超时。");
             data.isTesting = false;
         }, 30000);
 
@@ -112,13 +112,13 @@ window.app.components.s3Test = function(propsArg = {}) {
             if (data.hasError) {
                 return [
                     t.i({ className: "ri-error-warning-line txt-warning", ariaHidden: true }),
-                    t.span({ className: "txt" }, "Failed to establish S3 connection"),
+                    t.span({ className: "txt" }, "无法建立 S3 连接"),
                 ];
             }
 
             return [
                 t.i({ className: "ri-checkbox-circle-line txt-success", ariaHidden: true }),
-                t.span({ className: "txt" }, "S3 connected successfully"),
+                t.span({ className: "txt" }, "S3 连接成功"),
             ];
         },
     );

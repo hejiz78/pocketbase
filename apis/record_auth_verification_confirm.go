@@ -89,20 +89,20 @@ func (form *recordConfirmVerificationForm) checkToken(value any) error {
 	claims, _ := security.ParseUnverifiedJWT(v)
 	email := cast.ToString(claims["email"])
 	if email == "" {
-		return validation.NewError("validation_invalid_token_claims", "Missing email token claim.")
+		return validation.NewError("validation_invalid_token_claims", "缺少邮箱令牌声明。")
 	}
 
 	record, err := form.app.FindAuthRecordByToken(v, core.TokenTypeVerification)
 	if err != nil || record == nil {
-		return validation.NewError("validation_invalid_token", "Invalid or expired token.")
+		return validation.NewError("validation_invalid_token", "令牌无效或已过期。")
 	}
 
 	if record.Collection().Id != form.collection.Id {
-		return validation.NewError("validation_token_collection_mismatch", "The provided token is for different auth collection.")
+		return validation.NewError("validation_token_collection_mismatch", "提供的令牌属于不同的认证集合。")
 	}
 
 	if record.Email() != email {
-		return validation.NewError("validation_token_email_mismatch", "The record email doesn't match with the requested token claims.")
+		return validation.NewError("validation_token_email_mismatch", "记录邮箱与请求的令牌声明不匹配。")
 	}
 
 	return nil

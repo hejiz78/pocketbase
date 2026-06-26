@@ -4,7 +4,7 @@ window.app.modals = window.app.modals || {};
 const recordsPerPage = 100;
 
 const defaultSettings = {
-    btnText: "Insert",
+    btnText: "插入",
     fileTypes: [], // "image", "document", "video", "audio", "file"
     onselect: function(selectedFile) {},
 };
@@ -247,7 +247,7 @@ function recordFilePickerModal(settings = defaultSettings) {
                 },
                 t.span(
                     { className: "txt-lg collection-name m-r-auto" },
-                    () => data.activeCollection?.name || "Select collection",
+                    () => data.activeCollection?.name || "选择集合",
                 ),
                 t.i({ className: "ri-arrow-drop-down-line", ariaHidden: true }),
             ),
@@ -281,7 +281,7 @@ function recordFilePickerModal(settings = defaultSettings) {
                 {
                     type: "button",
                     className: "btn circle transparent",
-                    ariaLabel: app.attrs.tooltip("Add new record"),
+                    ariaLabel: app.attrs.tooltip("新建记录"),
                     onclick: () => app.modals.openRecordUpsert(data.activeCollection),
                 },
                 t.i({ className: "ri-add-line txt-hint", ariaHidden: true }),
@@ -347,7 +347,7 @@ function recordFilePickerModal(settings = defaultSettings) {
                         disabled: () => data.isLoadingRecords,
                         onclick: () => loadRecords(),
                     },
-                    t.span({ className: "txt" }, "Load more"),
+                    t.span({ className: "txt" }, "加载更多"),
                 ),
             ),
             // no files
@@ -358,14 +358,14 @@ function recordFilePickerModal(settings = defaultSettings) {
                 },
                 () => {
                     if (app.utils.isEmpty(settings.fileTypes)) {
-                        return t.p(null, "No records with selectable files found.");
+                        return t.p(null, "未找到包含可选文件的记录。");
                     }
-                    return t.p(null, `No "${settings.fileTypes.join("\", \"")}" files found.`);
+                    return t.p(null, `未找到 "${settings.fileTypes.join("\", \"")}" 文件。`);
                 },
                 t.button({
                     type: "button",
                     className: "btn sm secondary",
-                    textContent: "Clear search",
+                    textContent: "清除搜索",
                     hidden: () => !data.searchTerm?.length,
                     onclick: () => {
                         data.searchTerm = "";
@@ -381,7 +381,7 @@ function recordFilePickerModal(settings = defaultSettings) {
                     className: "btn transparent m-r-auto",
                     onclick: () => app.modals.close(modal),
                 },
-                t.span({ className: "txt" }, "Close"),
+                t.span({ className: "txt" }, "关闭"),
             ),
             // image thumb selector
             () => {
@@ -390,8 +390,8 @@ function recordFilePickerModal(settings = defaultSettings) {
                 }
 
                 const options = [
-                    { value: "", label: "Original size" },
-                    { value: "100x100", label: "100x100 thumb" },
+                    { value: "", label: "原始尺寸" },
+                    { value: "100x100", label: "100x100 缩略图" },
                 ];
 
                 // find the related field and its thumbs
@@ -402,7 +402,7 @@ function recordFilePickerModal(settings = defaultSettings) {
                 for (let thumb of thumbs) {
                     options.push({
                         value: thumb,
-                        label: `${thumb} thumb`,
+                        label: `${thumb} 缩略图`,
                     });
                 }
 

@@ -264,13 +264,13 @@ func (f *FileField) ValidateValue(ctx context.Context, app App, record *Record) 
 			invalidFiles[i] = invalidStr
 		}
 
-		return validation.NewError("validation_invalid_file", "Invalid new files: {{.invalidFiles}}.").
+		return validation.NewError("validation_invalid_file", "无效的新文件：{{.invalidFiles}}。").
 			SetParams(map[string]any{"invalidFiles": invalidFiles})
 	}
 
 	maxSelect := f.maxSelect()
 	if len(files) > maxSelect {
-		return validation.NewError("validation_too_many_files", "The maximum allowed files is {{.maxSelect}}").
+		return validation.NewError("validation_too_many_files", "允许的最大文件数为{{.maxSelect}}").
 			SetParams(map[string]any{"maxSelect": maxSelect})
 	}
 

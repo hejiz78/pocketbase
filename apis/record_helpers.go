@@ -46,7 +46,7 @@ func recordAuthResponse(e *core.RequestEvent, authRecord *core.Record, token str
 	if authRecord.IsSuperuser() {
 		allowedIPs := e.App.Settings().SuperuserIPs
 		if len(allowedIPs) > 0 && !isIPInList(allowedIPs, e.RealIP()) {
-			return e.ForbiddenError("", errors.New("superuser IP is not whitelisted"))
+			return e.ForbiddenError("", errors.New("超级用户IP不在白名单中"))
 		}
 	}
 

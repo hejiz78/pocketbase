@@ -90,7 +90,7 @@ func recordAuthWithPassword(e *core.RequestEvent) error {
 				dummyPasswordCheck(e.App, e.Collection)
 			}
 
-			return e.BadRequestError("Failed to authenticate.", errors.New("invalid login credentials"))
+			return e.BadRequestError("认证失败。", errors.New("登录凭据无效"))
 		}
 
 		return RecordAuthResponse(e.RequestEvent, e.Record, core.MFAMethodPassword, nil)

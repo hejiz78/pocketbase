@@ -190,7 +190,7 @@ func (app *BaseApp) ImportCollections(toImport []map[string]any, deleteMissing b
 
 				return validation.Errors{"collections": validation.NewError(
 					"validation_collections_import_failure",
-					fmt.Sprintf("Data validations failed for collection %q (%s):\n%s", imported.Name, imported.Id, serializedErr),
+					fmt.Sprintf("集合 %q (%s) 的数据验证失败：\n%s", imported.Name, imported.Id, serializedErr),
 				)}
 			}
 		}

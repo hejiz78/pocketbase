@@ -234,7 +234,7 @@ window.app.components.recordsList = function(propsArg = {}) {
         selectAll(false);
 
         app.toasts.success(
-            `Successfully deleted ${idsToDelete.length} ${idsToDelete.length == 1 ? "record" : "records"}.`,
+            `成功删除 ${idsToDelete.length} 条记录。`,
         );
     }
 
@@ -518,7 +518,7 @@ window.app.components.recordsList = function(propsArg = {}) {
 
                                 return t.div(
                                     { className: "sticky-content txt-center txt-hint" },
-                                    t.div({ className: "txt-bold" }, "No records found."),
+                                    t.div({ className: "txt-bold" }, "未找到记录。"),
                                     t.button(
                                         {
                                             hidden: () => props.filter?.length || props.collection?.type == "view",
@@ -529,7 +529,7 @@ window.app.components.recordsList = function(propsArg = {}) {
                                             },
                                         },
                                         t.i({ className: "ri-add-line" }),
-                                        t.span({ className: "txt" }, "New record"),
+                                        t.span({ className: "txt" }, "新建记录"),
                                     ),
                                     t.button(
                                         {
@@ -541,7 +541,7 @@ window.app.components.recordsList = function(propsArg = {}) {
                                                 triggerOnchange();
                                             },
                                         },
-                                        t.span({ className: "txt" }, "Clear search"),
+                                        t.span({ className: "txt" }, "清除搜索"),
                                     ),
                                 );
                             }),
@@ -670,7 +670,7 @@ window.app.components.recordsList = function(propsArg = {}) {
                                 disabled: () => data.isLoading,
                                 onclick: () => loadRecords(),
                             },
-                            t.span({ className: "txt" }, "Load more"),
+                            t.span({ className: "txt" }, "加载更多"),
                         ),
                     ),
                 ),
@@ -685,9 +685,9 @@ window.app.components.recordsList = function(propsArg = {}) {
                 },
                 t.span(
                     { className: "txt" },
-                    "Selected ",
+                    "已选择 ",
                     t.strong(null, () => data.totalSelected),
-                    () => ` ${data.totalSelected == 1 ? "record" : "records"}`,
+                    () => ` 条记录`,
                 ),
                 t.button(
                     {
@@ -695,7 +695,7 @@ window.app.components.recordsList = function(propsArg = {}) {
                         className: "btn sm secondary pill m-r-auto",
                         onclick: () => selectAll(false),
                     },
-                    t.span({ className: "txt" }, "Reset"),
+                    t.span({ className: "txt" }, "重置"),
                 ),
                 () => {
                     if (props.collection?.type == "view") {
@@ -707,13 +707,13 @@ window.app.components.recordsList = function(propsArg = {}) {
                             className: "btn sm pill outline danger",
                             onclick: () => {
                                 app.modals.confirm(
-                                    "Do you really want to delete the selected records?",
+                                    "确定要删除所选记录吗？",
                                     deleteSelected,
                                 );
                             },
                         },
                         t.i({ className: "ri-delete-bin-7-line", ariaHidden: true }),
-                        t.span({ className: "txt" }, "Delete"),
+                        t.span({ className: "txt" }, "删除"),
                     );
                 },
                 t.button(
@@ -794,7 +794,7 @@ function columnsDropdown(props, data) {
         {
             hidden: () => props.collection?.fields.length <= 1,
             type: "button",
-            title: "Toggle columns",
+            title: "切换列",
             className: "btn sm secondary transparent circle",
             popoverTargetElement: dropdown,
         },

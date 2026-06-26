@@ -5,12 +5,12 @@ export function pageConfirmVerification(route) {
     const tokenPayload = getTokenPayload(token);
 
     if (!tokenPayload.email || !tokenPayload.collectionId) {
-        app.toasts.error("Invalid or expired verification token.");
+        app.toasts.error("验证令牌无效或已过期。");
         window.location.hash = "#/";
         return;
     }
 
-    app.store.title = "Confirm verification";
+    app.store.title = "确认验证";
 
     const data = store({
         isConfirming: false,
@@ -75,27 +75,27 @@ export function pageConfirmVerification(route) {
         ),
         () => {
             if (data.isConfirming) {
-                return t.div({ className: "block txt-center" }, t.span({ className: "loader" }, "Please wait..."));
+                return t.div({ className: "block txt-center" }, t.span({ className: "loader" }, "请稍候..."));
             }
 
             if (data.isConfirmSuccess) {
                 return t.div(
                     { pbEvent: "confirmVerificationSuccessAlert", className: "alert success txt-center" },
-                    t.p(null, "Successfully verified ", t.strong(null, tokenPayload.email), "."),
+                    t.p(null, "已成功验证 ", t.strong(null, tokenPayload.email), "。"),
                 );
             }
 
             if (data.isResendSuccess) {
                 return t.div(
                     { pbEvent: "confirmVerificationResendAlert", className: "alert success txt-center" },
-                    t.p(null, "Please check your email for the new verification link."),
+                    t.p(null, "请查看您的邮箱以获取新的验证链接。"),
                 );
             }
 
             return [
                 t.div(
                     { pbEvent: "confirmVerificationErrorAlert", className: "alert danger txt-center m-b-base" },
-                    t.p(null, "Invalid or expired verification token."),
+                    t.p(null, "验证令牌无效或已过期。"),
                 ),
                 t.button(
                     {
@@ -104,7 +104,7 @@ export function pageConfirmVerification(route) {
                         disabled: () => data.isResending,
                         onclick: () => resend(),
                     },
-                    t.span({ className: "txt" }, "Resend"),
+                    t.span({ className: "txt" }, "重新发送"),
                 ),
             ];
         },

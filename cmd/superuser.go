@@ -16,7 +16,7 @@ import (
 func NewSuperuserCommand(app core.App) *cobra.Command {
 	command := &cobra.Command{
 		Use:   "superuser",
-		Short: "Manage superusers",
+		Short: "管理超级用户",
 	}
 
 	command.AddCommand(superuserUpsertCommand(app))
@@ -33,15 +33,15 @@ func superuserUpsertCommand(app core.App) *cobra.Command {
 	command := &cobra.Command{
 		Use:          "upsert",
 		Example:      "superuser upsert test@example.com 1234567890",
-		Short:        "Creates, or updates if email exists, a single superuser",
+		Short:        "创建或更新（如果邮箱已存在）单个超级用户",
 		SilenceUsage: true,
 		RunE: func(command *cobra.Command, args []string) error {
 			if len(args) != 2 {
-				return errors.New("missing email and password arguments")
+				return errors.New("缺少邮箱和密码参数")
 			}
 
 			if args[0] == "" || is.EmailFormat.Validate(args[0]) != nil {
-				return errors.New("missing or invalid email address")
+				return errors.New("缺少或无效的邮箱地址")
 			}
 
 			superusersCol, err := app.FindCachedCollectionByNameOrId(core.CollectionNameSuperusers)
@@ -61,7 +61,7 @@ func superuserUpsertCommand(app core.App) *cobra.Command {
 				return fmt.Errorf("failed to upsert superuser account: %w", err)
 			}
 
-			color.Green("Successfully saved superuser %q!", superuser.Email())
+			color.Green("成功保存超级用户 %q！", superuser.Email())
 			return nil
 		},
 	}
@@ -73,15 +73,15 @@ func superuserCreateCommand(app core.App) *cobra.Command {
 	command := &cobra.Command{
 		Use:          "create",
 		Example:      "superuser create test@example.com 1234567890",
-		Short:        "Creates a new superuser",
+		Short:        "创建新的超级用户",
 		SilenceUsage: true,
 		RunE: func(command *cobra.Command, args []string) error {
 			if len(args) != 2 {
-				return errors.New("missing email and password arguments")
+				return errors.New("缺少邮箱和密码参数")
 			}
 
 			if args[0] == "" || is.EmailFormat.Validate(args[0]) != nil {
-				return errors.New("missing or invalid email address")
+				return errors.New("缺少或无效的邮箱地址")
 			}
 
 			superusersCol, err := app.FindCachedCollectionByNameOrId(core.CollectionNameSuperusers)
@@ -97,7 +97,7 @@ func superuserCreateCommand(app core.App) *cobra.Command {
 				return fmt.Errorf("failed to create new superuser account: %w", err)
 			}
 
-			color.Green("Successfully created new superuser %q!", superuser.Email())
+			color.Green("成功创建超级用户 %q！", superuser.Email())
 			return nil
 		},
 	}
@@ -109,20 +109,20 @@ func superuserUpdateCommand(app core.App) *cobra.Command {
 	command := &cobra.Command{
 		Use:          "update",
 		Example:      "superuser update test@example.com 1234567890",
-		Short:        "Changes the password of a single superuser",
+		Short:        "更改超级用户的密码",
 		SilenceUsage: true,
 		RunE: func(command *cobra.Command, args []string) error {
 			if len(args) != 2 {
-				return errors.New("missing email and password arguments")
+				return errors.New("缺少邮箱和密码参数")
 			}
 
 			if args[0] == "" || is.EmailFormat.Validate(args[0]) != nil {
-				return errors.New("missing or invalid email address")
+				return errors.New("缺少或无效的邮箱地址")
 			}
 
 			superuser, err := app.FindAuthRecordByEmail(core.CollectionNameSuperusers, args[0])
 			if err != nil {
-				return fmt.Errorf("superuser with email %q doesn't exist", args[0])
+				return fmt.Errorf("邮箱为 %q 的超级用户不存在", args[0])
 			}
 
 			superuser.SetPassword(args[1])
@@ -131,7 +131,7 @@ func superuserUpdateCommand(app core.App) *cobra.Command {
 				return fmt.Errorf("failed to change superuser %q password: %w", superuser.Email(), err)
 			}
 
-			color.Green("Successfully changed superuser %q password!", superuser.Email())
+			color.Green("成功更改超级用户 %q 的密码！", superuser.Email())
 			return nil
 		},
 	}
@@ -143,16 +143,16 @@ func superuserDeleteCommand(app core.App) *cobra.Command {
 	command := &cobra.Command{
 		Use:          "delete",
 		Example:      "superuser delete test@example.com",
-		Short:        "Deletes an existing superuser",
+		Short:        "删除已有的超级用户",
 		SilenceUsage: true,
 		RunE: func(command *cobra.Command, args []string) error {
 			if len(args) == 0 || args[0] == "" || is.EmailFormat.Validate(args[0]) != nil {
-				return errors.New("invalid or missing email address")
+				return errors.New("缺少或无效的邮箱地址")
 			}
 
 			superuser, err := app.FindAuthRecordByEmail(core.CollectionNameSuperusers, args[0])
 			if err != nil {
-				color.Yellow("superuser %q is missing or already deleted", args[0])
+				color.Yellow("超级用户 %q 不存在或已被删除", args[0])
 				return nil
 			}
 
@@ -160,7 +160,7 @@ func superuserDeleteCommand(app core.App) *cobra.Command {
 				return fmt.Errorf("failed to delete superuser %q: %w", superuser.Email(), err)
 			}
 
-			color.Green("Successfully deleted superuser %q!", superuser.Email())
+			color.Green("成功删除超级用户 %q！", superuser.Email())
 			return nil
 		},
 	}
@@ -172,20 +172,20 @@ func superuserOTPCommand(app core.App) *cobra.Command {
 	command := &cobra.Command{
 		Use:          "otp",
 		Example:      "superuser otp test@example.com",
-		Short:        "Creates a new OTP for the specified superuser",
+		Short:        "为指定的超级用户创建一次性密码(OTP)",
 		SilenceUsage: true,
 		RunE: func(command *cobra.Command, args []string) error {
 			if len(args) == 0 || args[0] == "" || is.EmailFormat.Validate(args[0]) != nil {
-				return errors.New("invalid or missing email address")
+				return errors.New("缺少或无效的邮箱地址")
 			}
 
 			superuser, err := app.FindAuthRecordByEmail(core.CollectionNameSuperusers, args[0])
 			if err != nil {
-				return fmt.Errorf("superuser with email %q doesn't exist", args[0])
+				return fmt.Errorf("邮箱为 %q 的超级用户不存在", args[0])
 			}
 
 			if !superuser.Collection().OTP.Enabled {
-				return errors.New("OTP auth is not enabled for the _superusers collection")
+				return errors.New("_superusers 集合未启用OTP认证")
 			}
 
 			pass := security.RandomStringWithAlphabet(superuser.Collection().OTP.Length, "1234567890")
@@ -200,10 +200,10 @@ func superuserOTPCommand(app core.App) *cobra.Command {
 				return fmt.Errorf("failed to create OTP: %w", err)
 			}
 
-			color.New(color.BgGreen, color.FgBlack).Printf("Successfully created OTP for superuser %q:", superuser.Email())
-			color.Green("\n├─ Id:    %s", otp.Id)
-			color.Green("├─ Pass:  %s", pass)
-			color.Green("└─ Valid: %ds\n\n", superuser.Collection().OTP.Duration)
+			color.New(color.BgGreen, color.FgBlack).Printf("成功为超级用户 %q 创建OTP:", superuser.Email())
+			color.Green("\n├─ ID:    %s", otp.Id)
+			color.Green("├─ 密码:  %s", pass)
+			color.Green("└─ 有效期: %d秒\n\n", superuser.Collection().OTP.Duration)
 			return nil
 		},
 	}
@@ -215,7 +215,7 @@ func superuserIPsCommand(app core.App) *cobra.Command {
 	command := &cobra.Command{
 		Use:          "ips",
 		Example:      "superuser ips 127.0.0.1 10.0.0.0/24",
-		Short:        "Updates the superuser IPs whitelist setting (the IPs/subnets arguments must be space separated; leave empty to clear the whitelist restriction)",
+		Short:        "更新超级用户IP白名单设置（IP/子网参数用空格分隔；留空则清除白名单限制）",
 		SilenceUsage: true,
 		RunE: func(command *cobra.Command, args []string) error {
 			settings := app.Settings()
@@ -226,9 +226,9 @@ func superuserIPsCommand(app core.App) *cobra.Command {
 			}
 
 			if len(args) == 0 {
-				color.Green("Successfully cleared SuperuserIPs setting!")
+				color.Green("已成功清除超级用户IP白名单设置！")
 			} else {
-				color.New(color.BgGreen, color.FgBlack).Println("Successfully updated SuperuserIPs setting:")
+				color.New(color.BgGreen, color.FgBlack).Println("已成功更新超级用户IP白名单设置：")
 				superuserIPs := app.Settings().SuperuserIPs
 				for i, ip := range superuserIPs {
 					if i == len(superuserIPs)-1 {

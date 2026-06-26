@@ -46,7 +46,7 @@ window.app.components.recordsSearchbar = function(propsArg = {}) {
             },
         },
         app.components.searchbar({
-            placeholder: () => (!props.disabled && !props.collection?.id ? "Loading..." : "Search term or filter..."),
+            placeholder: () => (!props.disabled && !props.collection?.id ? "加载中..." : "输入搜索词或筛选条件..."),
             historyKey: () => "pbRecordsSearchHistory_" + props.collection?.id,
             disabled: () => props.disabled || !props.collection,
             value: () => props.value,

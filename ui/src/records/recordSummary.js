@@ -174,14 +174,14 @@ const showRecordSummaryDropdownNoDelay = function(target, record) {
                             e.stopImmediatePropagation();
                         },
                     },
-                    t.span({ className: "txt" }, "Edit relation record"),
+                    t.span({ className: "txt" }, "编辑关联记录"),
                     t.i({ className: "ri-external-link-line", ariaHidden: true }),
                 ),
                 t.button(
                     {
                         type: "button",
                         className: "link-hint",
-                        title: "Close",
+                        title: "关闭",
                         onclick: () => hideRecordSummaryDropdown(target, 0),
                     },
                     t.i({ className: "ri-close-line", ariaHidden: true }),

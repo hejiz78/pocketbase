@@ -16,7 +16,7 @@ window.app.store = store({
 
     page: t.div({ className: "page" }, () => {
         if (!app.store._ready) {
-            return t.span({ className: "loader lg m-auto", title: "Loading plugins..." });
+            return t.span({ className: "loader lg m-auto", title: "正在加载插件..." });
         }
     }),
 
@@ -46,7 +46,7 @@ window.app.store = store({
             // optional: isActive
             href: import.meta.env.PB_DOCS_URL,
             icon: "ri-book-open-line",
-            label: "Docs",
+            label: "文档",
         },
         {
             href: import.meta.env.PB_RELEASES,
@@ -60,66 +60,66 @@ window.app.store = store({
             // optional: isActive
             href: "#/collections",
             icon: "ri-database-2-line",
-            label: "Collections",
+            label: "集合",
         },
         {
             href: "#/logs",
             icon: "ri-bar-chart-box-line",
-            label: "Logs",
+            label: "日志",
         },
         {
             href: "#/settings",
             icon: "ri-settings-3-line",
-            label: "Settings",
+            label: "设置",
         },
     ],
 
     settingsNavGroups: {
-        System: [
+        系统: [
             {
                 // optional: isActive
                 href: "#/settings",
                 icon: "ri-home-gear-line",
-                label: "Application",
+                label: "应用",
             },
             {
                 href: "#/settings/mail",
                 icon: "ri-send-plane-2-line",
-                label: "Mail settings",
+                label: "邮件设置",
             },
             {
                 href: "#/settings/storage",
                 icon: "ri-archive-drawer-line",
-                label: "Files storage",
+                label: "文件存储",
             },
             {
                 href: "#/settings/backups",
                 icon: "ri-archive-line",
-                label: "Backups",
+                label: "备份",
             },
             {
                 href: "#/settings/crons",
                 icon: "ri-time-line",
-                label: "Crons",
+                label: "定时任务",
             },
         ],
-        Sync: [
+        同步: [
             {
                 href: "#/settings/export-collections",
                 icon: "ri-uninstall-line",
-                label: "Export collections",
+                label: "导出集合",
             },
             {
                 href: "#/settings/import-collections",
                 icon: "ri-install-line",
-                label: "Import collections",
+                label: "导入集合",
             },
         ],
-        Debug: [
+        调试: [
             {
                 href: "#/settings/sql",
                 icon: "ri-terminal-box-line",
-                label: "SQL console",
+                label: "SQL控制台",
             },
         ],
     },

@@ -54,10 +54,10 @@ const (
 
 // Common field errors.
 var (
-	ErrUnknownField          = validation.NewError("validation_unknown_field", "Unknown or invalid field.")
-	ErrInvalidFieldValue     = validation.NewError("validation_invalid_field_value", "Invalid field value.")
-	ErrMustBeSystemAndHidden = validation.NewError("validation_must_be_system_and_hidden", `The field must be marked as "System" and "Hidden".`)
-	ErrMustBeSystem          = validation.NewError("validation_must_be_system", `The field must be marked as "System".`)
+	ErrUnknownField          = validation.NewError("validation_unknown_field", "未知或无效的字段。")
+	ErrInvalidFieldValue     = validation.NewError("validation_invalid_field_value", "无效的字段值。")
+	ErrMustBeSystemAndHidden = validation.NewError("validation_must_be_system_and_hidden", `该字段必须标记为"System"和"Hidden"。`)
+	ErrMustBeSystem          = validation.NewError("validation_must_be_system", `该字段必须标记为"System"。`)
 )
 
 // FieldFactoryFunc defines a simple function to construct a specific Field instance.
@@ -261,7 +261,7 @@ func checkForVia(value any) error {
 	}
 
 	if strings.Contains(strings.ToLower(v), "_via_") {
-		return validation.NewError("validation_found_via", `The value cannot contain "_via_".`)
+		return validation.NewError("validation_found_via", `值不能包含"_via_"。`)
 	}
 
 	return nil

@@ -41,9 +41,9 @@ func collectionsImport(e *core.RequestEvent) error {
 		}
 
 		// generic/db failure
-		return e.BadRequestError("Failed to import collections.", validation.Errors{"collections": validation.NewError(
+		return e.BadRequestError("导入集合失败。", validation.Errors{"collections": validation.NewError(
 			"validation_collections_import_failure",
-			"Failed to import the collections configuration. Raw error:\n"+importErr.Error(),
+			"导入集合配置失败。原始错误：\n"+importErr.Error(),
 		)})
 	})
 }

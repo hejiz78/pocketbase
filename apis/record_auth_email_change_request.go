@@ -85,7 +85,7 @@ func (form *emailChangeRequestForm) checkUniqueEmail(value any) error {
 
 	found, _ := form.app.FindAuthRecordByEmail(form.record.Collection(), v)
 	if found != nil && found.Id != form.record.Id {
-		return validation.NewError("validation_invalid_new_email", "Invalid new email address.")
+		return validation.NewError("validation_invalid_new_email", "无效的新邮箱地址。")
 	}
 
 	return nil

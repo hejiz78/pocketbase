@@ -456,13 +456,13 @@ func validateCollectionId(app App, optTypes ...string) validation.RuleFunc {
 
 		collection := &Collection{}
 		if err := app.ModelQuery(collection).Model(id, collection); err != nil {
-			return validation.NewError("validation_invalid_collection_id", "Missing or invalid collection.")
+			return validation.NewError("validation_invalid_collection_id", "集合缺失或无效。")
 		}
 
 		if len(optTypes) > 0 && !slices.Contains(optTypes, collection.Type) {
 			return validation.NewError(
 				"validation_invalid_collection_type",
-				fmt.Sprintf("Invalid collection type - must be %s.", strings.Join(optTypes, ", ")),
+				fmt.Sprintf("无效的集合类型 - 必须为 %s。", strings.Join(optTypes, ", ")),
 			)
 		}
 
@@ -479,7 +479,7 @@ func validateRecordId(app App, collectionNameOrId string) validation.RuleFunc {
 
 		collection, err := app.FindCachedCollectionByNameOrId(collectionNameOrId)
 		if err != nil {
-			return validation.NewError("validation_invalid_collection", "Missing or invalid collection.")
+			return validation.NewError("validation_invalid_collection", "集合缺失或无效。")
 		}
 
 		var exists int
@@ -491,7 +491,7 @@ func validateRecordId(app App, collectionNameOrId string) validation.RuleFunc {
 			Row(&exists)
 
 		if rowErr != nil || exists == 0 {
-			return validation.NewError("validation_invalid_record", "Missing or invalid record.")
+			return validation.NewError("validation_invalid_record", "记录缺失或无效。")
 		}
 
 		return nil

@@ -25,7 +25,7 @@ func Equal[T comparable](valueToCompare T) validation.RuleFunc {
 			return nil
 		}
 
-		return validation.NewError("validation_values_mismatch", "Values don't match.")
+		return validation.NewError("validation_values_mismatch", "值不匹配。")
 	}
 }
 

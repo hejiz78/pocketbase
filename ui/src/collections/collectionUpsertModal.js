@@ -85,7 +85,7 @@ function collectionUpsertModal(rawCollection, modalSettings) {
             return Object.keys(app.collectionTypes).map((type) => {
                 return {
                     value: type,
-                    label: app.utils.sentenize(type, false) + " collection",
+                    label: app.utils.sentenize(type, false) + " 集合",
                 };
             });
         },
@@ -195,8 +195,8 @@ function collectionUpsertModal(rawCollection, modalSettings) {
 
             app.toasts.success(
                 isNew
-                    ? `Successfully created collection "${data.collection.name}".`
-                    : `Successfully updated collection "${data.collection.name}".`,
+                    ? `成功创建集合"${data.collection.name}"。`
+                    : `成功更新集合"${data.collection.name}"。`,
                 { key: "collectionSave" },
             );
 
@@ -210,7 +210,7 @@ function collectionUpsertModal(rawCollection, modalSettings) {
             if (!err?.isAbort) {
                 data.isSaving = false;
                 app.checkApiError(err, false);
-                app.toasts.error(err.message || "Failed to save collection.", { key: "collectionSave" });
+                app.toasts.error(err.message || "保存集合失败。", { key: "collectionSave" });
             }
         }
     }
@@ -305,7 +305,7 @@ function collectionUpsertModal(rawCollection, modalSettings) {
 
                 return new Promise((r) => {
                     app.modals.confirm(
-                        "You have unsaved changes. Do you really want to discard them?",
+                        "您有未保存的更改。确定要放弃吗？",
                         () => r(modalSettings.onbeforeclose?.(el)),
                         () => r(false),
                     );
@@ -398,7 +398,7 @@ function collectionUpsertModal(rawCollection, modalSettings) {
                     { className: "col-12 flex" },
                     t.h6(
                         { className: "modal-title" },
-                        t.span(null, () => (data.isNew ? "Create " : "Edit ")),
+                        t.span(null, () => (data.isNew ? "创建 " : "编辑 ")),
                         t.strong(
                             {
                                 hidden: () => data.isNew,
@@ -406,7 +406,7 @@ function collectionUpsertModal(rawCollection, modalSettings) {
                             },
                             () => data.originalCollection?.name,
                         ),
-                        t.span(null, " collection"),
+                        t.span(null, " 集合"),
                     ),
                     t.div({ className: "flex-fill" }),
                     () => {
@@ -419,7 +419,7 @@ function collectionUpsertModal(rawCollection, modalSettings) {
                                 {
                                     type: "button",
                                     className: "btn sm circle transparent",
-                                    title: "More options",
+                                    title: "更多选项",
                                     "html-popovertarget": uniqueId + "modal-header-dropdown",
                                 },
                                 t.i({ className: "ri-more-line", ariaHidden: true }),
@@ -439,11 +439,11 @@ function collectionUpsertModal(rawCollection, modalSettings) {
                                             app.utils.copyToClipboard(
                                                 JSON.stringify(data.originalCollection, null, 2),
                                             );
-                                            app.toasts.success("Collection copied to clipboard!");
+                                            app.toasts.success("集合已复制到剪贴板！");
                                         },
                                     },
                                     t.i({ className: "ri-braces-line", ariaHidden: true }),
-                                    t.span({ className: "txt" }, "Copy JSON"),
+                                    t.span({ className: "txt" }, "复制 JSON"),
                                 ),
                                 t.button(
                                     {
@@ -454,10 +454,10 @@ function collectionUpsertModal(rawCollection, modalSettings) {
 
                                             if (data.hasChanges) {
                                                 app.modals.confirm(
-                                                    "You have unsaved changes. Do you really want to discard them?",
+                                                    "您有未保存的更改。确定要放弃吗？",
                                                     duplicate,
                                                     null,
-                                                    { yesButton: "Yes, discard" },
+                                                    { yesButton: "是，放弃" },
                                                 );
                                             } else {
                                                 duplicate();
@@ -465,7 +465,7 @@ function collectionUpsertModal(rawCollection, modalSettings) {
                                         },
                                     },
                                     t.i({ className: "ri-file-copy-line", ariaHidden: true }),
-                                    t.span({ className: "txt" }, "Duplicate"),
+                                    t.span({ className: "txt" }, "复制集合"),
                                 ),
                                 t.hr(),
                                 () => {
@@ -493,7 +493,7 @@ function collectionUpsertModal(rawCollection, modalSettings) {
                             t.label({
                                 htmlFor: uniqueId + "col_name",
                                 textContent: () => {
-                                    return `Name${data.collection?.system ? " (system)" : ""}`;
+                                    return `名称${data.collection?.system ? "（系统）" : ""}`;
                                 },
                             }),
                             t.input({
@@ -502,7 +502,7 @@ function collectionUpsertModal(rawCollection, modalSettings) {
                                 name: "name",
                                 required: true,
                                 spellcheck: false,
-                                placeholder: "e.g. posts",
+                                placeholder: "例如 posts",
                                 autofocus: () => data.isNew,
                                 disabled: () => !data.isNew && data.collection?.system,
                                 value: () => data.collection.name || "",
@@ -531,7 +531,7 @@ function collectionUpsertModal(rawCollection, modalSettings) {
                                 },
                                 t.span(
                                     { className: "txt" },
-                                    "Type: ",
+                                    "类型：",
                                     () => app.utils.sentenize(data.collection.type, false) || "N/A",
                                 ),
                                 t.i({
@@ -605,7 +605,7 @@ function collectionUpsertModal(rawCollection, modalSettings) {
 
                                             return t.i({
                                                 className: "ri-error-warning-fill txt-danger txt-base",
-                                                ariaDescription: app.attrs.tooltip("Has errors"),
+                                                ariaDescription: app.attrs.tooltip("存在错误"),
                                             });
                                         },
                                     ),
@@ -649,7 +649,7 @@ function collectionUpsertModal(rawCollection, modalSettings) {
                     disabled: () => data.isSaving,
                     onclick: () => app.modals.close(modal),
                 },
-                t.span({ className: "txt" }, "Close"),
+                t.span({ className: "txt" }, "关闭"),
             ),
             () => {
                 const rawErrors = JSON.stringify(app.store.errors, null, 2);
@@ -659,7 +659,7 @@ function collectionUpsertModal(rawCollection, modalSettings) {
 
                 return t.i({
                     className: "ri-error-warning-line txt-danger",
-                    ariaDescription: app.attrs.tooltip(() => "Raw errors:\n" + rawErrors, "top", "code"),
+                    ariaDescription: app.attrs.tooltip(() => "原始错误：\n" + rawErrors, "top", "code"),
                 });
             },
             t.div(
@@ -671,12 +671,12 @@ function collectionUpsertModal(rawCollection, modalSettings) {
                         disabled: () => !data.canSave,
                         onclick: () => confirmSave(true),
                     },
-                    t.span({ className: "txt" }, () => (data.isNew ? "Create" : "Save changes")),
+                    t.span({ className: "txt" }, () => (data.isNew ? "创建" : "保存更改")),
                 ),
                 t.button(
                     {
                         type: "button",
-                        title: "Save options",
+                        title: "保存选项",
                         className: () => `btn p-5`,
                         disabled: () => !data.canSave,
                         "html-popovertarget": uniqueId + "save_options",
@@ -694,8 +694,8 @@ function collectionUpsertModal(rawCollection, modalSettings) {
                                 confirmSave(false);
                             },
                         },
-                        t.span({ className: "txt" }, "Save and continue"),
-                        t.small({ className: "txt-hint" }, "(Ctrl+S)"),
+                        t.span({ className: "txt" }, "保存并继续"),
+                        t.small({ className: "txt-hint" }, "（Ctrl+S）"),
                     ),
                     t.hr(),
                     t.button(
@@ -707,7 +707,7 @@ function collectionUpsertModal(rawCollection, modalSettings) {
                                 resetForm();
                             },
                         },
-                        t.span({ className: "txt" }, "Reset form"),
+                        t.span({ className: "txt" }, "重置表单"),
                     ),
                 ),
             ),
@@ -811,7 +811,7 @@ function truncateDropdownItem(data, modalSettings) {
 
             modalSettings.ontruncate?.(JSON.parse(JSON.stringify(data.originalCollection)));
 
-            app.toasts.success(`Successfully truncated collection "${data.originalCollection.name}".`);
+            app.toasts.success(`成功清空集合"${data.originalCollection.name}"。`);
 
             local.isSubmitting = false;
 
@@ -836,21 +836,21 @@ function truncateDropdownItem(data, modalSettings) {
                         null,
                         t.h6(
                             { className: "block txt-center" },
-                            "Do you really want to delete all records of the collection?",
+                            "确定要删除该集合的所有记录吗？",
                         ),
                         t.div(
                             { className: "confirm-collection-label txt-bold m-t-sm m-b-sm" },
-                            "Type the collection name ",
+                            "请输入集合名称 ",
                             t.div(
                                 { className: "label" },
                                 () => data.originalCollection.name,
                                 app.components.copyButton(() => data.originalCollection?.name),
                             ),
-                            " to confirm:",
+                            " 以确认：",
                         ),
                         t.div(
                             { className: "field" },
-                            t.label({ htmlFor: uniqueId + ".confirm_name" }, "Collection name"),
+                            t.label({ htmlFor: uniqueId + ".confirm_name" }, "集合名称"),
                             t.input({
                                 id: uniqueId + ".confirm_name",
                                 type: "text",
@@ -878,7 +878,7 @@ function truncateDropdownItem(data, modalSettings) {
             },
         },
         t.i({ className: "ri-eraser-line", ariaHidden: true }),
-        t.span({ className: "txt" }, "Truncate"),
+        t.span({ className: "txt" }, "清空"),
     );
 }
 
@@ -908,7 +908,7 @@ function deleteDropdownItem(data, modalSettings) {
 
             app.utils.removeByKey(app.store.collections, "id", data.originalCollection.id);
 
-            app.toasts.success(`Successfully deleted collection "${data.originalCollection.name}".`);
+            app.toasts.success(`成功删除集合"${data.originalCollection.name}"。`);
 
             local.isSubmitting = false;
 
@@ -938,10 +938,10 @@ function deleteDropdownItem(data, modalSettings) {
                             { className: "block txt-center" },
                             () => {
                                 if (data.originalCollection.type == "view") {
-                                    return "Do you really want to delete the selected collection?";
+                                    return "确定要删除所选集合吗？";
                                 }
 
-                                return "Do you really want to delete the selected collection and all its records";
+                                return "确定要删除所选集合及其所有记录吗？";
                             },
                         ),
                         t.div(

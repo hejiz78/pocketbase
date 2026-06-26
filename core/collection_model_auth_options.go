@@ -195,7 +195,7 @@ func (o *collectionAuthOptions) validate(cv *collectionValidator) error {
 		if authsEnabled < 2 {
 			return validation.Errors{
 				"mfa": validation.Errors{
-					"enabled": validation.NewError("validation_mfa_not_enough_auths", "MFA requires at least 2 auth methods to be enabled."),
+					"enabled": validation.NewError("validation_mfa_not_enough_auths", "MFA需要至少启用2种认证方式。"),
 				},
 			}
 		}
@@ -445,7 +445,7 @@ func checkForDuplicatedProviders(value any) error {
 		if _, ok := existing[c.Name]; ok {
 			return validation.Errors{
 				strconv.Itoa(i): validation.Errors{
-					"name": validation.NewError("validation_duplicated_provider", "The provider {{.name}} is already registered.").
+					"name": validation.NewError("validation_duplicated_provider", "提供商 {{.name}} 已被注册。").
 						SetParams(map[string]any{"name": c.Name}),
 				},
 			}
@@ -493,7 +493,7 @@ func checkProviderName(value any) error {
 	}
 
 	if _, err := auth.NewProviderByName(name); err != nil {
-		return validation.NewError("validation_missing_provider", "Invalid or missing provider with name {{.name}}.").
+		return validation.NewError("validation_missing_provider", "名称为 {{.name}} 的提供商无效或不存在。").
 			SetParams(map[string]any{"name": name})
 	}
 

@@ -168,20 +168,20 @@ func (validator *collectionValidator) checkUniqueName(value any) error {
 
 	// ensure unique collection name
 	if !validator.app.IsCollectionNameUnique(v, validator.original.Id) {
-		return validation.NewError("validation_collection_name_exists", "Collection name must be unique (case insensitive).")
+		return validation.NewError("validation_collection_name_exists", "集合名称必须唯一（不区分大小写）。")
 	}
 
 	// ensure that the collection name doesn't collide with the id of any collection
 	dummyCollection := &Collection{}
 	if validator.app.ModelQuery(dummyCollection).Model(v, dummyCollection) == nil {
-		return validation.NewError("validation_collection_name_id_duplicate", "The name must not match an existing collection id.")
+		return validation.NewError("validation_collection_name_id_duplicate", "名称不能与现有集合ID相同。")
 	}
 
 	// ensure that there is no existing internal table with the provided name
 	if validator.original.Name != v && // has changed
 		validator.app.IsCollectionNameUnique(v) && // is not a collection (in case it was presaved)
 		validator.app.HasTable(v) {
-		return validation.NewError("validation_collection_name_invalid", "The name shouldn't match with an existing internal table.")
+		return validation.NewError("validation_collection_name_invalid", "名称不应与现有的内部表匹配。")
 	}
 
 	return nil
@@ -191,7 +191,7 @@ func (validator *collectionValidator) ensureNoSystemNameChange(value any) error 
 	v, _ := value.(string)
 
 	if !validator.original.IsNew() && validator.original.System && v != validator.original.Name {
-		return validation.NewError("validation_collection_system_name_change", "System collection name cannot be changed.")
+		return validation.NewError("validation_collection_system_name_change", "系统集合名称无法更改。")
 	}
 
 	return nil
@@ -201,7 +201,7 @@ func (validator *collectionValidator) ensureNoSystemFlagChange(value any) error 
 	v, _ := value.(bool)
 
 	if !validator.original.IsNew() && v != validator.original.System {
-		return validation.NewError("validation_collection_system_flag_change", "System collection state cannot be changed.")
+		return validation.NewError("validation_collection_system_flag_change", "系统集合状态无法更改。")
 	}
 
 	return nil
@@ -211,7 +211,7 @@ func (validator *collectionValidator) ensureNoTypeChange(value any) error {
 	v, _ := value.(string)
 
 	if !validator.original.IsNew() && v != validator.original.Type {
-		return validation.NewError("validation_collection_type_change", "Collection type cannot be changed.")
+		return validation.NewError("validation_collection_type_change", "集合类型无法更改。")
 	}
 
 	return nil
@@ -231,7 +231,7 @@ func (validator *collectionValidator) ensureNoFieldsTypeChange(value any) error 
 		if oldField != nil && oldField.Type() != field.Type() {
 			errs[strconv.Itoa(i)] = validation.NewError(
 				"validation_field_type_change",
-				"Field type cannot be changed.",
+				"字段类型无法更改。",
 			)
 		}
 	}
@@ -258,7 +258,7 @@ func (validator *collectionValidator) checkFieldDuplicates(value any) error {
 				strconv.Itoa(i): validation.Errors{
 					"id": validation.NewError(
 						"validation_duplicated_field_id",
-						fmt.Sprintf("Duplicated or invalid field id %q", field.GetId()),
+						fmt.Sprintf("字段ID %q 重复或无效", field.GetId()),
 					),
 				},
 			}
@@ -272,7 +272,7 @@ func (validator *collectionValidator) checkFieldDuplicates(value any) error {
 				strconv.Itoa(i): validation.Errors{
 					"name": validation.NewError(
 						"validation_duplicated_field_name",
-						"Duplicated or invalid field name {{.fieldName}}",
+						"字段名称 {{.fieldName}} 重复或无效",
 					).SetParams(map[string]any{
 						"fieldName": field.GetName(),
 					}),
@@ -322,7 +322,7 @@ func (cv *collectionValidator) checkViewQuery(value any) error {
 			rawErr = rawErr[:500]
 		}
 
-		return validation.NewError("validation_invalid_view_query", "Invalid query - "+rawErr)
+		return validation.NewError("validation_invalid_view_query", "无效的查询 - "+rawErr)
 	}
 
 	return nil
@@ -346,7 +346,7 @@ func (cv *collectionValidator) checkReservedAuthKeys(value any) error {
 			errs[strconv.Itoa(i)] = validation.Errors{
 				"name": validation.NewError(
 					"validation_reserved_field_name",
-					"The field name is reserved and cannot be used.",
+					"该字段名称是保留的，不能使用。",
 				),
 			}
 		}
@@ -371,14 +371,14 @@ func (cv *collectionValidator) checkMinFields(value any) error {
 	// all collections must have an "id" PK field
 	idField, _ := fields.GetByName(FieldNameId).(*TextField)
 	if idField == nil || !idField.PrimaryKey {
-		return validation.NewError("validation_missing_primary_key", `Missing or invalid "id" PK field.`)
+		return validation.NewError("validation_missing_primary_key", `缺少或无效的"id"主键字段。`)
 	}
 
 	switch cv.new.Type {
 	case CollectionTypeAuth:
 		passwordField, _ := fields.GetByName(FieldNamePassword).(*PasswordField)
 		if passwordField == nil {
-			return validation.NewError("validation_missing_password_field", `System "password" field is required.`)
+			return validation.NewError("validation_missing_password_field", `系统"password"字段是必需的。`)
 		}
 		if !passwordField.Hidden || !passwordField.System {
 			return validation.Errors{FieldNamePassword: ErrMustBeSystemAndHidden}
@@ -386,7 +386,7 @@ func (cv *collectionValidator) checkMinFields(value any) error {
 
 		tokenKeyField, _ := fields.GetByName(FieldNameTokenKey).(*TextField)
 		if tokenKeyField == nil {
-			return validation.NewError("validation_missing_tokenKey_field", `System "tokenKey" field is required.`)
+			return validation.NewError("validation_missing_tokenKey_field", `系统"tokenKey"字段是必需的。`)
 		}
 		if !tokenKeyField.Hidden || !tokenKeyField.System {
 			return validation.Errors{FieldNameTokenKey: ErrMustBeSystemAndHidden}
@@ -394,7 +394,7 @@ func (cv *collectionValidator) checkMinFields(value any) error {
 
 		emailField, _ := fields.GetByName(FieldNameEmail).(*EmailField)
 		if emailField == nil {
-			return validation.NewError("validation_missing_email_field", `System "email" field is required.`)
+			return validation.NewError("validation_missing_email_field", `系统"email"字段是必需的。`)
 		}
 		if !emailField.System {
 			return validation.Errors{FieldNameEmail: ErrMustBeSystem}
@@ -402,7 +402,7 @@ func (cv *collectionValidator) checkMinFields(value any) error {
 
 		emailVisibilityField, _ := fields.GetByName(FieldNameEmailVisibility).(*BoolField)
 		if emailVisibilityField == nil {
-			return validation.NewError("validation_missing_emailVisibility_field", `System "emailVisibility" field is required.`)
+			return validation.NewError("validation_missing_emailVisibility_field", `系统"emailVisibility"字段是必需的。`)
 		}
 		if !emailVisibilityField.System {
 			return validation.Errors{FieldNameEmailVisibility: ErrMustBeSystem}
@@ -410,7 +410,7 @@ func (cv *collectionValidator) checkMinFields(value any) error {
 
 		verifiedField, _ := fields.GetByName(FieldNameVerified).(*BoolField)
 		if verifiedField == nil {
-			return validation.NewError("validation_missing_verified_field", `System "verified" field is required.`)
+			return validation.NewError("validation_missing_verified_field", `系统"verified"字段是必需的。`)
 		}
 		if !verifiedField.System {
 			return validation.Errors{FieldNameVerified: ErrMustBeSystem}
@@ -440,7 +440,7 @@ func (validator *collectionValidator) ensureNoSystemFieldsChange(value any) erro
 		newField := fields.GetById(oldField.GetId())
 
 		if newField == nil || oldField.GetName() != newField.GetName() {
-			return validation.NewError("validation_system_field_change", "System fields cannot be deleted or renamed.")
+			return validation.NewError("validation_system_field_change", "系统字段无法删除或重命名。")
 		}
 	}
 
@@ -460,12 +460,12 @@ func (cv *collectionValidator) checkFieldsForUniqueIndex(value any) error {
 	for _, name := range names {
 		field := cv.new.Fields.GetByName(name)
 		if field == nil {
-			return validation.NewError("validation_missing_field", "Invalid or missing field {{.fieldName}}").
+			return validation.NewError("validation_missing_field", "无效或缺少的字段 {{.fieldName}}").
 				SetParams(map[string]any{"fieldName": name})
 		}
 
 		if _, ok := dbutils.FindSingleColumnUniqueIndex(cv.new.Indexes, name); !ok {
-			return validation.NewError("validation_missing_unique_constraint", "The field {{.fieldName}} doesn't have a UNIQUE constraint.").
+			return validation.NewError("validation_missing_unique_constraint", "字段 {{.fieldName}} 没有UNIQUE约束。").
 				SetParams(map[string]any{"fieldName": name})
 		}
 	}
@@ -496,7 +496,7 @@ func (validator *collectionValidator) checkRule(value any) error {
 	r := NewRecordFieldResolver(validator.app, validator.new, &RequestInfo{}, true)
 	_, err := search.FilterData(vStr).BuildExpr(r)
 	if err != nil {
-		return validation.NewError("validation_invalid_rule", "Invalid rule. Raw error: "+err.Error())
+		return validation.NewError("validation_invalid_rule", "无效的规则。原始错误："+err.Error())
 	}
 
 	return nil
@@ -518,7 +518,7 @@ func (validator *collectionValidator) ensureNoSystemRuleChange(oldRule *string) 
 			return nil
 		}
 
-		return validation.NewError("validation_collection_system_rule_change", "System collection API rule cannot be changed.")
+		return validation.NewError("validation_collection_system_rule_change", "系统集合的API规则无法更改。")
 	}
 }
 
@@ -528,7 +528,7 @@ func (cv *collectionValidator) checkIndexes(value any) error {
 	if cv.new.IsView() && len(indexes) > 0 {
 		return validation.NewError(
 			"validation_indexes_not_supported",
-			"View collections don't support indexes.",
+			"视图集合不支持索引。",
 		)
 	}
 
@@ -545,7 +545,7 @@ func (cv *collectionValidator) checkIndexes(value any) error {
 			return validation.Errors{
 				strconv.Itoa(i): validation.NewError(
 					"validation_invalid_index_expression",
-					"Invalid CREATE INDEX expression.",
+					"无效的CREATE INDEX表达式。",
 				),
 			}
 		}
@@ -554,7 +554,7 @@ func (cv *collectionValidator) checkIndexes(value any) error {
 			return validation.Errors{
 				strconv.Itoa(i): validation.NewError(
 					"validation_duplicated_index_name",
-					"The index name already exists.",
+					"索引名称已存在。",
 				),
 			}
 		}
@@ -574,7 +574,7 @@ func (cv *collectionValidator) checkIndexes(value any) error {
 			return validation.Errors{
 				strconv.Itoa(i): validation.NewError(
 					"validation_existing_index_name",
-					"The index name is already used in {{.usedTableName}} collection.",
+					"索引名称已在 {{.usedTableName}} 集合中使用。",
 				).SetParams(map[string]any{"usedTableName": usedTblName}),
 			}
 		}
@@ -588,7 +588,7 @@ func (cv *collectionValidator) checkIndexes(value any) error {
 			return validation.Errors{
 				strconv.Itoa(i): validation.NewError(
 					"validation_duplicated_index_definition",
-					"The index definition already exists.",
+					"索引定义已存在。",
 				),
 			}
 		}
@@ -657,7 +657,7 @@ func (cv *collectionValidator) checkIndexes(value any) error {
 					if !hasMatch {
 						return validation.NewError(
 							"validation_invalid_unique_system_field_index",
-							"Unique index definition on system fields ({{.fieldName}}) is invalid or missing.",
+							"系统字段({{.fieldName}})的唯一索引定义无效或缺失。",
 						).SetParams(map[string]any{"fieldName": f.GetName()})
 					}
 
@@ -677,7 +677,7 @@ func (cv *collectionValidator) checkIndexes(value any) error {
 			if _, ok := dbutils.FindSingleColumnUniqueIndex(indexes, name); !ok {
 				return validation.NewError(
 					"validation_missing_required_unique_index",
-					`Missing required unique index for field "{{.fieldName}}".`,
+					`字段"{{.fieldName}}"缺少必需的唯一索引。`,
 				).SetParams(map[string]any{"fieldName": name})
 			}
 		}

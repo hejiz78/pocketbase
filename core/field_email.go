@@ -143,12 +143,12 @@ func (f *EmailField) ValidateValue(ctx context.Context, app App, record *Record)
 
 	// only domains check
 	if len(f.OnlyDomains) > 0 && !slices.Contains(f.OnlyDomains, domain) {
-		return validation.NewError("validation_email_domain_not_allowed", "Email domain is not allowed")
+		return validation.NewError("validation_email_domain_not_allowed", "不允许此邮箱域名")
 	}
 
 	// except domains check
 	if len(f.ExceptDomains) > 0 && slices.Contains(f.ExceptDomains, domain) {
-		return validation.NewError("validation_email_domain_not_allowed", "Email domain is not allowed")
+		return validation.NewError("validation_email_domain_not_allowed", "不允许此邮箱域名")
 	}
 
 	return nil

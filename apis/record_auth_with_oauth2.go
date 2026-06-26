@@ -211,7 +211,7 @@ func (form *recordOAuth2LoginForm) checkProviderName(value any) error {
 
 	_, ok := form.collection.OAuth2.GetProviderConfig(name)
 	if !ok {
-		return validation.NewError("validation_invalid_provider", "Provider with name {{.name}} is missing or is not enabled.").
+		return validation.NewError("validation_invalid_provider", "名称为 {{.name}} 的提供商不存在或未启用。").
 			SetParams(map[string]any{"name": name})
 	}
 
@@ -261,7 +261,7 @@ func oauth2Submit(e *core.RecordAuthWithOAuth2RequestEvent, optExternalAuth *cor
 			// extra check to prevent creating a superuser record via
 			// OAuth2 in case the method is used by another action
 			if e.Collection.Name == core.CollectionNameSuperusers {
-				return errors.New("superusers are not allowed to sign-up with OAuth2")
+				return errors.New("超级用户不允许通过OAuth2注册")
 			}
 
 			payload := maps.Clone(e.CreateData)

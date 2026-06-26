@@ -209,7 +209,7 @@ window.app.checkApiError = function(err, showToast = true) {
     const response = err?.response || {};
 
     // add toast error notification
-    let msg = showToast && (response.message || err.message || "Something went wrong!");
+    let msg = showToast && (response.message || err.message || "出了点问题！");
     if (msg) {
         app.toasts.error(msg);
     }

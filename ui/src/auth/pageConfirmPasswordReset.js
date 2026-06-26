@@ -5,12 +5,12 @@ export function pageConfirmPasswordReset(route) {
     const tokenPayload = getTokenPayload(token);
 
     if (!tokenPayload.email || !tokenPayload.collectionId) {
-        app.toasts.error("Invalid or expired password reset token.");
+        app.toasts.error("密码重置令牌无效或已过期。");
         window.location.hash = "#/";
         return;
     }
 
-    app.store.title = "Confirm password reset";
+    app.store.title = "确认密码重置";
 
     const data = store({
         newPassword: "",
@@ -58,8 +58,8 @@ export function pageConfirmPasswordReset(route) {
             if (data.isSuccess) {
                 return t.div(
                     { pbEvent: "confirmPasswordResetAlert", className: "alert success txt-center" },
-                    t.p(null, "The password was successfully changed."),
-                    t.p(null, "You can go back to sign in with your new password."),
+                    t.p(null, "密码已成功更改。"),
+                    t.p(null, "您可以返回并使用新密码登录。"),
                 );
             }
 
@@ -76,15 +76,15 @@ export function pageConfirmPasswordReset(route) {
                     { className: "col-12" },
                     t.div(
                         { className: "content txt-center m-b-sm" },
-                        "Type your new password for ",
+                        "请输入您的新密码，用于 ",
                         t.strong(null, tokenPayload.email),
-                        ":",
+                        "：",
                     ),
                     t.div(
                         { className: "fields" },
                         t.div(
                             { className: "field" },
-                            t.label({ htmlFor: "newPassword" }, "New password"),
+                            t.label({ htmlFor: "newPassword" }, "新密码"),
                             t.input({
                                 id: "newPassword",
                                 name: "password",
@@ -103,9 +103,7 @@ export function pageConfirmPasswordReset(route) {
                                     type: "button",
                                     tabIndex: -1,
                                     className: "btn sm transparent secondary circle tooltip-right",
-                                    ariaLabel: app.attrs.tooltip(() =>
-                                        data.showNewPassword ? "Hide password" : "Show password"
-                                    ),
+                                    ariaLabel: app.attrs.tooltip(() => data.showNewPassword ? "隐藏密码" : "显示密码"),
                                     onclick: () => (data.showNewPassword = !data.showNewPassword),
                                 },
                                 t.i({
@@ -122,7 +120,7 @@ export function pageConfirmPasswordReset(route) {
                         { className: "fields" },
                         t.div(
                             { className: "field" },
-                            t.label({ htmlFor: "newPasswordConfirm" }, "New password confirm"),
+                            t.label({ htmlFor: "newPasswordConfirm" }, "确认新密码"),
                             t.input({
                                 id: "newPasswordConfirm",
                                 name: "passwordConfirm",
@@ -141,7 +139,7 @@ export function pageConfirmPasswordReset(route) {
                                     tabIndex: -1,
                                     className: "btn sm transparent secondary circle tooltip-right",
                                     ariaLabel: app.attrs.tooltip(() =>
-                                        data.showNewPasswordConfirm ? "Hide password" : "Show password"
+                                        data.showNewPasswordConfirm ? "隐藏密码" : "显示密码"
                                     ),
                                     onclick: () => (data.showNewPasswordConfirm = !data.showNewPasswordConfirm),
                                 },
@@ -160,7 +158,7 @@ export function pageConfirmPasswordReset(route) {
                             className: () => `btn lg block ${data.isSubmitting ? "loading" : ""}`,
                             disabled: () => data.isSubmitting,
                         },
-                        t.span({ className: "txt" }, "Set new password"),
+                        t.span({ className: "txt" }, "设置新密码"),
                     ),
                 ),
             );

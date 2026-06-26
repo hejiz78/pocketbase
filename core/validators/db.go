@@ -31,7 +31,7 @@ func UniqueId(db dbx.Builder, tableName string) validation.RuleFunc {
 			Row(&foundId)
 
 		if (err != nil && !errors.Is(err, sql.ErrNoRows)) || foundId != "" {
-			return validation.NewError("validation_invalid_or_existing_id", "The model id is invalid or already exists.")
+			return validation.NewError("validation_invalid_or_existing_id", "模型ID无效或已存在。")
 		}
 
 		return nil
@@ -67,7 +67,7 @@ func NormalizeUniqueIndexError(err error, tableOrAlias string, fieldNames []stri
 			// note: extra spaces to exclude table name with suffix matching the current one
 			// 		 OR other fields starting with the current field name
 			if strings.Contains(msg, strings.ToLower(" "+tableOrAlias+"."+name+" ")) {
-				normalizedErrs[name] = validation.NewError("validation_not_unique", "Value must be unique")
+				normalizedErrs[name] = validation.NewError("validation_not_unique", "值必须唯一")
 			}
 		}
 

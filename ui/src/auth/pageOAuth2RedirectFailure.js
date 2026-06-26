@@ -1,5 +1,5 @@
 export function pageOAuth2RedirectFailure(route) {
-    app.store.title = "OAuth2 auth failed";
+    app.store.title = "OAuth2 认证失败";
 
     window.close();
 
@@ -9,10 +9,10 @@ export function pageOAuth2RedirectFailure(route) {
             { className: "page-content" },
             t.header(
                 { className: "txt-center p-base" },
-                t.h3({ className: "primary-heading m-b-sm" }, "Auth failed."),
+                t.h3({ className: "primary-heading m-b-sm" }, "认证失败。"),
                 t.h6(
                     { className: "secondary-heading" },
-                    "You can close this window and go back to the app to try again.",
+                    "您可以关闭此窗口并返回应用重试。",
                 ),
             ),
         ),

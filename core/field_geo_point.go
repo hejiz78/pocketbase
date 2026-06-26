@@ -133,11 +133,11 @@ func (f *GeoPointField) ValidateValue(ctx context.Context, app App, record *Reco
 	}
 
 	if val.Lat < -90 || val.Lat > 90 {
-		return validation.NewError("validation_invalid_latitude", "Latitude must be between -90 and 90 degrees.")
+		return validation.NewError("validation_invalid_latitude", "纬度必须在-90到90度之间。")
 	}
 
 	if val.Lon < -180 || val.Lon > 180 {
-		return validation.NewError("validation_invalid_longitude", "Longitude must be between -180 and 180 degrees.")
+		return validation.NewError("validation_invalid_longitude", "经度必须在-180到180度之间。")
 	}
 
 	return nil

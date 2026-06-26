@@ -75,7 +75,7 @@ export function collectionsSidebar() {
                     t.input({
                         className: "p-r-5",
                         type: "text",
-                        placeholder: "Search collections...",
+                        placeholder: "搜索集合...",
                         value: () => data.search,
                         oninput: (e) => data.search = e.target.value,
                     }),
@@ -87,7 +87,7 @@ export function collectionsSidebar() {
                             hidden: () => !data.search.length,
                             type: "button",
                             className: "btn sm circle transparent secondary",
-                            ariaDescription: app.attrs.tooltip("Clear", "left"),
+                            ariaDescription: app.attrs.tooltip("清除", "left"),
                             onclick: clearSearch,
                         },
                         t.i({ className: "ri-close-line", ariaHidden: true }),
@@ -100,7 +100,7 @@ export function collectionsSidebar() {
                                 `btn sm circle transparent secondary link-faded ${
                                     app.store.isLoadingCollections ? "loading" : ""
                                 }`,
-                            ariaDescription: app.attrs.tooltip("Collections overview", "left"),
+                            ariaDescription: app.attrs.tooltip("集合概览", "left"),
                             onclick: () => app.modals.openCollectionsOverview(),
                         },
                         t.i({ className: "ri-organization-chart", ariaHidden: true }),
@@ -119,11 +119,11 @@ export function collectionsSidebar() {
 
             return t.div(
                 { className: "block p-t-base txt-center txt-hint" },
-                t.p(null, "No collections found."),
+                t.p(null, "未找到集合。"),
                 t.button({
                     type: "button",
                     className: "btn sm secondary",
-                    textContent: "Clear search",
+                    textContent: "清除搜索",
                     onclick: () => clearSearch(),
                 }),
             );
@@ -153,7 +153,7 @@ export function collectionsSidebar() {
                         },
                         t.summary(
                             { tabIndex: -1, onfocusout: () => false, onclick: () => false, onkeyup: () => false },
-                            "Pinned",
+                            "已固定",
                         ),
                         () => data.pinnedCollections.map((c) => collectionItem(c, data)),
                     ),
@@ -165,7 +165,7 @@ export function collectionsSidebar() {
                         },
                         t.summary(
                             { tabIndex: -1, onfocusout: () => false, onclick: () => false, onkeyup: () => false },
-                            () => data.pinnedCollections.length ? "Others" : "Collections",
+                            () => data.pinnedCollections.length ? "其他" : "集合",
                         ),
                         () => data.regularCollections.map((c) => collectionItem(c, data)),
                     ),
@@ -175,7 +175,7 @@ export function collectionsSidebar() {
                             className: "nav-group nav-group-system-collections",
                             open: () => data.search.length,
                         },
-                        t.summary(null, "System"),
+                        t.summary(null, "系统"),
                         () => data.systemCollections.map((c) => collectionItem(c, data)),
                     ),
                 ),
@@ -197,7 +197,7 @@ export function collectionsSidebar() {
                             },
                         },
                         t.i({ className: "ri-add-line", ariaHidden: true }),
-                        t.span({ textContent: "New collection" }),
+                        t.span({ textContent: "新建集合" }),
                     ),
                 ),
             ];
@@ -240,7 +240,7 @@ function collectionItem(collection, data) {
                 ariaHidden: true,
                 className: "ri-alert-line txt-hint txt-sm",
                 ariaDescription: app.attrs.tooltip(
-                    "OAuth2 auth is enabled but the collection doesn't have any registered providers",
+                    "OAuth2 认证已启用，但该集合尚未注册任何提供商",
                 ),
             });
         },
@@ -252,7 +252,7 @@ function collectionItem(collection, data) {
                     tabIndex: -1,
                     role: "button",
                     className: "pin",
-                    title: () => pinnedIndex >= 0 ? "Unpin" : "Pin",
+                    title: () => pinnedIndex >= 0 ? "取消固定" : "固定",
                     onclick: (e) => {
                         e.preventDefault();
                         e.stopPropagation();

@@ -5,12 +5,12 @@ export function pageConfirmEmailChange(route) {
     const tokenPayload = getTokenPayload(token);
 
     if (!tokenPayload.newEmail || !tokenPayload.collectionId) {
-        app.toasts.error("Invalid or expired email change token.");
+        app.toasts.error("邮箱更改令牌无效或已过期。");
         window.location.hash = "#/";
         return;
     }
 
-    app.store.title = "Confirm email change";
+    app.store.title = "确认邮箱更改";
 
     const data = store({
         password: "",
@@ -57,8 +57,8 @@ export function pageConfirmEmailChange(route) {
                         pbEvent: "confirmEmailChangeAlert",
                         className: "alert success txt-center",
                     },
-                    t.p(null, "The email was successfully changed."),
-                    t.p(null, "You can go back and sign in with your new email address."),
+                    t.p(null, "邮箱已成功更改。"),
+                    t.p(null, "您可以返回并使用新邮箱地址登录。"),
                 );
             }
 
@@ -75,15 +75,15 @@ export function pageConfirmEmailChange(route) {
                     { className: "col-12" },
                     t.div(
                         { className: "content txt-center m-b-sm" },
-                        "Type your password to confirm changing your email address to ",
+                        "请输入您的密码以确认将邮箱地址更改为 ",
                         t.strong(null, tokenPayload.newEmail),
-                        ":",
+                        "：",
                     ),
                     t.div(
                         { className: "fields" },
                         t.div(
                             { className: "field" },
-                            t.label({ htmlFor: "password_confirm" }, "Password"),
+                            t.label({ htmlFor: "password_confirm" }, "密码"),
                             t.input({
                                 id: "password_confirm",
                                 name: "password",
@@ -101,9 +101,7 @@ export function pageConfirmEmailChange(route) {
                                     type: "button",
                                     tabIndex: -1,
                                     className: "btn sm transparent secondary circle tooltip-right",
-                                    ariaLabel: app.attrs.tooltip(() =>
-                                        data.showPassword ? "Hide password" : "Show password"
-                                    ),
+                                    ariaLabel: app.attrs.tooltip(() => data.showPassword ? "隐藏密码" : "显示密码"),
                                     onclick: () => (data.showPassword = !data.showPassword),
                                 },
                                 t.i({
@@ -121,7 +119,7 @@ export function pageConfirmEmailChange(route) {
                             className: () => `btn lg block ${data.isSubmitting ? "loading" : ""}`,
                             disabled: () => data.isSubmitting,
                         },
-                        t.span({ className: "txt" }, "Confirm new email"),
+                        t.span({ className: "txt" }, "确认新邮箱"),
                     ),
                 ),
             );

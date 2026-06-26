@@ -140,12 +140,12 @@ func (f *AutodateField) ValidateSettings(ctx context.Context, app App, collectio
 		validation.Field(
 			&f.OnCreate,
 			validation.When(f.System, validation.By(validators.Equal(oldOnCreate))),
-			validation.Required.Error("either onCreate or onUpdate must be enabled").When(!f.OnUpdate),
+			validation.Required.Error("必须启用onCreate或onUpdate中的至少一个").When(!f.OnUpdate),
 		),
 		validation.Field(
 			&f.OnUpdate,
 			validation.When(f.System, validation.By(validators.Equal(oldOnUpdate))),
-			validation.Required.Error("either onCreate or onUpdate must be enabled").When(!f.OnCreate),
+			validation.Required.Error("必须启用onCreate或onUpdate中的至少一个").When(!f.OnCreate),
 		),
 	)
 }

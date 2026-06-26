@@ -1455,7 +1455,7 @@ func onRecordSaveExecute(e *RecordEvent) error {
 			record, _ := e.App.FindRecordById(collection, e.Record.Id)
 			if record != nil {
 				return validation.Errors{
-					FieldNameId: validation.NewError("validation_invalid_auth_id", "Invalid or duplicated auth record id."),
+					FieldNameId: validation.NewError("validation_invalid_auth_id", "认证记录ID无效或重复。"),
 				}
 			}
 		}

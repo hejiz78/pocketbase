@@ -53,5 +53,5 @@ func IPOrSubnet(value any) error {
 		return nil
 	}
 
-	return validation.NewError("validation_invlaid_ip_or_subnet", "invalid IP or CIDR subnet")
+	return validation.NewError("validation_invlaid_ip_or_subnet", "无效的IP地址或CIDR子网")
 }

@@ -42,7 +42,7 @@ func recordRequestVerification(e *core.RequestEvent) error {
 	if !record.Verified() && e.App.Store().Has(resendKey) {
 		// eagerly write 204 response as a very basic measure against emails enumeration
 		e.NoContent(http.StatusNoContent)
-		return errors.New("try again later - you've already requested a verification email")
+		return errors.New("请稍后再试 - 您已请求过验证邮件")
 	}
 
 	event := new(core.RecordRequestVerificationRequestEvent)

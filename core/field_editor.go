@@ -140,7 +140,7 @@ func (f *EditorField) ValidateValue(ctx context.Context, app App, record *Record
 	if int64(len(val)) > maxSize {
 		return validation.NewError(
 			"validation_content_size_limit",
-			"The maximum allowed content size is {{.maxSize}} bytes",
+			"允许的最大内容大小为{{.maxSize}}字节",
 		).SetParams(map[string]any{"maxSize": maxSize})
 	}
 

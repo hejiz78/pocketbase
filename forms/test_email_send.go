@@ -68,7 +68,7 @@ func (form *TestEmailSend) checkAuthCollection(value any) error {
 
 	c, _ := form.app.FindCollectionByNameOrId(v)
 	if c == nil || !c.IsAuth() {
-		return validation.NewError("validation_invalid_auth_collection", "Must be a valid auth collection id or name.")
+		return validation.NewError("validation_invalid_auth_collection", "必须是有效的认证集合ID或名称。")
 	}
 
 	return nil

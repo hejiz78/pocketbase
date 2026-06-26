@@ -23,9 +23,9 @@ var (
 )
 
 var (
-	onlyIntValidationError   = validation.NewError("validation_only_int_constraint", "Decimal numbers are not allowed")
-	minNumberValidationError = validation.NewError("validation_min_number_constraint", "Must be greater or equal than {{.min}}")
-	maxNumberValidationError = validation.NewError("validation_max_number_constraint", "Must be less or equal than {{.max}}")
+	onlyIntValidationError   = validation.NewError("validation_only_int_constraint", "不允许小数")
+	minNumberValidationError = validation.NewError("validation_min_number_constraint", "必须大于或等于{{.min}}")
+	maxNumberValidationError = validation.NewError("validation_max_number_constraint", "必须小于或等于{{.max}}")
 )
 
 // NumberField defines "number" type field for storing numeric (float64) value.
@@ -143,7 +143,7 @@ func (f *NumberField) ValidateValue(ctx context.Context, app App, record *Record
 	}
 
 	if math.IsInf(val, 0) || math.IsNaN(val) {
-		return validation.NewError("validation_not_a_number", "The submitted number is not properly formatted")
+		return validation.NewError("validation_not_a_number", "提交的数字格式不正确")
 	}
 
 	if val == 0 {

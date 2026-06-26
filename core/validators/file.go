@@ -29,7 +29,7 @@ func UploadedFileSize(maxBytes int64) validation.RuleFunc {
 		if v.Size > maxBytes {
 			return validation.NewError(
 				"validation_file_size_limit",
-				"Failed to upload {{.file}} - the maximum allowed file size is {{.maxSize}} bytes.",
+				"上传 {{.file}} 失败 - 允许的最大文件大小为 {{.maxSize}} 字节。",
 			).SetParams(map[string]any{
 				"file":    cutStr(v.OriginalName, 300),
 				"maxSize": maxBytes,
@@ -60,7 +60,7 @@ func UploadedFileMimeType(validTypes []string) validation.RuleFunc {
 
 		baseErr := validation.NewError(
 			"validation_invalid_mime_type",
-			fmt.Sprintf("Failed to upload %q due to unsupported file type.", cutStr(v.OriginalName, 300)),
+			fmt.Sprintf("由于文件类型不受支持，上传 %q 失败。", cutStr(v.OriginalName, 300)),
 		)
 
 		if len(validTypes) == 0 {
@@ -87,7 +87,7 @@ func UploadedFileMimeType(validTypes []string) validation.RuleFunc {
 		return validation.NewError(
 			"validation_invalid_mime_type",
 			fmt.Sprintf(
-				"%q mime type must be one of: %s.",
+				"%q 的MIME类型必须是以下之一：%s。",
 				v.Name,
 				strings.Join(validTypes, ", "),
 			),
