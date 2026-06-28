@@ -2,8 +2,8 @@ export function trustedProxyAccordion(pageData) {
     const commonProxyHeaders = ["X-Forwarded-For", "Fly-Client-IP", "CF-Connecting-IP"];
 
     const ipOptions = [
-        { label: "Use leftmost IP", value: true },
-        { label: "Use rightmost IP", value: false },
+        { label: "使用最左侧IP", value: true },
+        { label: "使用最右侧IP", value: false },
     ];
 
     const proxyInfo = store({
@@ -61,7 +61,7 @@ export function trustedProxyAccordion(pageData) {
         t.summary(
             null,
             t.i({ className: "ri-route-line", ariaHidden: true }),
-            t.span({ className: "txt" }, "IP proxy headers"),
+            t.span({ className: "txt" }, "IP代理头"),
             () => {
                 if (proxyInfo.isLoading) {
                     return t.span({ className: "loader sm" });
@@ -71,7 +71,7 @@ export function trustedProxyAccordion(pageData) {
                     return t.i({
                         className: "ri-alert-line txt-warning",
                         ariaDescription: app.attrs.tooltip(
-                            "Detected proxy header.\nIt is recommend to list it as trusted.",
+                            "检测到代理头。\n建议将其列为受信任。",
                             "right",
                         ),
                     });
@@ -85,7 +85,7 @@ export function trustedProxyAccordion(pageData) {
                     return t.i({
                         className: "ri-alert-line txt-hint",
                         ariaDescription: app.attrs.tooltip(
-                            "The configured proxy header doesn't match with the detected one.",
+                            "配置的代理头与检测到的不匹配。",
                             "right",
                         ),
                     });
@@ -94,33 +94,33 @@ export function trustedProxyAccordion(pageData) {
             t.div({ className: "flex-fill" }),
             () => {
                 if (proxyInfo.isEnabled) {
-                    return t.span({ className: "label success" }, "Enabled");
+                    return t.span({ className: "label success" }, "已启用");
                 }
-                return t.span({ className: "label" }, "Disabled");
+                return t.span({ className: "label" }, "已禁用");
             },
             () => {
                 if (!app.utils.isEmpty(app.store.errors?.trustedProxy)) {
                     return t.i({
                         className: "ri-error-warning-fill txt-danger",
-                        ariaDescription: app.attrs.tooltip("Has errors", "left"),
+                        ariaDescription: app.attrs.tooltip("存在错误", "left"),
                     });
                 }
             },
         ),
         t.p(
             { className: "m-t-0" },
-            "Below you should see your real IP. If not - configure the correct proxy header for your environment.",
+            "下方您应该能看到您的真实IP。如果不是，请为您的环境配置正确的代理头。",
         ),
         t.div(
             { className: "alert info m-b-sm" },
             t.div(
                 { className: "flex gap-5" },
-                t.span(null, "Resolved user IP:"),
+                t.span(null, "解析的用户IP："),
                 t.strong(null, () => proxyInfo.isLoading ? "..." : (proxyInfo.realIP || "N/A")),
             ),
             t.div(
                 { className: "flex gap-5" },
-                t.span(null, "Detected proxy header:"),
+                t.span(null, "检测到的代理头："),
                 t.strong(null, () => proxyInfo.isLoading ? "..." : (proxyInfo.possibleProxyHeader || "N/A")),
             ),
         ),
@@ -129,29 +129,25 @@ export function trustedProxyAccordion(pageData) {
             t.p(
                 null,
                 `
-                When PocketBase is deployed on platforms like Fly or it is accessible through proxies such as
-                NGINX, requests from different users will originate from the same IP address (the IP of the proxy
-                connecting to your PocketBase app).
+                当PocketBase部署在Fly等平台上或通过NGINX等代理访问时，来自不同用户的请求将来自同一IP地址（连接到您的PocketBase应用的代理IP）。
             `,
             ),
             t.p(
                 null,
                 `
-                In this case to retrieve the actual user IP (used for rate limiting, logging, etc.) you need to
-                properly configure your proxy and list below the trusted headers that PocketBase could use to
-                extract the user IP.
+                在这种情况下，要获取实际用户IP（用于速率限制、日志记录等），您需要正确配置代理并在下方列出PocketBase可用于提取用户IP的受信任头。
             `,
             ),
-            t.p({ className: "txt-bold" }, `When using such proxy, to avoid spoofing it is recommended to:`),
+            t.p({ className: "txt-bold" }, `使用此类代理时，为防止欺骗，建议：`),
             t.ul(
                 { className: "txt-bold" },
                 t.li(
                     null,
-                    "use headers that are controlled only by the proxy and cannot be manually set by the users",
+                    "使用仅由代理控制且用户无法手动设置的头",
                 ),
-                t.li(null, "make sure that the PocketBase server can be accessed ONLY through the proxy"),
+                t.li(null, "确保PocketBase服务器只能通过代理访问"),
             ),
-            t.p(null, "You can clear the headers field if PocketBase is not deployed behind a proxy."),
+            t.p(null, "如果PocketBase未部署在代理后面，您可以清除头字段。"),
         ),
         t.div(
             { className: "grid sm" },
@@ -161,12 +157,12 @@ export function trustedProxyAccordion(pageData) {
                     { className: "fields" },
                     t.div(
                         { className: "field" },
-                        t.label({ htmlFor: "trustedProxy.headers" }, "Trusted IP proxy headers"),
+                        t.label({ htmlFor: "trustedProxy.headers" }, "受信任的IP代理头"),
                         t.input({
                             type: "text",
                             id: "trustedProxy.headers",
                             name: "trustedProxy.headers",
-                            placeholder: "Leave empty to disable",
+                            placeholder: "留空以禁用",
                             value: () => app.utils.joinNonEmpty(pageData.formSettings.trustedProxy.headers),
                             oninput: (e) => {
                                 const newValue = app.utils.splitNonEmpty(e.target.value, ",");
@@ -193,13 +189,13 @@ export function trustedProxyAccordion(pageData) {
                                     pageData.formSettings.trustedProxy.headers = [];
                                 },
                             },
-                            t.span({ className: "txt" }, "Clear"),
+                            t.span({ className: "txt" }, "清除"),
                         ),
                     ),
                 ),
                 t.div(
                     { className: "field-help" },
-                    "Comma separated list of headers such as: ",
+                    "头的逗号分隔列表，例如：",
                     t.div({ className: "inline-flex gap-5" }, () => {
                         return proxyInfo.suggestedProxyHeaders.map((header) => {
                             return t.div({
@@ -220,11 +216,11 @@ export function trustedProxyAccordion(pageData) {
                     { className: "field" },
                     t.label(
                         { htmlFor: "trustedProxy.useLeftmostIP" },
-                        t.span({ className: "txt" }, "IP priority"),
+                        t.span({ className: "txt" }, "IP优先级"),
                         t.i({
                             className: "ri-information-line tooltip-right",
                             ariaDescription: app.attrs.tooltip(
-                                "This is in case the proxy returns more than 1 IP as header value. The rightmost IP is usually considered to be the more trustworthy but this could vary depending on the proxy.",
+                                "这是针对代理返回多个IP作为头值的情况。最右侧的IP通常被认为更可信，但这可能因代理而异。",
                             ),
                         }),
                     ),

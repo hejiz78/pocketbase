@@ -32,11 +32,11 @@ export function docsAuthWithPassword(collection) {
             value: `
                 {
                   "status": 400,
-                  "message": "Failed to authenticate.",
+                  "message": "认证失败。",
                   "data": {
                     "identity": {
                       "code": "validation_required",
-                      "message": "Missing required value."
+                      "message": "缺少必需的值。"
                     }
                   }
                 }
@@ -52,7 +52,7 @@ export function docsAuthWithPassword(collection) {
         // description
         t.p(
             null,
-            "Authenticate with combination of ",
+            "使用以下组合进行认证：",
             t.strong(null, identityFields.join("/")),
             " and ",
             t.strong(null, "password"),
@@ -91,7 +91,7 @@ export function docsAuthWithPassword(collection) {
                             href: import.meta.env.PB_JS_SDK_URL,
                             target: "_blank",
                             rel: "noopener noreferrer",
-                            textContent: "JS SDK docs",
+                            textContent: "JS SDK 文档",
                         }),
                     ),
                 },
@@ -124,7 +124,7 @@ export function docsAuthWithPassword(collection) {
                             href: import.meta.env.PB_DART_SDK_URL,
                             target: "_blank",
                             rel: "noopener noreferrer",
-                            textContent: "Dart SDK docs",
+                            textContent: "Dart SDK 文档",
                         }),
                     ),
                 },
@@ -141,7 +141,7 @@ export function docsAuthWithPassword(collection) {
             ],
         }),
         // api
-        t.div({ className: "block m-t-base" }, t.strong(null, "API details")),
+        t.div({ className: "block m-t-base" }, t.strong(null, "API详情")),
         t.div(
             { className: "alert success api-preview-alert" },
             t.span({ className: "label method" }, "POST"),
@@ -153,17 +153,17 @@ export function docsAuthWithPassword(collection) {
                 null,
                 t.tr(
                     null,
-                    t.th({ className: "min-width txt-primary" }, "Body params"),
-                    t.th({ className: "min-width" }, "Type"),
-                    t.th(null, "Description"),
+                    t.th({ className: "min-width txt-primary" }, "请求体参数"),
+                    t.th({ className: "min-width" }, "类型"),
+                    t.th(null, "描述"),
                 ),
             ),
             t.tbody(
                 null,
                 t.tr(
                     null,
-                    t.td({ className: "min-width" }, "identity ", t.em(null, "(required)")),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
+                    t.td({ className: "min-width" }, "identity ", t.em(null, "（必需）")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
                     t.td(
                         null,
                         app.utils.sentenize(identityFields.join(" or "), false),
@@ -172,20 +172,20 @@ export function docsAuthWithPassword(collection) {
                 ),
                 t.tr(
                     null,
-                    t.td({ className: "min-width" }, "identityField ", t.em(null, "(optional)")),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
+                    t.td({ className: "min-width" }, "identityField ", t.em(null, "（可选）")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
                     t.td(
                         null,
-                        "In case of multiple identity fields, explicitly set the field name to use when searching for the auth record.",
+                        "在有多个身份字段的情况下，显式设置搜索认证记录时使用的字段名。",
                         t.br(),
-                        "Leave it empty for auto detection.",
+                        "留空则自动检测。",
                     ),
                 ),
                 t.tr(
                     null,
-                    t.td({ className: "min-width" }, "password ", t.em(null, "(required)")),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
-                    t.td(null, "The auth record password."),
+                    t.td({ className: "min-width" }, "password ", t.em(null, "（必需）")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
+                    t.td(null, "认证记录密码。"),
                 ),
             ),
         ),
@@ -195,9 +195,9 @@ export function docsAuthWithPassword(collection) {
                 null,
                 t.tr(
                     null,
-                    t.th({ className: "min-width txt-primary" }, "?query params"),
-                    t.th({ className: "min-width" }, "Type"),
-                    t.th(null, "Description"),
+                    t.th({ className: "min-width txt-primary" }, "?查询参数"),
+                    t.th({ className: "min-width" }, "类型"),
+                    t.th(null, "描述"),
                 ),
             ),
             t.tbody(
@@ -205,19 +205,19 @@ export function docsAuthWithPassword(collection) {
                 t.tr(
                     null,
                     t.td({ className: "min-width" }, "expand"),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
                     t.td(null, expandInfo()),
                 ),
                 t.tr(
                     null,
                     t.td({ className: "min-width" }, "fields"),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
                     t.td(null, fieldsInfo()),
                 ),
             ),
         ),
         // responses
-        t.div({ className: "block m-t-base m-b-sm" }, t.strong(null, "Example responses")),
+        t.div({ className: "block m-t-base m-b-sm" }, t.strong(null, "示例响应")),
         app.components.codeBlockTabs({
             tabs: responses,
         }),

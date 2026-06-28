@@ -9,8 +9,8 @@ export function settings(props) {
     const uniqueId = "f_" + app.utils.randomString();
 
     const isMultipleOptions = [
-        { label: "Single", value: false },
-        { label: "Multiple", value: true },
+        { label: "单选", value: false },
+        { label: "多选", value: true },
     ];
 
     return app.components.fieldSettings(props, {
@@ -46,17 +46,17 @@ export function settings(props) {
                         { className: "field" },
                         t.label(
                             { htmlFor: uniqueId + ".mimeTypes" },
-                            t.span({ className: "txt" }, "Allowed mime types"),
+                            t.span({ className: "txt" }, "允许的MIME类型"),
                             t.i({
                                 className: "ri-information-line link-hint",
                                 ariaDescription: app.attrs.tooltip(
-                                    "Allow files ONLY with the listed mime types.\n Leave empty for no restriction.",
+                                    "仅允许列出的MIME类型的文件。\n留空表示不限制。",
                                 ),
                             }),
                         ),
                         app.components.select({
                             max: 99,
-                            placeholder: "No restriction",
+                            placeholder: "无限制",
                             options: app.utils.mimeTypes.map((opt) => {
                                 return {
                                     value: opt.mimeType,
@@ -81,7 +81,7 @@ export function settings(props) {
                                 "className": "link-hint gap-0",
                                 "html-popovertarget": uniqueId + "mimeTypesDropdown",
                             },
-                            t.span({ className: "txt" }, "Choose presets"),
+                            t.span({ className: "txt" }, "选择预设"),
                             t.i({ className: "ri-arrow-drop-down-fill", ariaHidden: true }),
                         ),
                         t.div(
@@ -105,7 +105,7 @@ export function settings(props) {
 
                                     e.target.closest(".dropdown").hidePopover();
                                 },
-                                textContent: "Images (jpg, png, svg, gif, webp)",
+                                textContent: "图片（jpg, png, svg, gif, webp）",
                             }),
                             t.button({
                                 type: "button",
@@ -122,7 +122,7 @@ export function settings(props) {
 
                                     e.target.closest(".dropdown").hidePopover();
                                 },
-                                textContent: "Documents (pdf, doc/docx, xls/xlsx)",
+                                textContent: "文档（pdf, doc/docx, xls/xlsx）",
                             }),
                             t.button({
                                 type: "button",
@@ -139,7 +139,7 @@ export function settings(props) {
 
                                     e.target.closest(".dropdown").hidePopover();
                                 },
-                                textContent: "Videos (mp4, mpeg, avi, mov, 3gp)",
+                                textContent: "视频（mp4, mpeg, avi, mov, 3gp）",
                             }),
                             t.button({
                                 type: "button",
@@ -154,7 +154,7 @@ export function settings(props) {
 
                                     e.target.closest(".dropdown").hidePopover();
                                 },
-                                textContent: "Archives (zip, 7zip, rar)",
+                                textContent: "压缩包（zip, 7zip, rar）",
                             }),
                         ),
                     ),
@@ -167,18 +167,18 @@ export function settings(props) {
                             {
                                 htmlFor: uniqueId + ".thumbs",
                             },
-                            t.span({ className: "txt" }, "Thumb sizes"),
+                            t.span({ className: "txt" }, "缩略图尺寸"),
                             t.i({
                                 className: "ri-information-line link-hint",
                                 ariaDescription: app.attrs.tooltip(
-                                    "List of additional thumb sizes for image files, along with the default thumb size of 100x100. The thumbs are generated lazily on first access.",
+                                    "图像文件的额外缩略图尺寸列表，以及默认的100x100缩略图尺寸。缩略图在首次访问时按需生成。",
                                 ),
                             }),
                         ),
                         t.input({
                             type: "text",
                             id: uniqueId + ".thumbs",
-                            placeholder: "e.g. 50x50, 480x720",
+                            placeholder: "例如 50x50, 480x720",
                             name: () => `fields.${props.fieldIndex}.thumbs`,
                             value: () => app.utils.joinNonEmpty(props.field.thumbs),
                             onchange: (e) => (props.field.thumbs = app.utils.splitNonEmpty(e.target.value, ",")),
@@ -186,14 +186,14 @@ export function settings(props) {
                     ),
                     t.div(
                         { className: "field-help" },
-                        t.span({ className: "txt m-r-5" }, "Use comma as separator."),
+                        t.span({ className: "txt m-r-5" }, "使用逗号分隔。"),
                         t.button(
                             {
                                 "type": "button",
                                 "className": "link-hint gap-0",
                                 "html-popovertarget": uniqueId + "thumbFormatsDropdown",
                             },
-                            t.span({ className: "txt" }, "Supported formats"),
+                            t.span({ className: "txt" }, "支持的格式"),
                             t.i({ className: "ri-arrow-drop-down-fill", ariaHidden: true }),
                         ),
                         t.div(
@@ -206,22 +206,22 @@ export function settings(props) {
                                 { className: "m-0 p-l-sm" },
                                 t.li(
                                     null,
-                                    t.strong(null, "WxH"),
+                                    t.strong(null, "宽x高"),
                                     t.span(null, " (e.g. 100x50) - crop to WxH viewbox (from center)"),
                                 ),
                                 t.li(
                                     null,
-                                    t.strong(null, "WxHt"),
+                                    t.strong(null, "宽x高t"),
                                     t.span(null, " (e.g. 100x50t) - crop to WxH viewbox (from top)"),
                                 ),
                                 t.li(
                                     null,
-                                    t.strong(null, "WxHb"),
+                                    t.strong(null, "宽x高b"),
                                     t.span(null, " (e.g. 100x50b) - crop to WxH viewbox (from bottom)"),
                                 ),
                                 t.li(
                                     null,
-                                    t.strong(null, "WxHf"),
+                                    t.strong(null, "宽x高f"),
                                     t.span(null, " (e.g. 100x50f) - fit inside a WxH viewbox (without cropping)"),
                                 ),
                                 t.li(
@@ -231,7 +231,7 @@ export function settings(props) {
                                 ),
                                 t.li(
                                     null,
-                                    t.strong(null, "Wx0"),
+                                    t.strong(null, "宽x0"),
                                     t.span(null, " (e.g. 100x0) - resize to W width preserving the aspect ratio"),
                                 ),
                             ),
@@ -242,30 +242,30 @@ export function settings(props) {
                     { className: "col-sm-3" },
                     t.div(
                         { className: "field" },
-                        t.label({ htmlFor: uniqueId + ".maxSize" }, "Max size"),
+                        t.label({ htmlFor: uniqueId + ".maxSize" }, "最大大小"),
                         t.input({
                             type: "number",
                             id: uniqueId + ".maxSize",
                             step: 1,
                             min: 0,
                             max: Number.MAX_SAFE_INTEGER,
-                            placeholder: "~5MB default",
+                            placeholder: "默认约5MB",
                             name: () => `fields.${props.fieldIndex}.maxSize`,
                             value: () => props.field.maxSize || "",
                             oninput: (e) => (props.field.maxSize = parseInt(e.target.value, 10)),
                         }),
                     ),
-                    t.div({ className: "field-help" }, "In bytes."),
+                    t.div({ className: "field-help" }, "以字节为单位。"),
                 ),
                 t.div(
                     { className: "col-sm-3", hidden: () => props.field.maxSelect << 0 < 2 },
                     t.div(
                         { className: "field" },
-                        t.label({ htmlFor: uniqueId + ".maxSelect" }, "Max select"),
+                        t.label({ htmlFor: uniqueId + ".maxSelect" }, "最大选择数"),
                         t.input({
                             type: "number",
                             id: uniqueId + ".maxSelect",
-                            placeholder: "Default to single",
+                            placeholder: "默认为单选",
                             step: 1,
                             min: 2,
                             required: true,
@@ -297,15 +297,15 @@ export function settings(props) {
                         }),
                         t.label(
                             { htmlFor: uniqueId + ".protected" },
-                            t.span({ className: "txt" }, "Protected"),
+                            t.span({ className: "txt" }, "受保护"),
                             t.small(
                                 { className: "txt-hint" },
-                                "File download requests will need to satisfy the View API rule (",
+                                "文件下载请求需要满足查看API规则（",
                                 t.a({
                                     href: import.meta.env.PB_PROTECTED_FILE_DOCS,
                                     target: "_blank",
                                     rel: "noopener noreferrer",
-                                    textContent: "Learn more",
+                                    textContent: "了解更多",
                                 }),
                                 ").",
                             ),
@@ -316,7 +316,7 @@ export function settings(props) {
                     { className: "col-sm-12" },
                     t.div(
                         { className: "field" },
-                        t.label({ htmlFor: uniqueId + ".help" }, "Help text"),
+                        t.label({ htmlFor: uniqueId + ".help" }, "帮助文本"),
                         t.input({
                             type: "text",
                             id: uniqueId + ".help",
@@ -340,7 +340,7 @@ export function settings(props) {
                 }),
                 t.label(
                     { htmlFor: uniqueId + ".required" },
-                    t.span({ className: "txt" }, "Required"),
+                    t.span({ className: "txt" }, "必填"),
                     t.small({ className: "txt-hint" }, () => props.field.maxSelect > 1 ? "(!=[])" : "(!='')"),
                     t.i({
                         className: "ri-information-line link-hint",

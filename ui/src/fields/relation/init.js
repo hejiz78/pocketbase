@@ -6,7 +6,7 @@ window.app = window.app || {};
 window.app.fieldTypes = window.app.fieldTypes || {};
 window.app.fieldTypes.relation = {
     icon: "ri-mind-map",
-    label: "Relation",
+    label: "关联",
     settings,
     input,
     view,

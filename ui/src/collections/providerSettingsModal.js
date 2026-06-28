@@ -121,7 +121,7 @@ function providerSettingsModal(providerConfig, settings) {
                         { className: "field" },
                         t.label({
                             htmlFor: uniqueId + ".clientId",
-                            textContent: "Client ID",
+                            textContent: "客户端ID",
                         }),
                         t.input({
                             type: "text",
@@ -140,7 +140,7 @@ function providerSettingsModal(providerConfig, settings) {
                         { className: "field" },
                         t.label({
                             htmlFor: uniqueId + ".clientSecret",
-                            textContent: "Client secret",
+                            textContent: "客户端密钥",
                         }),
                         t.input({
                             type: "password",
@@ -182,7 +182,7 @@ function providerSettingsModal(providerConfig, settings) {
                     className: "btn transparent m-r-auto",
                     onclick: () => app.modals.close(modal),
                 },
-                t.span({ className: "txt" }, "Close"),
+                t.span({ className: "txt" }, "关闭"),
             ),
             t.button(
                 {
@@ -191,7 +191,7 @@ function providerSettingsModal(providerConfig, settings) {
                     className: "btn",
                     disabled: () => !data.hasChanges,
                 },
-                t.span({ className: "txt" }, "Set provider config"),
+                t.span({ className: "txt" }, "设置提供商配置"),
             ),
         ),
     );

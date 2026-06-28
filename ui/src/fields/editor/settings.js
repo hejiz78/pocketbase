@@ -22,7 +22,7 @@ export function settings(props) {
                         { className: "field" },
                         t.label(
                             { htmlFor: uniqueId + ".maxSize" },
-                            t.span(null, "Max size "),
+                            t.span(null, "最大大小"),
                             t.small(null, "(bytes)"),
                         ),
                         t.input({
@@ -32,7 +32,7 @@ export function settings(props) {
                             min: 0,
                             step: 1,
                             max: Number.MAX_SAFE_INTEGER,
-                            placeholder: "Default to max ~5MB",
+                            placeholder: "默认最大约5MB",
                             value: () => props.field.maxSize || "",
                             oninput: (e) => {
                                 props.field.maxSize = parseInt(e.target.value, 10);
@@ -44,7 +44,7 @@ export function settings(props) {
                     { className: "col-sm-12" },
                     t.div(
                         { className: "field" },
-                        t.label({ htmlFor: uniqueId + ".help" }, "Help text"),
+                        t.label({ htmlFor: uniqueId + ".help" }, "帮助文本"),
                         t.input({
                             type: "text",
                             id: uniqueId + ".help",
@@ -68,10 +68,10 @@ export function settings(props) {
                 }),
                 t.label(
                     { htmlFor: uniqueId + ".required" },
-                    t.span({ className: "txt" }, "Required"),
+                    t.span({ className: "txt" }, "必填"),
                     t.i({
                         className: "ri-information-line link-hint",
-                        ariaDescription: app.attrs.tooltip("Requires the field value to be nonempty string."),
+                        ariaDescription: app.attrs.tooltip("要求字段值为非空字符串。"),
                     }),
                 ),
             ),
@@ -87,11 +87,11 @@ export function settings(props) {
                 }),
                 t.label(
                     { htmlFor: uniqueId + ".convertURLs" },
-                    t.span({ className: "txt" }, "Strip URLs domain"),
+                    t.span({ className: "txt" }, "去除URL域名"),
                     t.i({
                         className: "ri-information-line link-hint",
                         ariaDescription: app.attrs.tooltip(
-                            "This could help making the editor content more portable between environments since there will be no local base url to replace.",
+                            "这有助于使编辑器内容在不同环境之间更具可移植性，因为不需要替换本地基础URL。",
                         ),
                     }),
                 ),

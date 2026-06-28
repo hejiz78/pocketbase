@@ -11,9 +11,9 @@ export function settings(props) {
     const ON_CREATE_UPDATE = 3;
 
     const options = [
-        { label: "Create", value: ON_CREATE },
-        { label: "Update", value: ON_UPDATE },
-        { label: "Create/Update", value: ON_CREATE_UPDATE },
+        { label: "创建", value: ON_CREATE },
+        { label: "更新", value: ON_UPDATE },
+        { label: "创建/更新", value: ON_CREATE_UPDATE },
     ];
 
     function getOptionFromField(field) {
@@ -53,7 +53,7 @@ export function settings(props) {
         header: t.div(
             {
                 className: "field header-select autodate-select",
-                ariaDescription: app.attrs.tooltip("Auto set on", "left"),
+                ariaDescription: app.attrs.tooltip("自动设置于", "left"),
                 onmount: () => {
                     // init default value
                     updateField(getOptionFromField(props.field));

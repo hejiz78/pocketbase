@@ -74,7 +74,7 @@ function logsSettingsModal(modalSettings) {
 
             init(settings);
 
-            app.toasts.success("Successfully saved logs settings.");
+            app.toasts.success("已成功保存日志设置。");
 
             data.isSaving = false;
 
@@ -106,7 +106,7 @@ function logsSettingsModal(modalSettings) {
                 el?.remove();
             },
         },
-        t.header({ className: "modal-header" }, t.h5({ className: "m-auto" }, "Logs settings")),
+        t.header({ className: "modal-header" }, t.h5({ className: "m-auto" }, "日志设置")),
         () => {
             if (data.isLoading) {
                 return t.div(
@@ -132,7 +132,7 @@ function logsSettingsModal(modalSettings) {
                             { className: "col-lg-12" },
                             t.field(
                                 { className: "field" },
-                                t.label({ htmlFor: "logs.maxDays" }, "Max days retention"),
+                                t.label({ htmlFor: "logs.maxDays" }, "最大保留天数"),
                                 t.input({
                                     type: "number",
                                     id: "logs.maxDays",
@@ -145,7 +145,7 @@ function logsSettingsModal(modalSettings) {
                             ),
                             t.div(
                                 { className: "field-help" },
-                                "Set to ",
+                                "设置为",
                                 t.code(null, 0),
                                 " to disable logs persistence.",
                             ),
@@ -154,7 +154,7 @@ function logsSettingsModal(modalSettings) {
                             { className: "col-lg-12" },
                             t.field(
                                 { className: "field" },
-                                t.label({ htmlFor: "logs.minLevel" }, "Min log level"),
+                                t.label({ htmlFor: "logs.minLevel" }, "最低日志级别"),
                                 t.input({
                                     type: "number",
                                     id: "logs.minLevel",
@@ -168,7 +168,7 @@ function logsSettingsModal(modalSettings) {
                             ),
                             t.div(
                                 { className: "field-help" },
-                                t.div(null, "Logs with level below the minimum will be ignored."),
+                                t.div(null, "低于最低级别的日志将被忽略。"),
                                 defaultLogLevels(),
                             ),
                         ),
@@ -184,7 +184,7 @@ function logsSettingsModal(modalSettings) {
                                     checked: () => data.formSettings.logs.logIP,
                                     onchange: (e) => (data.formSettings.logs.logIP = e.target.checked),
                                 }),
-                                t.label({ htmlFor: "logs.logIP" }, "Enable IP logging"),
+                                t.label({ htmlFor: "logs.logIP" }, "启用IP记录"),
                             ),
                         ),
                         t.div(
@@ -199,7 +199,7 @@ function logsSettingsModal(modalSettings) {
                                     checked: () => data.formSettings.logs.logAuthId,
                                     onchange: (e) => (data.formSettings.logs.logAuthId = e.target.checked),
                                 }),
-                                t.label({ htmlFor: "logs.logAuthId" }, "Enable Auth Id logging"),
+                                t.label({ htmlFor: "logs.logAuthId" }, "启用认证ID记录"),
                             ),
                         ),
                     ),
@@ -213,7 +213,7 @@ function logsSettingsModal(modalSettings) {
                             onclick: () => app.modals.close(modal),
                             disabled: () => data.isSaving,
                         },
-                        t.span({ className: "txt" }, "Close"),
+                        t.span({ className: "txt" }, "关闭"),
                     ),
                     t.button(
                         {
@@ -222,7 +222,7 @@ function logsSettingsModal(modalSettings) {
                             className: () => `btn ${data.isSaving ? "loading" : ""}`,
                             disabled: () => !data.hasChanges || data.isSaving,
                         },
-                        t.span({ className: "txt" }, "Save changes"),
+                        t.span({ className: "txt" }, "保存更改"),
                     ),
                 ),
             ];

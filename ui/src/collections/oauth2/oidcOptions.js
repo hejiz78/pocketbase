@@ -6,7 +6,7 @@ window.app.oauth2.oidc = function(providerInfo, namePrefix, data) {
     const uniqueId = "oidc_" + app.utils.randomString();
 
     const userInfoOptions = [
-        { label: "User info URL", value: true },
+        { label: "用户信息URL", value: true },
         { label: "ID Token", value: false },
     ];
 
@@ -58,7 +58,7 @@ window.app.oauth2.oidc = function(providerInfo, namePrefix, data) {
                 { className: "col-12" },
                 t.div(
                     { className: "field" },
-                    t.label({ htmlFor: uniqueId + ".displayName" }, "Display name"),
+                    t.label({ htmlFor: uniqueId + ".displayName" }, "显示名称"),
                     t.input({
                         id: uniqueId + ".displayName",
                         name: namePrefix + ".displayName",
@@ -71,10 +71,10 @@ window.app.oauth2.oidc = function(providerInfo, namePrefix, data) {
             ),
             t.div(
                 { className: "col-12" },
-                t.p({ className: "txt-bold" }, "Endpoints"),
+                t.p({ className: "txt-bold" }, "端点"),
                 t.div(
                     { className: "field" },
-                    t.label({ htmlFor: uniqueId + ".authURL" }, "Auth URL"),
+                    t.label({ htmlFor: uniqueId + ".authURL" }, "认证URL"),
                     t.input({
                         id: uniqueId + ".authURL",
                         name: namePrefix + ".authURL",
@@ -89,7 +89,7 @@ window.app.oauth2.oidc = function(providerInfo, namePrefix, data) {
                 { className: "col-12" },
                 t.div(
                     { className: "field" },
-                    t.label({ htmlFor: uniqueId + ".tokenURL" }, "Token URL"),
+                    t.label({ htmlFor: uniqueId + ".tokenURL" }, "令牌URL"),
                     t.input({
                         id: uniqueId + ".tokenURL",
                         name: namePrefix + ".tokenURL",
@@ -105,7 +105,7 @@ window.app.oauth2.oidc = function(providerInfo, namePrefix, data) {
                 { className: "col-12" },
                 t.div(
                     { className: "field" },
-                    t.label({ htmlFor: uniqueId + ".userInfoSelect" }, "Fetch user info from"),
+                    t.label({ htmlFor: uniqueId + ".userInfoSelect" }, "获取用户信息自"),
                     app.components.select({
                         id: uniqueId + ".userInfoSelect",
                         required: true,
@@ -118,7 +118,7 @@ window.app.oauth2.oidc = function(providerInfo, namePrefix, data) {
                     if (local.useUserInfoUrl) {
                         return t.div(
                             { className: "field" },
-                            t.label({ htmlFor: uniqueId + ".userInfoURL" }, "User info URL"),
+                            t.label({ htmlFor: uniqueId + ".userInfoURL" }, "用户信息URL"),
                             t.input({
                                 id: uniqueId + ".userInfoURL",
                                 name: namePrefix + ".userInfoURL",
@@ -136,7 +136,7 @@ window.app.oauth2.oidc = function(providerInfo, namePrefix, data) {
                             { className: "col-12 txt-hint txt-sm" },
                             t.em(
                                 null,
-                                "Both fields are considered optional because the parsed ",
+                                "这两个字段都是可选的，因为解析后的",
                                 t.code(null, "id_token"),
                                 " is a direct result of the TLS code->token exchange server response.",
                             ),
@@ -173,11 +173,11 @@ window.app.oauth2.oidc = function(providerInfo, namePrefix, data) {
                                 { className: "field" },
                                 t.label(
                                     { htmlFor: uniqueId + ".extra.issuers" },
-                                    t.span({ className: "txt" }, "Issuers"),
+                                    t.span({ className: "txt" }, "签发者"),
                                     t.i({
                                         className: "ri-information-line link-hint",
                                         ariaDescription: app.attrs.tooltip(
-                                            "Comma separated list of accepted values for the iss token claim validation.",
+                                            "用于iss令牌声明验证的可接受值，以逗号分隔。",
                                         ),
                                     }),
                                 ),
@@ -216,11 +216,11 @@ window.app.oauth2.oidc = function(providerInfo, namePrefix, data) {
                     }),
                     t.label(
                         { htmlFor: uniqueId + ".pkce" },
-                        t.span({ className: "txt", textContent: "Support PKCE" }),
+                        t.span({ className: "txt", textContent: "支持PKCE" }),
                         t.i({
                             className: "ri-information-line link-hint",
                             ariaDescription: app.attrs.tooltip(
-                                "Usually it should be safe to be always enabled as most providers will just ignore the extra query parameters if they don't support PKCE.",
+                                "通常始终启用是安全的，因为大多数提供商在不支持PKCE时会忽略额外的查询参数。",
                             ),
                         }),
                     ),

@@ -19,7 +19,7 @@ export function view(props) {
                 rel: "noopener noreferrer",
                 target: "_blank",
                 textContent: app.utils.truncate(value),
-                ariaDescription: app.attrs.tooltip("Open in new tab"),
+                ariaDescription: app.attrs.tooltip("在新标签中打开"),
                 onclick: (e) => {
                     e.stopPropagation();
                 },

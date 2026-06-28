@@ -60,7 +60,7 @@ function providerPickerModal(settings = {}) {
         },
         t.header(
             { className: "modal-header" },
-            t.h6({ className: "modal-title" }, t.span({ className: "txt" }, "Select OAuth2 provider")),
+            t.h6({ className: "modal-title" }, t.span({ className: "txt" }, "选择OAuth2提供商")),
         ),
         t.div(
             { className: "modal-content" },
@@ -74,7 +74,7 @@ function providerPickerModal(settings = {}) {
                         t.div(
                             { className: "field" },
                             t.input({
-                                placeholder: "Search...",
+                                placeholder: "搜索...",
                                 className: "p-l-20",
                                 value: () => data.searchTerm,
                                 oninput: (e) => data.searchTerm = e.target.value,
@@ -93,7 +93,7 @@ function providerPickerModal(settings = {}) {
                                         className: "btn sm pill secondary transparent",
                                         onclick: () => clearSearch(),
                                     },
-                                    "Clear",
+                                    "清除",
                                 ),
                             );
                         },
@@ -107,11 +107,11 @@ function providerPickerModal(settings = {}) {
 
                     return t.div(
                         { rid: "notfound", className: "block txt-center txt-hint" },
-                        t.p(null, "No providers found."),
+                        t.p(null, "未找到提供商。"),
                         t.button({
                             type: "button",
                             className: "btn sm secondary",
-                            textContent: "Clear search",
+                            textContent: "清除搜索",
                             onclick: () => clearSearch(),
                         }),
                     );
@@ -166,7 +166,7 @@ function providerPickerModal(settings = {}) {
                     className: "btn transparent m-r-auto",
                     onclick: () => app.modals.close(modal),
                 },
-                t.span({ className: "txt" }, "Close"),
+                t.span({ className: "txt" }, "关闭"),
             ),
         ),
     );

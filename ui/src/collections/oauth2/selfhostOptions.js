@@ -7,7 +7,7 @@ window.app.components.oauth2EndpointFields = function(providerInfo, namePrefix, 
 
     const settings = store({
         required: true,
-        title: "Provider endpoints",
+        title: "提供商端点",
     });
 
     const watchers = app.utils.extendStore(settings, settingsArg);
@@ -35,7 +35,7 @@ window.app.components.oauth2EndpointFields = function(providerInfo, namePrefix, 
                 { className: "col-12" },
                 t.div(
                     { className: "field" },
-                    t.label({ htmlFor: uniqueId + ".authURL" }, "Auth URL"),
+                    t.label({ htmlFor: uniqueId + ".authURL" }, "认证URL"),
                     t.input({
                         id: uniqueId + ".authURL",
                         name: namePrefix + ".authURL",
@@ -50,7 +50,7 @@ window.app.components.oauth2EndpointFields = function(providerInfo, namePrefix, 
                 { className: "col-12" },
                 t.div(
                     { className: "field" },
-                    t.label({ htmlFor: uniqueId + ".tokenURL" }, "Token URL"),
+                    t.label({ htmlFor: uniqueId + ".tokenURL" }, "令牌URL"),
                     t.input({
                         id: uniqueId + ".tokenURL",
                         name: namePrefix + ".tokenURL",
@@ -65,7 +65,7 @@ window.app.components.oauth2EndpointFields = function(providerInfo, namePrefix, 
                 { className: "col-12" },
                 t.div(
                     { className: "field" },
-                    t.label({ htmlFor: uniqueId + ".userInfoURL" }, "User info URL"),
+                    t.label({ htmlFor: uniqueId + ".userInfoURL" }, "用户信息URL"),
                     t.input({
                         id: uniqueId + ".userInfoURL",
                         name: namePrefix + ".userInfoURL",
@@ -89,7 +89,7 @@ window.app.oauth2.gitlab = function(providerInfo, namePrefix, data) {
         data,
         {
             required: false,
-            title: "Self-hosted endpoints (optional)",
+            title: "自托管端点（可选）",
         },
     );
 };
@@ -101,7 +101,7 @@ window.app.oauth2.gitea = function(providerInfo, namePrefix, data) {
         data,
         {
             required: false,
-            title: "Self-hosted endpoints (optional)",
+            title: "自托管端点（可选）",
         },
     );
 };

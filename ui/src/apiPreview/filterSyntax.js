@@ -14,13 +14,13 @@ export function filterSyntax() {
             () => {
                 if (data.show) {
                     return [
-                        t.span({ className: "txt" }, "Hide details"),
+                        t.span({ className: "txt" }, "隐藏详情"),
                         t.i({ className: "ri-arrow-up-s-line", ariaHidden: true }),
                     ];
                 }
 
                 return [
-                    t.span({ className: "txt" }, "Show details"),
+                    t.span({ className: "txt" }, "显示详情"),
                     t.i({ className: "ri-arrow-down-s-line", ariaHidden: true }),
                 ];
             },
@@ -31,7 +31,7 @@ export function filterSyntax() {
                 { className: "block p-t-5" },
                 t.p(
                     null,
-                    "The filter syntax follows the format ",
+                    "筛选语法遵循以下格式",
                     t.code(
                         null,
                         t.span({ className: "txt-success" }, "OPERAND"),
@@ -149,13 +149,13 @@ export function filterSyntax() {
                         ),
                         t.p(
                             null,
-                            "To group and combine several expressions you could use brackets ",
+                            "要对多个表达式进行分组和组合，可以使用括号",
                             t.code(null, "(...)"),
                             ", ",
                             t.code(null, "&&"),
-                            ", (AND) and ",
+                            "（与）和",
                             t.code(null, "||"),
-                            " (OR) tokens.",
+                            "（或）标记。",
                         ),
                     ),
                 ),

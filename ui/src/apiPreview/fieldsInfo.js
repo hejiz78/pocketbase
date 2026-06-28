@@ -3,21 +3,21 @@ export function fieldsInfo() {
         { className: "api-fields-info" },
         t.p(
             null,
-            "Comma separated string of the fields to return in the JSON response (by default returns all fields). For example:",
+            "JSON响应中要返回的字段，以逗号分隔的字符串（默认返回所有字段）。例如：",
         ),
         app.components.codeBlock({
             value:
                 `// return all root level fields and only\n// "relField.someField" from expand\n?fields=*,expand.relField.someField`,
         }),
-        t.p(null, "Use ", t.code(null, "*"), " to target all keys from the specific depth level."),
-        t.p(null, "In addition, the following field modifiers are also supported:"),
+        t.p(null, "使用", t.code(null, "*"), "来针对特定深度级别的所有键。"),
+        t.p(null, "此外，还支持以下字段修饰符："),
         t.ul(
             null,
             t.li(
                 null,
                 t.code(null, ":excerpt(maxLength, withEllipsis?)"),
                 t.br(),
-                "Returns a short plain text version of the field string value. Ex.: ",
+                "返回字段字符串值的简短纯文本版本。例如：",
                 t.code(null, "?fields=*,someTextField:excerpt(200,true)"),
             ),
         ),

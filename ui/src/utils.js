@@ -623,7 +623,7 @@ const utils = {
         if (typeof val == "string") {
             // already a string
         } else if (typeof val == "boolean") {
-            val = val ? "True" : "False";
+            val = val ? "是" : "否";
         } else if (Array.isArray(val) && typeof val[0] != "object") {
             // assuming primitive array values
             val = val.map((child) => utils.displayValue(child, truncateLength, missingValue)).join(", ");

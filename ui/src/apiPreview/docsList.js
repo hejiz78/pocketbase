@@ -35,7 +35,7 @@ export function docsList(collection) {
             value: `
                 {
                   "status": 400,
-                  "message": "Something went wrong while processing your request.",
+                  "message": "处理您的请求时出现问题。",
                   "data": {}
                 }
             `,
@@ -47,7 +47,7 @@ export function docsList(collection) {
             value: `
                 {
                   "status": 403,
-                  "message": "Only superusers can access this action.",
+                  "message": "只有超级用户才能访问此操作。",
                   "data": {}
                 }
             `,
@@ -94,7 +94,7 @@ export function docsList(collection) {
                             href: import.meta.env.PB_JS_SDK_URL,
                             target: "_blank",
                             rel: "noopener noreferrer",
-                            textContent: "JS SDK docs",
+                            textContent: "JS SDK 文档",
                         }),
                     ),
                 },
@@ -132,7 +132,7 @@ export function docsList(collection) {
                             href: import.meta.env.PB_DART_SDK_URL,
                             target: "_blank",
                             rel: "noopener noreferrer",
-                            textContent: "Dart SDK docs",
+                            textContent: "Dart SDK 文档",
                         }),
                     ),
                 },
@@ -148,14 +148,14 @@ export function docsList(collection) {
             ],
         }),
         // api
-        t.div({ className: "block m-t-base" }, t.strong(null, "API details")),
+        t.div({ className: "block m-t-base" }, t.strong(null, "API详情")),
         t.div(
             { className: "alert info api-preview-alert" },
             t.span({ className: "label method" }, "GET"),
             t.span({ className: "path" }, `/api/collections/${collection.name}/records`),
             () => {
                 if (isSuperusersOnly) {
-                    return t.small({ className: "extra" }, "Requires superuser Authorization:TOKEN header");
+                    return t.small({ className: "extra" }, "需要超级用户 Authorization:TOKEN 头");
                 }
             },
         ),
@@ -165,9 +165,9 @@ export function docsList(collection) {
                 null,
                 t.tr(
                     null,
-                    t.th({ className: "min-width txt-primary" }, "?query params"),
-                    t.th({ className: "min-width" }, "Type"),
-                    t.th(null, "Description"),
+                    t.th({ className: "min-width txt-primary" }, "?查询参数"),
+                    t.th({ className: "min-width" }, "类型"),
+                    t.th(null, "描述"),
                 ),
             ),
             t.tbody(
@@ -175,30 +175,30 @@ export function docsList(collection) {
                 t.tr(
                     null,
                     t.td({ className: "min-width" }, "page"),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "Number")),
-                    t.td(null, "The page (aka. offset) of the paginated list (default to 1)."),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "数字")),
+                    t.td(null, "分页列表的页码（即偏移量，默认为1）。"),
                 ),
                 t.tr(
                     null,
                     t.td({ className: "min-width" }, "perPage"),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "Number")),
-                    t.td(null, "Specify the max returned records per page (default to 30)."),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "数字")),
+                    t.td(null, "指定每页返回的最大记录数（默认为30）。"),
                 ),
                 t.tr(
                     null,
                     t.td({ className: "min-width" }, "sort"),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
                     t.td(
                         null,
                         t.p(
                             null,
-                            "Specify the records order attribute(s).",
+                            "指定记录排序属性。",
                             t.br(),
-                            "Add -/+ (default) in front of the attribute for DESC / ASC order.",
+                            "在属性前添加-/+（默认）以进行降序/升序排列。",
                         ),
                         t.p(
                             null,
-                            "For example:",
+                            "例如：",
                             app.components.codeBlock({
                                 value: `// DESC by created and ASC by id\n?sort=-created,id`,
                             }),
@@ -216,13 +216,13 @@ export function docsList(collection) {
                 t.tr(
                     null,
                     t.td({ className: "min-width" }, "filter"),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
                     t.td(
                         null,
-                        t.p(null, "Filter the returned records. For example:"),
+                        t.p(null, "筛选返回的记录。例如："),
                         app.components.codeBlock({
                             value: `?filter=(id='abc' && created>'2022-01-01')`,
-                            footnote: "All query params must be properly URL encoded (the SDKs do this automatically).",
+                            footnote: "所有查询参数必须正确进行URL编码（SDK会自动处理）。",
                         }),
                         filterSyntax(),
                     ),
@@ -230,24 +230,24 @@ export function docsList(collection) {
                 t.tr(
                     null,
                     t.td({ className: "min-width" }, "expand"),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
                     t.td(null, expandInfo()),
                 ),
                 t.tr(
                     null,
                     t.td({ className: "min-width" }, "fields"),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
                     t.td(null, fieldsInfo()),
                 ),
                 t.tr(
                     null,
                     t.td({ className: "min-width" }, "skipTotal"),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "Boolean")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "布尔值")),
                     t.td(
                         null,
                         t.p(
                             null,
-                            "If set to ",
+                            "如果设置为",
                             t.code(null, "1/true"),
                             " the total counts query will be skipped and the response fields ",
                             t.code(null, "totalItems"),
@@ -257,7 +257,7 @@ export function docsList(collection) {
                         ),
                         t.p(
                             null,
-                            "This could drastically speed up the search queries when the total counters are not needed or cursor based pagination is used.",
+                            "当不需要总数计数或使用基于游标的分页时，这可以大幅加速搜索查询。",
                             " For optimization purposes, it is set by default in the ",
                             t.code(null, "getFirstListItem()"),
                             " and ",
@@ -269,7 +269,7 @@ export function docsList(collection) {
             ),
         ),
         // responses
-        t.div({ className: "block m-t-base m-b-sm" }, t.strong(null, "Example responses")),
+        t.div({ className: "block m-t-base m-b-sm" }, t.strong(null, "示例响应")),
         app.components.codeBlockTabs({
             tabs: responses,
         }),

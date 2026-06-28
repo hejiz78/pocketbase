@@ -20,10 +20,10 @@ export function settings(props) {
                     { className: "field" },
                     t.label(
                         { htmlFor: uniqueId + ".min" },
-                        t.span({ className: "txt" }, "Min length"),
+                        t.span({ className: "txt" }, "最小长度"),
                         t.i({
                             className: "ri-information-line link-hint",
-                            ariaDescription: app.attrs.tooltip("Clear the field or set it to 0 for no limit."),
+                            ariaDescription: app.attrs.tooltip("清除该字段或设为0表示无限制。"),
                         }),
                     ),
                     t.input({
@@ -33,7 +33,7 @@ export function settings(props) {
                         step: 1,
                         min: 0,
                         max: 71,
-                        placeholder: "No min limit",
+                        placeholder: "无最小限制",
                         value: () => props.field.min || "",
                         oninput: (e) => {
                             props.field.min = parseInt(e.target.value, 10);
@@ -47,11 +47,11 @@ export function settings(props) {
                     { className: "field" },
                     t.label(
                         { htmlFor: uniqueId + ".max" },
-                        t.span({ className: "txt" }, "Max length"),
+                        t.span({ className: "txt" }, "最大长度"),
                         t.i({
                             className: "ri-information-line link-hint",
                             ariaDescription: app.attrs.tooltip(
-                                "Clear the field or set it to 0 to fallback to the default limit (71).",
+                                "清除该字段或设为0以使用默认限制（71）。",
                             ),
                         }),
                     ),
@@ -62,7 +62,7 @@ export function settings(props) {
                         step: 1,
                         min: () => props.field.min || 0,
                         max: 71,
-                        placeholder: "Up to 71 chars",
+                        placeholder: "最多71个字符",
                         value: () => props.field.max || "",
                         oninput: (e) => {
                             props.field.max = parseInt(e.target.value, 10);
@@ -76,11 +76,11 @@ export function settings(props) {
                     { className: "field" },
                     t.label(
                         { htmlFor: uniqueId + ".max" },
-                        t.span({ className: "txt" }, "Bcrypt cost"),
+                        t.span({ className: "txt" }, "Bcrypt开销"),
                         t.i({
                             className: "ri-information-line link-hint",
                             ariaDescription: app.attrs.tooltip(
-                                "Clear the field or set it to 0 to fallback to the default (10).",
+                                "清除该字段或设为0以使用默认值（10）。",
                             ),
                         }),
                     ),
@@ -92,7 +92,7 @@ export function settings(props) {
                         // https://pkg.go.dev/golang.org/x/crypto/bcrypt#pkg-constants
                         min: 4,
                         max: 31,
-                        placeholder: "Default to 10",
+                        placeholder: "默认为10",
                         value: () => props.field.cost || "",
                         oninput: (e) => {
                             props.field.cost = parseInt(e.target.value, 10);
@@ -106,7 +106,7 @@ export function settings(props) {
                     { className: "field" },
                     t.label(
                         { htmlFor: uniqueId + ".pattern" },
-                        t.span({ className: "txt" }, "Validation pattern"),
+                        t.span({ className: "txt" }, "验证正则表达式"),
                     ),
                     t.input({
                         type: "text",
@@ -122,7 +122,7 @@ export function settings(props) {
                 { className: "col-sm-12" },
                 t.div(
                     { className: "field" },
-                    t.label({ htmlFor: uniqueId + ".help" }, "Help text"),
+                    t.label({ htmlFor: uniqueId + ".help" }, "帮助文本"),
                     t.input({
                         type: "text",
                         id: uniqueId + ".help",
@@ -152,11 +152,11 @@ export function settings(props) {
                     }),
                     t.label(
                         { htmlFor: uniqueId + ".required" },
-                        t.span({ className: "txt" }, "Required"),
+                        t.span({ className: "txt" }, "必填"),
                         t.small({ className: "txt-hint" }, "(!='')"),
                         t.i({
                             className: "ri-information-line link-hint",
-                            ariaDescription: app.attrs.tooltip("Requires the field value to be nonempty string."),
+                            ariaDescription: app.attrs.tooltip("要求字段值为非空字符串。"),
                         }),
                     ),
                 ),

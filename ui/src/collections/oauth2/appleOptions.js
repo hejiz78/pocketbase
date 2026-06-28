@@ -20,7 +20,7 @@ window.app.oauth2.apple = function(providerInfo, namePrefix, data) {
                 },
             },
             t.i({ className: "ri-key-line", ariaHidden: true }),
-            t.span({ className: "txt" }, "Generate secret"),
+            t.span({ className: "txt" }, "生成密钥"),
         ),
     );
 };
@@ -74,7 +74,7 @@ function appleSecretGeneratorModal(modalSettings = {}) {
 
             data.isSubmitting = false;
 
-            app.toasts.success("Successfully generated client secret.");
+            app.toasts.success("已成功生成客户端密钥。");
 
             modalSettings.ongenerate?.(result.secret);
 
@@ -107,7 +107,7 @@ function appleSecretGeneratorModal(modalSettings = {}) {
         },
         t.header(
             { className: "modal-header" },
-            t.h5({ className: "m-auto" }, "Generate Apple client secret"),
+            t.h5({ className: "m-auto" }, "生成Apple客户端密钥"),
         ),
         t.form(
             {
@@ -124,7 +124,7 @@ function appleSecretGeneratorModal(modalSettings = {}) {
                     { className: "col-sm-6" },
                     t.div(
                         { className: "field" },
-                        t.label({ htmlFor: uniqueId + ".clientId" }, "Client ID"),
+                        t.label({ htmlFor: uniqueId + ".clientId" }, "客户端ID"),
                         t.input({
                             id: uniqueId + ".clientId",
                             name: "clientId",
@@ -139,7 +139,7 @@ function appleSecretGeneratorModal(modalSettings = {}) {
                     { className: "col-sm-6" },
                     t.div(
                         { className: "field" },
-                        t.label({ htmlFor: uniqueId + ".teamId" }, "Team ID"),
+                        t.label({ htmlFor: uniqueId + ".teamId" }, "团队ID"),
                         t.input({
                             id: uniqueId + ".teamId",
                             name: "teamId",
@@ -154,7 +154,7 @@ function appleSecretGeneratorModal(modalSettings = {}) {
                     { className: "col-sm-6" },
                     t.div(
                         { className: "field" },
-                        t.label({ htmlFor: uniqueId + ".keyId" }, "Key ID"),
+                        t.label({ htmlFor: uniqueId + ".keyId" }, "密钥ID"),
                         t.input({
                             id: uniqueId + ".keyId",
                             name: "keyId",
@@ -169,7 +169,7 @@ function appleSecretGeneratorModal(modalSettings = {}) {
                     { className: "col-sm-6" },
                     t.div(
                         { className: "field" },
-                        t.label({ htmlFor: uniqueId + ".duration" }, "Duration (in seconds)"),
+                        t.label({ htmlFor: uniqueId + ".duration" }, "有效期（秒）"),
                         t.input({
                             id: uniqueId + ".duration",
                             name: "duration",
@@ -191,7 +191,7 @@ function appleSecretGeneratorModal(modalSettings = {}) {
                     { className: "col-sm-12" },
                     t.div(
                         { className: "field" },
-                        t.label({ htmlFor: uniqueId + ".privateKey" }, "Private key"),
+                        t.label({ htmlFor: uniqueId + ".privateKey" }, "私钥"),
                         t.textarea({
                             id: uniqueId + ".privateKey",
                             name: "privateKey",
@@ -205,7 +205,7 @@ function appleSecretGeneratorModal(modalSettings = {}) {
                     ),
                     t.div(
                         { className: "field-help" },
-                        "The key is not stored on the server and it is used only for generating the signed JWT.",
+                        "密钥不会存储在服务器上，仅用于生成签名的JWT。",
                     ),
                 ),
             ),
@@ -218,7 +218,7 @@ function appleSecretGeneratorModal(modalSettings = {}) {
                     className: "btn transparent m-r-auto",
                     onclick: () => app.modals.close(modal),
                 },
-                t.span({ className: "txt" }, "Close"),
+                t.span({ className: "txt" }, "关闭"),
             ),
             t.button(
                 {
@@ -227,7 +227,7 @@ function appleSecretGeneratorModal(modalSettings = {}) {
                     className: "btn expanded",
                 },
                 t.i({ className: "ri-key-line", ariaHidden: true }),
-                t.span({ className: "txt" }, "Generate secret"),
+                t.span({ className: "txt" }, "生成密钥"),
             ),
         ),
     );

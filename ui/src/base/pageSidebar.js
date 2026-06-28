@@ -72,7 +72,7 @@ window.app.components.pageSidebar = function(propsArg = {}, ...children) {
                 {
                     type: "button",
                     className: "btn transparent secondary responsive-sidebar-btn",
-                    title: "Toggle sidebar",
+                    title: "切换侧边栏",
                     onclick: (e) => {
                         e.stopPropagation();
                         data.responsiveShow = !data.responsiveShow;

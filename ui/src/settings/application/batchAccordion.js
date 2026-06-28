@@ -8,19 +8,19 @@ export function batchAccordion(pageData) {
         t.summary(
             null,
             t.i({ className: "ri-archive-stack-line", ariaHidden: true }),
-            t.span({ className: "txt" }, "Batch Web API"),
+            t.span({ className: "txt" }, "批量Web API"),
             t.div({ className: "flex-fill" }),
             () => {
                 if (pageData.formSettings.batch.enabled) {
-                    return t.span({ className: "label success" }, "Enabled");
+                    return t.span({ className: "label success" }, "已启用");
                 }
-                return t.span({ className: "label" }, "Disabled");
+                return t.span({ className: "label" }, "已禁用");
             },
             () => {
                 if (!app.utils.isEmpty(app.store.errors?.batch)) {
                     return t.i({
                         className: "ri-error-warning-fill txt-danger",
-                        ariaDescription: app.attrs.tooltip("Has errors", "left"),
+                        ariaDescription: app.attrs.tooltip("存在错误", "left"),
                     });
                 }
             },
@@ -41,8 +41,8 @@ export function batchAccordion(pageData) {
                     }),
                     t.label(
                         { htmlFor: "batch.enabled" },
-                        t.span({ className: "txt" }, "Enable"),
-                        t.small({ className: "txt-hint" }, " (experimental)"),
+                        t.span({ className: "txt" }, "启用"),
+                        t.small({ className: "txt-hint" }, "（实验性）"),
                     ),
                 ),
             ),
@@ -52,11 +52,11 @@ export function batchAccordion(pageData) {
                     { className: "field" },
                     t.label(
                         { htmlFor: "batch.maxRequests" },
-                        t.span({ className: "txt" }, "Max requests in a batch"),
+                        t.span({ className: "txt" }, "批量最大请求数"),
                         t.i({
                             className: "ri-information-line link-faded",
                             ariaDescription: app.attrs.tooltip(
-                                "Rate limiting (if enabled) also applies for the batch create/update/upsert/delete requests.",
+                                "速率限制（如果启用）也适用于批量创建/更新/插入/删除请求。",
                                 "right",
                             ),
                         }),
@@ -80,7 +80,7 @@ export function batchAccordion(pageData) {
                     { className: "field" },
                     t.label(
                         { htmlFor: "batch.timeout" },
-                        t.span({ className: "txt" }, "Max processing time (in seconds)"),
+                        t.span({ className: "txt" }, "最大处理时间（秒）"),
                     ),
                     t.input({
                         id: "batch.timeout",
@@ -101,7 +101,7 @@ export function batchAccordion(pageData) {
                     { className: "field" },
                     t.label(
                         { htmlFor: "batch.maxBodySize" },
-                        t.span({ className: "txt" }, "Max body size (in bytes)"),
+                        t.span({ className: "txt" }, "最大请求体大小（字节）"),
                     ),
                     t.input({
                         id: "batch.maxBodySize",
@@ -109,7 +109,7 @@ export function batchAccordion(pageData) {
                         type: "number",
                         min: 0,
                         step: 1,
-                        placeholder: "Default to 128MB",
+                        placeholder: "默认128MB",
                         disabled: () => !pageData.formSettings.batch.enabled,
                         value: () => pageData.formSettings.batch.maxBodySize || "",
                         oninput: (e) => pageData.formSettings.batch.maxBodySize = parseInt(e.target.value, 10),

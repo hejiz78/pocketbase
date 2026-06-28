@@ -234,7 +234,7 @@ function initSearch(selectFunc = null) {
             { className: "field" },
             t.input({
                 type: "text",
-                placeholder: "Search address...",
+                placeholder: "搜索地址...",
                 value: () => data.searchTerm,
                 oninput: (e) => (data.searchTerm = e.target.value),
             }),
@@ -249,7 +249,7 @@ function initSearch(selectFunc = null) {
                     {
                         type: "button",
                         className: "link-hint",
-                        title: "Clear search",
+                        title: "清除搜索",
                         onclick: () => reset(),
                     },
                     t.i({ className: "ri-close-line", ariaHidden: true }),
@@ -264,7 +264,7 @@ function initSearch(selectFunc = null) {
                 {
                     type: "button",
                     className: "dropdown-item",
-                    title: "Select address coordinates",
+                    title: "选择地址坐标",
                     onclick: () => selectFunc?.(item.lat, item.lon),
                 },
                 item.name,

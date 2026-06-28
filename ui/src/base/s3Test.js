@@ -20,7 +20,7 @@ window.app.components.s3Test = function(propsArg = {}) {
     const props = store({
         rid: undefined,
         config: null, // S3 config store
-        label: "Use S3 storage",
+        label: "使用S3存储",
         testFilesystem: "storage", // "storage" or "backups"
     });
 

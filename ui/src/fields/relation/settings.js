@@ -9,13 +9,13 @@ export function settings(props) {
     const uniqueId = "f_" + app.utils.randomString();
 
     const cascadeOptions = [
-        { label: "False", value: false },
-        { label: "True", value: true },
+        { label: "否", value: false },
+        { label: "是", value: true },
     ];
 
     const isMultipleOptions = [
-        { label: "Single", value: false },
-        { label: "Multiple", value: true },
+        { label: "单选", value: false },
+        { label: "多选", value: true },
     ];
 
     const watchers = [
@@ -43,7 +43,7 @@ export function settings(props) {
                 app.components.select({
                     required: true,
                     className: "inline-error",
-                    placeholder: "Select collection*",
+                    placeholder: "选择集合*",
                     name: () => `fields.${props.fieldIndex}.collectionId`,
                     disabled: () => !!props.originalField?.id,
                     options: () =>
@@ -72,7 +72,7 @@ export function settings(props) {
                                     },
                                 },
                                 t.i({ className: "ri-add-line", ariaHidden: true }),
-                                t.span({ className: "txt" }, "New collection"),
+                                t.span({ className: "txt" }, "新建集合"),
                             ),
                         ];
                     },
@@ -107,14 +107,14 @@ export function settings(props) {
                     { className: "col-sm-6", hidden: () => props.field.maxSelect << 0 < 2 },
                     t.div(
                         { className: "field" },
-                        t.label({ htmlFor: uniqueId + ".minSelect" }, "Min select"),
+                        t.label({ htmlFor: uniqueId + ".minSelect" }, "最小选择数"),
                         t.input({
                             type: "number",
                             id: uniqueId + ".minSelect",
                             step: 1,
                             min: 0,
                             max: Number.MAX_SAFE_INTEGER,
-                            placeholder: "No min limit",
+                            placeholder: "无最小限制",
                             name: () => `fields.${props.fieldIndex}.minSelect`,
                             value: () => props.field.minSelect || "",
                             onchange: (e) => (props.field.minSelect = parseInt(e.target.value, 10)),
@@ -125,14 +125,14 @@ export function settings(props) {
                     { className: "col-sm-6", hidden: () => props.field.maxSelect << 0 < 2 },
                     t.div(
                         { className: "field" },
-                        t.label({ htmlFor: uniqueId + ".maxSelect" }, "Max select"),
+                        t.label({ htmlFor: uniqueId + ".maxSelect" }, "最大选择数"),
                         t.input({
                             type: "number",
                             id: uniqueId + ".maxSelect",
                             step: 1,
                             min: () => props.field.minSelect || 2,
                             max: Number.MAX_SAFE_INTEGER,
-                            placeholder: "Default to single",
+                            placeholder: "默认为单选",
                             name: () => `fields.${props.fieldIndex}.maxSelect`,
                             value: () => props.field.maxSelect || "",
                             onchange: (e) => {
@@ -150,7 +150,7 @@ export function settings(props) {
                     { className: "col-sm-12" },
                     t.div(
                         { className: "field" },
-                        t.label({ htmlFor: uniqueId + ".cascadeDelete" }, "Cascade delete"),
+                        t.label({ htmlFor: uniqueId + ".cascadeDelete" }, "级联删除"),
                         app.components.select({
                             required: true,
                             id: uniqueId + ".cascadeDelete",
@@ -167,7 +167,7 @@ export function settings(props) {
                     { className: "col-sm-12" },
                     t.div(
                         { className: "field" },
-                        t.label({ htmlFor: uniqueId + ".help" }, "Help text"),
+                        t.label({ htmlFor: uniqueId + ".help" }, "帮助文本"),
                         t.input({
                             type: "text",
                             id: uniqueId + ".help",
@@ -191,7 +191,7 @@ export function settings(props) {
                 }),
                 t.label(
                     { htmlFor: uniqueId + ".required" },
-                    t.span({ className: "txt" }, "Required"),
+                    t.span({ className: "txt" }, "必填"),
                     t.small({ className: "txt-hint" }, () => props.field.maxSelect > 1 ? "(!=[])" : "(!='')"),
                     t.i({
                         className: "ri-information-line link-hint",

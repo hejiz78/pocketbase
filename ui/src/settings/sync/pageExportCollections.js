@@ -1,7 +1,7 @@
 import { settingsSidebar } from "../settingsSidebar";
 
 export function pageExportCollections(route) {
-    app.store.title = "Export collections";
+    app.store.title = "导出集合";
 
     const uniqueId = "export_" + app.utils.randomString();
 
@@ -102,7 +102,7 @@ export function pageExportCollections(route) {
                 { className: "page-header" },
                 t.nav(
                     { className: "breadcrumbs" },
-                    t.div({ className: "breadcrumb-item" }, "Settings"),
+                    t.div({ className: "breadcrumb-item" }, "设置"),
                     t.div({ className: "breadcrumb-item" }, () => app.store.title),
                 ),
             ),
@@ -136,7 +136,7 @@ export function pageExportCollections(route) {
                                             checked: () => data.areAllSelected,
                                             onchange: () => toggleSelectAll(),
                                         }),
-                                        t.label({ htmlFor: uniqueId + ".select_all" }, "Select all"),
+                                        t.label({ htmlFor: uniqueId + ".select_all" }, "全选"),
                                     ),
                                 ),
                                 () => {
@@ -180,7 +180,7 @@ export function pageExportCollections(route) {
                         t.button(
                             { className: "btn", onclick: download },
                             t.i({ className: "ri-download-line", ariaHidden: true }),
-                            t.span({ className: "txt" }, "Download as JSON"),
+                            t.span({ className: "txt" }, "下载为JSON"),
                         ),
                     ),
                 );

@@ -257,7 +257,7 @@ export function logsList(logsSettings) {
                             t.i({
                                 className: "ri-information-line txt-sm link-hint",
                                 ariaDescription: app.attrs.tooltip(
-                                    () => "Default levels\n" + data.paddedDefaultLogLevels.join("\n"),
+                                    () => "默认级别\n" + data.paddedDefaultLogLevels.join("\n"),
                                     "bottom",
                                     "code",
                                 ),

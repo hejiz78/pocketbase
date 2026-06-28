@@ -2,7 +2,7 @@ export function emailTemplateAccordion(collection, key, propsArg = {}) {
     const uniqueId = "emailTemplate" + app.utils.randomString();
 
     const props = store({
-        title: "Email template",
+        title: "邮件模板",
         placeholders: [],
     });
 
@@ -31,7 +31,7 @@ export function emailTemplateAccordion(collection, key, propsArg = {}) {
 
         return t.div(
             { className: "field-help" },
-            t.div({ className: "flex flex-wrap gap-5" }, t.span({ className: "txt" }, "Placeholders:"), () => {
+            t.div({ className: "flex flex-wrap gap-5" }, t.span({ className: "txt" }, "占位符："), () => {
                 return props.placeholders.map((p) => {
                     return t.span({ className: "label sm" }, app.components.copyButton(p, p));
                 });
@@ -60,7 +60,7 @@ export function emailTemplateAccordion(collection, key, propsArg = {}) {
                 return t.i({
                     ariaHidden: true,
                     className: "ri-error-warning-fill txt-danger m-l-auto",
-                    ariaDescription: app.attrs.tooltip("Has errors", "left"),
+                    ariaDescription: app.attrs.tooltip("存在错误", "left"),
                 });
             },
         ),
@@ -72,7 +72,7 @@ export function emailTemplateAccordion(collection, key, propsArg = {}) {
                     { className: "field" },
                     t.label({
                         htmlFor: uniqueId + ".subject",
-                        textContent: "Subject",
+                        textContent: "主题",
                     }),
                     app.components.codeEditor({
                         id: uniqueId + ".subject",
@@ -93,7 +93,7 @@ export function emailTemplateAccordion(collection, key, propsArg = {}) {
                     { className: "field" },
                     t.label({
                         htmlFor: uniqueId + ".body",
-                        textContent: "Body (HTML)",
+                        textContent: "正文 (HTML)",
                     }),
                     app.components.codeEditor({
                         id: uniqueId + ".body",

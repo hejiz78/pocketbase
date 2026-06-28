@@ -27,10 +27,10 @@ export function otpAccordion(collection) {
         t.summary(
             null,
             t.i({ className: "ri-time-line", ariaHidden: true }),
-            t.span({ className: "txt", textContent: "One-time password (OTP)" }),
+            t.span({ className: "txt", textContent: "一次性密码（OTP）" }),
             t.span({
                 className: () => `label m-l-auto ${data.config.enabled ? "success" : ""}`,
-                textContent: () => (data.config.enabled ? "Enabled" : "Disabled"),
+                textContent: () => (data.config.enabled ? "已启用" : "已禁用"),
             }),
             () => {
                 if (!app.store.errors?.otp) {
@@ -39,7 +39,7 @@ export function otpAccordion(collection) {
 
                 return t.i({
                     className: "ri-error-warning-fill txt-danger",
-                    ariaDescription: app.attrs.tooltip("Has errors", "left"),
+                    ariaDescription: app.attrs.tooltip("存在错误", "left"),
                 });
             },
         ),
@@ -65,7 +65,7 @@ export function otpAccordion(collection) {
                     }),
                     t.label({
                         htmlFor: uniqueId + ".enabled",
-                        textContent: "Enable",
+                        textContent: "启用",
                     }),
                     () => {
                         if (!data.isSuperusers) {
@@ -75,7 +75,7 @@ export function otpAccordion(collection) {
                         return t.i({
                             className: "ri-information-line link-hint",
                             ariaDescription: app.attrs.tooltip(
-                                "Superusers can have OTP only as part of Two-factor authentication.",
+                                "超级用户只能将OTP作为双因素认证的一部分。",
                             ),
                         });
                     },
@@ -87,7 +87,7 @@ export function otpAccordion(collection) {
                     { className: "field" },
                     t.label({
                         htmlFor: uniqueId + ".duration",
-                        textContent: "Duration (in seconds)",
+                        textContent: "有效期（秒）",
                     }),
                     t.input({
                         type: "number",
@@ -107,7 +107,7 @@ export function otpAccordion(collection) {
                     { className: "field" },
                     t.label({
                         htmlFor: uniqueId + ".length",
-                        textContent: "Generated password length",
+                        textContent: "生成的密码长度",
                     }),
                     t.input({
                         type: "number",

@@ -27,7 +27,7 @@ window.app.components.sortable = function(propsArg = {}) {
         className: "",
         data: [],
         dataItem: function(item, i, parent) {
-            return t.span(null, "Item " + i);
+            return t.span(null, "项目 " + i);
         },
         onchange: function(sortedList, fromIndex, toIndex) {},
         handle: "", // specific handle selector (if not set attached to the entire list item)

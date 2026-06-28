@@ -6,7 +6,7 @@ window.app = window.app || {};
 window.app.fieldTypes = window.app.fieldTypes || {};
 window.app.fieldTypes.autodate = {
     icon: "ri-calendar-check-line",
-    label: "Autodate",
+    label: "自动日期",
     settings,
     view,
     onrecordduplicate,

@@ -51,7 +51,7 @@ export function pageConfirmPasswordReset(route) {
         },
         t.header(
             { className: "txt-center m-b-base" },
-            t.img({ className: "main-logo", src: () => app.store.mainLogo, ariaHidden: true, alt: "App logo" }),
+            t.img({ className: "main-logo", src: () => app.store.mainLogo, ariaHidden: true, alt: "应用标志" }),
             t.h5({ className: "m-t-10" }, () => app.store.title),
         ),
         () => {

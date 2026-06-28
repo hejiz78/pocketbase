@@ -4,7 +4,7 @@ window.app.components = window.app.components || {};
 // @todo consider normalizing and changing args to props
 
 /**
- * Returns a "Copy" icon button for the specified value.
+ * 返回指定值的"复制"图标按钮。
  *
  * @example
  * ```js

@@ -102,7 +102,7 @@ window.app.components.colorPicker = function(propsArg = {}) {
             {
                 hidden: () => !props.predefinedColors.length,
                 type: "button",
-                title: "Predefined colors",
+                title: "预设颜色",
                 className: "link-hint predefined-colors-btn",
                 "html-popovertarget": uniqueId + "predefined-colors-dropdown",
             },

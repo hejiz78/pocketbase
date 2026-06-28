@@ -15,11 +15,11 @@ function mailTestModal(preselectedCollectionIdOrName = "", template = "") {
     const testRequestKey = "email_test_request";
 
     const templateOptions = [
-        { label: "Verification", value: "verification" },
-        { label: "Password reset", value: "password-reset" },
-        { label: "Confirm email change", value: "email-change" },
+        { label: "验证", value: "verification" },
+        { label: "密码重置", value: "password-reset" },
+        { label: "确认邮箱变更", value: "email-change" },
         { label: "OTP", value: "otp" },
-        { label: "Login alert", value: "login-alert" },
+        { label: "登录提醒", value: "login-alert" },
     ];
 
     const data = store({
@@ -55,7 +55,7 @@ function mailTestModal(preselectedCollectionIdOrName = "", template = "") {
             data.isSending = false;
             app.pb.cancelRequest(testRequestKey);
             app.modals.close();
-            app.toasts.error("Test email send timeout.");
+            app.toasts.error("发送测试邮件超时。");
         }, 15000);
 
         try {
@@ -68,7 +68,7 @@ function mailTestModal(preselectedCollectionIdOrName = "", template = "") {
                 requestKey: testRequestKey,
             });
 
-            app.toasts.success("Successfully sent test email.");
+            app.toasts.success("已成功发送测试邮件。");
 
             app.modals.close();
         } catch (err) {
@@ -103,7 +103,7 @@ function mailTestModal(preselectedCollectionIdOrName = "", template = "") {
                 watchers.forEach((w) => w?.unwatch());
             },
         },
-        t.header({ className: "modal-header" }, t.h5({ className: "m-auto" }, "Send test email")),
+        t.header({ className: "modal-header" }, t.h5({ className: "m-auto" }, "发送测试邮件")),
         t.form(
             {
                 id: uniqueId,
@@ -139,15 +139,15 @@ function mailTestModal(preselectedCollectionIdOrName = "", template = "") {
                         { className: "col-lg-12" },
                         t.div(
                             { className: "field" },
-                            t.label({ htmlFor: uniqueId + ".collection" }, "Auth collection"),
+                            t.label({ htmlFor: uniqueId + ".collection" }, "认证集合"),
                             app.components.select({
                                 id: uniqueId + ".collection",
                                 name: "collection",
                                 required: true,
                                 placeholder: () =>
                                     data.isAuthCollectionsLoading
-                                        ? "Loading auth collections..."
-                                        : "Select auth collection",
+                                        ? "正在加载认证集合..."
+                                        : "选择认证集合",
                                 options: () =>
                                     data.authCollections.map((c) => {
                                         return { value: c.id, label: c.name };
@@ -164,7 +164,7 @@ function mailTestModal(preselectedCollectionIdOrName = "", template = "") {
                     { className: "col-lg-12" },
                     t.div(
                         { className: "field" },
-                        t.label({ htmlFor: uniqueId + ".email" }, "To email address"),
+                        t.label({ htmlFor: uniqueId + ".email" }, "收件邮箱地址"),
                         t.input({
                             id: uniqueId + ".email",
                             name: "email",
@@ -186,7 +186,7 @@ function mailTestModal(preselectedCollectionIdOrName = "", template = "") {
                     onclick: () => app.modals.close(),
                     disabled: () => data.isSending,
                 },
-                t.span({ className: "txt" }, "Close"),
+                t.span({ className: "txt" }, "关闭"),
             ),
             t.button(
                 {
@@ -196,7 +196,7 @@ function mailTestModal(preselectedCollectionIdOrName = "", template = "") {
                     disabled: () => data.isSending || !data.canSubmit,
                 },
                 t.i({ className: "ri-mail-send-line", ariaHidden: true }),
-                t.span({ className: "txt" }, "Send"),
+                t.span({ className: "txt" }, "发送"),
             ),
         ),
     );

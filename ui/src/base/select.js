@@ -40,8 +40,8 @@ window.app.components.select = function(propsArg = {}) {
         searchThreshold: 6,
         required: false,
         disabled: false,
-        placeholder: "- Select -",
-        noItemsFoundText: "No items found",
+        placeholder: "- 请选择 -",
+        noItemsFoundText: "未找到项目",
         onchange: function(selectedOpts) {},
         ondropdowntoggle: function(e) {},
     });
@@ -139,7 +139,7 @@ window.app.components.select = function(propsArg = {}) {
 
     const searchInput = t.input({
         type: "text",
-        placeholder: "Search...",
+        placeholder: "搜索...",
         value: () => internalData.search,
         oninput: (e) => (internalData.search = e.target.value),
     });
@@ -202,7 +202,7 @@ window.app.components.select = function(propsArg = {}) {
                 t.button(
                     {
                         type: "button",
-                        title: "Clear",
+                        title: "清除",
                         className: "btn sm secondary transparent circle",
                         onclick: () => clearSearch(true),
                     },
@@ -265,7 +265,7 @@ window.app.components.select = function(propsArg = {}) {
                         tabIndex: -1,
                         role: "button",
                         className: "ri-close-line link-hint btn-option-unset",
-                        ariaLabel: app.attrs.tooltip("Unset"),
+                        ariaLabel: app.attrs.tooltip("取消设置"),
                         onclick: () => {
                             toggle(opt);
                             return false;

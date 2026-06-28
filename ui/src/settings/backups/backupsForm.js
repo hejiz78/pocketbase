@@ -6,10 +6,10 @@ export function backupsForm(propsArg = {}) {
     const watchers = app.utils.extendStore(props, propsArg);
 
     const presets = [
-        { cron: "0 0 * * *", label: "Every day at 00:00h" },
-        { cron: "0 0 * * 0", label: "Every sunday at 00:00h" },
-        { cron: "0 0 * * 1,3", label: "Every Mon and Wed at 00:00h" },
-        { cron: "0 0 1 * *", label: "Every first day of the month at 00:00h" },
+        { cron: "0 0 * * *", label: "每天 00:00" },
+        { cron: "0 0 * * 0", label: "每周日 00:00" },
+        { cron: "0 0 * * 1,3", label: "每周一和周三 00:00" },
+        { cron: "0 0 1 * *", label: "每月第一天 00:00" },
     ];
 
     const data = store({
@@ -55,7 +55,7 @@ export function backupsForm(propsArg = {}) {
 
             init(settings);
 
-            app.toasts.success("Successfully saved backups settings.");
+            app.toasts.success("已成功保存备份设置。");
         } catch (err) {
             app.checkApiError(err);
         }
@@ -105,7 +105,7 @@ export function backupsForm(propsArg = {}) {
                 disabled: () => data.isLoading || data.hasChanges,
                 onclick: () => (data.showForm = !data.showForm),
             },
-            t.span({ className: "txt" }, "Backup options"),
+            t.span({ className: "txt" }, "备份选项"),
             t.i({
                 className: () => (data.showForm ? "ri-arrow-up-s-line" : "ri-arrow-down-s-line"),
                 ariaHidden: true,
@@ -145,7 +145,7 @@ export function backupsForm(propsArg = {}) {
                                         }
                                     },
                                 }),
-                                t.label({ htmlFor: "enableAutoBackupsToggle" }, "Enable auto backups"),
+                                t.label({ htmlFor: "enableAutoBackupsToggle" }, "启用自动备份"),
                             ),
                             app.components.slide(
                                 () => data.enableAutoBackups,
@@ -157,13 +157,13 @@ export function backupsForm(propsArg = {}) {
                                             { className: "fields" },
                                             t.div(
                                                 { className: "field" },
-                                                t.label({ htmlFor: "backups.cron" }, "Cron expression"),
+                                                t.label({ htmlFor: "backups.cron" }, "Cron表达式"),
                                                 t.input({
                                                     id: "backups.cron",
                                                     name: "backups.cron",
                                                     className: "txt-code",
                                                     type: "text",
-                                                    placeholder: "e.g. 0 0 * * *",
+                                                    placeholder: "例如 0 0 * * *",
                                                     required: () => data.enableAutoBackups,
                                                     value: () => data.formSettings.backups.cron,
                                                     oninput: (e) => (data.formSettings.backups.cron = e.target.value),
@@ -177,7 +177,7 @@ export function backupsForm(propsArg = {}) {
                                                         className: "btn outline sm",
                                                         "html-popovertarget": "cron-presets-dropdown",
                                                     },
-                                                    t.span({ className: "txt" }, "Presets"),
+                                                    t.span({ className: "txt" }, "预设"),
                                                     t.i({ className: "ri-arrow-drop-down-line", ariaHidden: true }),
                                                 ),
                                                 t.div(
@@ -209,7 +209,7 @@ export function backupsForm(propsArg = {}) {
                                         ),
                                         t.div(
                                             { className: "field-help" },
-                                            "Supports numeric list, steps, ranges or ",
+                                            "支持数字列表、步骤、范围或 ",
                                             t.strong(
                                                 {
                                                     className: "link-hint tooltip-bottom",
@@ -217,18 +217,18 @@ export function backupsForm(propsArg = {}) {
                                                         "@yearly\n@annually\n@monthly\n@weekly\n@daily\n@midnight\n@hourly",
                                                     ),
                                                 },
-                                                "macros",
+                                                "宏",
                                             ),
-                                            ".",
+                                            "。",
                                             t.br(),
-                                            "By default the timezone is in UTC.",
+                                            "默认时区为UTC。",
                                         ),
                                     ),
                                     t.div(
                                         { className: "col-lg-6" },
                                         t.div(
                                             { className: "field" },
-                                            t.label({ htmlFor: "backups.cronMaxKeep" }, "Max @auto backups to keep"),
+                                            t.label({ htmlFor: "backups.cronMaxKeep" }, "最大自动备份保留数"),
                                             t.input({
                                                 id: "backups.cronMaxKeep",
                                                 name: "backups.cronMaxKeep",
@@ -251,7 +251,7 @@ export function backupsForm(propsArg = {}) {
                         t.div(
                             { className: "col-lg-12" },
                             app.components.s3ConfigFields({
-                                toggleLabel: "Store backups in S3 storage",
+                                toggleLabel: "将备份存储到S3存储",
                                 testFilesystem: "backups",
                                 config: () => data.formSettings.backups.s3,
                             }),
@@ -269,14 +269,14 @@ export function backupsForm(propsArg = {}) {
                                         className: "btn transparent secondary",
                                         onclick: reset,
                                     },
-                                    t.span({ className: "txt" }, "Cancel"),
+                                    t.span({ className: "txt" }, "取消"),
                                 ),
                                 t.button(
                                     {
                                         className: () => `btn expanded-lg ${data.isSaving ? "loading" : ""}`,
                                         disabled: () => !data.hasChanges || data.isSaving,
                                     },
-                                    t.span({ className: "txt" }, "Save changes"),
+                                    t.span({ className: "txt" }, "保存更改"),
                                 ),
                             ),
                         ),

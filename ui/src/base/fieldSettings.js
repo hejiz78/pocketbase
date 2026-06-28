@@ -100,7 +100,7 @@ window.app.components.fieldSettings = function(data, settingsArg = {}) {
                     watch(() => {
                         if (data.field.presentable && data.field.hidden) {
                             data.field.presentable = false;
-                            app.toasts.info("The field cannot be presentable if hidden.");
+                            app.toasts.info("如果字段被隐藏，则不能设为可展示。");
                         }
                     }),
                 );
@@ -178,7 +178,7 @@ window.app.components.fieldSettings = function(data, settingsArg = {}) {
                             name: () => `fields.${data.fieldIndex}.name`,
                             required: true,
                             spellcheck: false,
-                            placeholder: "Field name*",
+                            placeholder: "字段名*",
                             className: "inline-error",
                             disabled: () => data.field[toDeleteProp] || data.field.system,
                             value: () => data.field.name || "",
@@ -205,13 +205,13 @@ window.app.components.fieldSettings = function(data, settingsArg = {}) {
                             const labels = [];
 
                             if (data.field.required) {
-                                labels.push(t.span({ className: "label success" }, "Required"));
+                                labels.push(t.span({ className: "label success" }, "必填"));
                             }
 
                             if (data.field.hidden) {
-                                labels.push(t.span({ className: "label danger" }, "Hidden"));
+                                labels.push(t.span({ className: "label danger" }, "隐藏"));
                             } else if (data.field.presentable) {
-                                labels.push(t.span({ className: "label info" }, "Presentable"));
+                                labels.push(t.span({ className: "label info" }, "可展示"));
                             }
 
                             return labels;
@@ -234,7 +234,7 @@ window.app.components.fieldSettings = function(data, settingsArg = {}) {
                         );
                         return `btn sm circle transparent secondary ${hasError ? "txt-danger" : ""}`;
                     },
-                    title: "Field options",
+                    title: "字段选项",
                     hidden: () => data.field[toDeleteProp],
                     onclick: (e) => {
                         const details = e.target.closest("details");
@@ -251,7 +251,7 @@ window.app.components.fieldSettings = function(data, settingsArg = {}) {
                     className: "btn sm circle transparent warning",
                     hidden: () => !data.field[toDeleteProp],
                     onclick: () => delete data.field[toDeleteProp],
-                    ariaLabel: app.attrs.tooltip("Restore"),
+                    ariaLabel: app.attrs.tooltip("恢复"),
                 },
                 t.i({ className: "ri-restart-line", ariaHidden: true }),
             ),
@@ -288,13 +288,13 @@ window.app.components.fieldSettings = function(data, settingsArg = {}) {
                     }),
                     t.label(
                         { htmlFor: uniqueId + ".presentable" },
-                        t.span({ className: "txt" }, "Presentable"),
+                        t.span({ className: "txt" }, "可展示"),
                         t.i({
                             className: "ri-information-line link-hint",
                             ariaDescription: app.attrs.tooltip(
                                 () => {
                                     let msg =
-                                        "Whether the field should be preferred in the Superuser UI relation listings (default to auto).";
+                                        "该字段是否应在超级用户UI关联列表中优先显示（默认为自动）。";
                                     if (data.field.hidden) {
                                         msg += "\nThe field cannot be presentable if hidden.";
                                     }
@@ -322,7 +322,7 @@ window.app.components.fieldSettings = function(data, settingsArg = {}) {
                     }),
                     t.label(
                         { htmlFor: uniqueId + ".hidden" },
-                        t.span({ className: "txt" }, "Hidden"),
+                        t.span({ className: "txt" }, "隐藏"),
                         t.i({
                             className: "ri-information-line link-hint",
                             ariaDescription: app.attrs.tooltip("Hide from the JSON API response and filters."),
@@ -334,7 +334,7 @@ window.app.components.fieldSettings = function(data, settingsArg = {}) {
                 {
                     hidden: () => !settings.showDuplicate && (!settings.showRemove || data.field.system),
                     type: "button",
-                    title: "More options",
+                    title: "更多选项",
                     className: "btn sm circle transparent secondary more-btn m-l-auto",
                     "html-popovertarget": uniqueId + "_options_dropdown",
                 },
@@ -355,7 +355,7 @@ window.app.components.fieldSettings = function(data, settingsArg = {}) {
                         type: "button",
                         className: "dropdown-item",
                         role: "menuitem",
-                        textContent: "Duplicate",
+                        textContent: "复制",
                         onclick: (e) => {
                             duplicateField();
                             e.target.closest(".dropdown").hidePopover();
@@ -371,7 +371,7 @@ window.app.components.fieldSettings = function(data, settingsArg = {}) {
                         type: "button",
                         className: "dropdown-item",
                         role: "menuitem",
-                        textContent: "Remove",
+                        textContent: "移除",
                         onclick: (e) => {
                             removeField();
                             e.target.closest(".dropdown").hidePopover();

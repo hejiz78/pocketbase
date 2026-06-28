@@ -34,11 +34,11 @@ export function docsUpdate(collection) {
             value: `
                 {
                   "status": 400,
-                  "message": "Failed to create record.",
+                  "message": "创建记录失败。",
                   "data": {
                     "${tableFields.find((f) => !f.primaryKey)?.name || "someField"}": {
                       "code": "validation_required",
-                      "message": "Missing required value."
+                      "message": "缺少必需的值。"
                     }
                   }
                 }
@@ -51,7 +51,7 @@ export function docsUpdate(collection) {
             value: `
                 {
                   "status": 403,
-                  "message": "Only superusers can perform this action.",
+                  "message": "只有超级用户才能执行此操作。",
                   "data": {}
                 }
             `,
@@ -62,7 +62,7 @@ export function docsUpdate(collection) {
         value: `
             {
               "status": 404,
-              "message": "The requested resource wasn't found.",
+              "message": "未找到请求的资源。",
               "data": {}
             }
         `,
@@ -74,7 +74,7 @@ export function docsUpdate(collection) {
         t.p(null, `Updates an existing ${collection.name} record.`),
         t.p(
             null,
-            "Body parameters could be sent as ",
+            "请求体参数可以以",
             t.code(null, "application/json"),
             " or ",
             t.code(null, "multipart/form-data"),
@@ -82,14 +82,14 @@ export function docsUpdate(collection) {
         ),
         t.p(
             null,
-            "File upload is supported only via ",
+            "文件上传仅支持通过",
             t.code(null, "multipart/form-data"),
             ". For more info and examples you could check the detailed ",
             t.a({
                 href: import.meta.env.PB_FILE_UPLOAD_DOCS,
                 target: "_blank",
                 rel: "noopener noreferrer",
-                textContent: "Files upload and handling docs",
+                textContent: "文件上传和处理文档",
             }),
             ".",
         ),
@@ -97,7 +97,7 @@ export function docsUpdate(collection) {
             null,
             t.em(
                 null,
-                "Note that in case of a password change all previously issued tokens for the current record will be automatically invalidated and if you want your user to remain signed in you need to reauthenticate manually after the update call.",
+                "请注意，如果密码发生更改，当前记录之前发出的所有令牌将自动失效，如果您希望用户保持登录状态，需要在更新调用后手动重新认证。",
             ),
         ),
         app.components.codeBlockTabs({
@@ -126,7 +126,7 @@ const record = await pb.collection('${collection.name}').update('RECORD_ID', bod
                             href: import.meta.env.PB_JS_SDK_URL,
                             target: "_blank",
                             rel: "noopener noreferrer",
-                            textContent: "JS SDK docs",
+                            textContent: "JS SDK 文档",
                         }),
                     ),
                 },
@@ -156,7 +156,7 @@ final record = await pb.collection('${collection.name}').update(
                             href: import.meta.env.PB_DART_SDK_URL,
                             target: "_blank",
                             rel: "noopener noreferrer",
-                            textContent: "Dart SDK docs",
+                            textContent: "Dart SDK 文档",
                         }),
                     ),
                 },
@@ -174,14 +174,14 @@ final record = await pb.collection('${collection.name}').update(
             ],
         }),
         // api
-        t.div({ className: "block m-t-base" }, t.strong(null, "API details")),
+        t.div({ className: "block m-t-base" }, t.strong(null, "API详情")),
         t.div(
             { className: "alert warning api-preview-alert" },
             t.span({ className: "label method" }, "PATCH"),
             t.span({ className: "path" }, `/api/collections/${collection.name}/records/`, t.strong(null, ":id")),
             () => {
                 if (isSuperusersOnly) {
-                    return t.small({ className: "extra" }, "Requires superuser Authorization:TOKEN header");
+                    return t.small({ className: "extra" }, "需要超级用户 Authorization:TOKEN 头");
                 }
             },
         ),
@@ -192,8 +192,8 @@ final record = await pb.collection('${collection.name}').update(
                 t.tr(
                     null,
                     t.th({ className: "min-width txt-primary" }, "Path params"),
-                    t.th({ className: "min-width" }, "Type"),
-                    t.th(null, "Description"),
+                    t.th({ className: "min-width" }, "类型"),
+                    t.th(null, "描述"),
                 ),
             ),
             t.tbody(
@@ -201,8 +201,8 @@ final record = await pb.collection('${collection.name}').update(
                 t.tr(
                     null,
                     t.td({ className: "min-width" }, "id"),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
-                    t.td(null, "ID of the record to update."),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
+                    t.td(null, "要更新的记录ID。"),
                 ),
             ),
         ),
@@ -212,9 +212,9 @@ final record = await pb.collection('${collection.name}').update(
                 null,
                 t.tr(
                     null,
-                    t.th({ className: "min-width txt-primary" }, "?query params"),
-                    t.th({ className: "min-width" }, "Type"),
-                    t.th(null, "Description"),
+                    t.th({ className: "min-width txt-primary" }, "?查询参数"),
+                    t.th({ className: "min-width" }, "类型"),
+                    t.th(null, "描述"),
                 ),
             ),
             t.tbody(
@@ -222,19 +222,19 @@ final record = await pb.collection('${collection.name}').update(
                 t.tr(
                     null,
                     t.td({ className: "min-width" }, "expand"),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
                     t.td(null, expandInfo()),
                 ),
                 t.tr(
                     null,
                     t.td({ className: "min-width" }, "fields"),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
                     t.td(null, fieldsInfo()),
                 ),
             ),
         ),
         // responses
-        t.div({ className: "block m-t-base m-b-sm" }, t.strong(null, "Example responses")),
+        t.div({ className: "block m-t-base m-b-sm" }, t.strong(null, "示例响应")),
         app.components.codeBlockTabs({
             tabs: responses,
         }),

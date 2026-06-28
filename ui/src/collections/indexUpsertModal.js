@@ -195,7 +195,7 @@ function indexUpsertModal(collection, index = "", settings = {}) {
                                 data.index = app.utils.buildIndex(newIndexParts);
                             },
                         }),
-                        t.label({ htmlFor: uniqueId + "checkbox_unique" }, "Unique"),
+                        t.label({ htmlFor: uniqueId + "checkbox_unique" }, "唯一"),
                     ),
                 ),
                 t.div(
@@ -215,7 +215,7 @@ function indexUpsertModal(collection, index = "", settings = {}) {
                         { hidden: () => !presetColumns.length, className: "field-help m-t-sm" },
                         t.div(
                             { className: "flex flex-wrap gap-5" },
-                            t.span({ className: "txt", textContent: "Presets:" }),
+                            t.span({ className: "txt", textContent: "预设：" }),
                             () => {
                                 return presetColumns?.map((col) => {
                                     const isSelected = data.lowerCasedIndexColumnNames.includes(col.toLowerCase());
@@ -240,17 +240,17 @@ function indexUpsertModal(collection, index = "", settings = {}) {
                     className: "btn transparent m-r-auto",
                     onclick: () => app.modals.close(modal),
                 },
-                t.span({ className: "txt" }, "Close"),
+                t.span({ className: "txt" }, "关闭"),
             ),
             t.button(
                 {
                     hidden: () => data.isNew,
                     type: "button",
                     className: () => "btn sm circle transparent secondary",
-                    ariaLabel: app.attrs.tooltip("Delete index", "left"),
+                    ariaLabel: app.attrs.tooltip("删除索引", "left"),
                     onclick: () => {
                         app.modals.confirm(
-                            "Do you really want to remove the selected index from the collection?",
+                            "确定要从集合中删除所选索引吗？",
                             deleteIndex,
                         );
                     },
@@ -264,7 +264,7 @@ function indexUpsertModal(collection, index = "", settings = {}) {
                     "disabled": () => !data.canSave,
                     "className": () => "btn expanded",
                 },
-                t.span({ className: "txt" }, "Set index"),
+                t.span({ className: "txt" }, "设置索引"),
             ),
         ),
     );

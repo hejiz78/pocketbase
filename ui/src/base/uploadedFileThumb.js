@@ -72,7 +72,7 @@ window.app.components.uploadedFileThumb = function(propsArg = {}) {
                 return t.img({
                     draggable: false,
                     loading: "lazy",
-                    alt: () => "Thumb of " + props.file.name,
+                    alt: () => "缩略图：" + props.file.name,
                     src: data.thumbSrc,
                 });
             }

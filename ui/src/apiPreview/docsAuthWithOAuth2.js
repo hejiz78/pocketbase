@@ -18,8 +18,8 @@ export function docsAuthWithOAuth2(collection) {
                     record: Object.assign(baseDummyRecord, app.utils.getDummyFieldsData(collection)),
                     meta: {
                         "id": "abc123",
-                        "name": "John Doe",
-                        "username": "john.doe",
+                        "name": "张三",
+                        "username": "zhangsan",
                         "email": "test@example.com",
                         "avatarURL": "https://example.com/avatar.png",
                         "accessToken": "...",
@@ -38,11 +38,11 @@ export function docsAuthWithOAuth2(collection) {
             value: `
                 {
                   "status": 400,
-                  "message": "An error occurred while submitting the form.",
+                  "message": "提交表单时发生错误。",
                   "data": {
                     "provider": {
                       "code": "validation_required",
-                      "message": "Missing required value."
+                      "message": "缺少必需的值。"
                     }
                   }
                 }
@@ -56,15 +56,15 @@ export function docsAuthWithOAuth2(collection) {
             className: "content",
         },
         // description
-        t.p(null, "Authenticate with an OAuth2 provider and returns a new auth token and record data."),
+        t.p(null, "使用OAuth2提供商进行认证，返回新的认证令牌和记录数据。"),
         t.p(
             null,
-            "For more details please check the ",
+            "更多详情请查看",
             t.a({
                 href: import.meta.env.PB_OAUTH2_DOCS,
                 target: "_blank",
                 rel: "noopener noreferrer",
-                textContent: "OAuth2 integration documentation",
+                textContent: "OAuth2集成文档",
             }),
             ".",
         ),
@@ -105,7 +105,7 @@ export function docsAuthWithOAuth2(collection) {
                             href: import.meta.env.PB_JS_SDK_URL,
                             target: "_blank",
                             rel: "noopener noreferrer",
-                            textContent: "JS SDK docs",
+                            textContent: "JS SDK 文档",
                         }),
                     ),
                 },
@@ -145,7 +145,7 @@ export function docsAuthWithOAuth2(collection) {
                             href: import.meta.env.PB_DART_SDK_URL,
                             target: "_blank",
                             rel: "noopener noreferrer",
-                            textContent: "Dart SDK docs",
+                            textContent: "Dart SDK 文档",
                         }),
                     ),
                 },
@@ -163,7 +163,7 @@ export function docsAuthWithOAuth2(collection) {
             ],
         }),
         // api
-        t.div({ className: "m-t-base" }, t.strong(null, "API details")),
+        t.div({ className: "m-t-base" }, t.strong(null, "API详情")),
         t.div(
             { className: "alert success api-preview-alert" },
             t.span({ className: "label method" }, "POST"),
@@ -175,51 +175,51 @@ export function docsAuthWithOAuth2(collection) {
                 null,
                 t.tr(
                     null,
-                    t.th({ className: "min-width txt-primary" }, "Body params"),
-                    t.th({ className: "min-width" }, "Type"),
-                    t.th(null, "Description"),
+                    t.th({ className: "min-width txt-primary" }, "请求体参数"),
+                    t.th({ className: "min-width" }, "类型"),
+                    t.th(null, "描述"),
                 ),
             ),
             t.tbody(
                 null,
                 t.tr(
                     null,
-                    t.td({ className: "min-width" }, "provider ", t.em(null, "(required)")),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
-                    t.td(null, `The name of the OAuth2 client provider (eg. "google").`),
+                    t.td({ className: "min-width" }, "provider ", t.em(null, "（必需）")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
+                    t.td(null, `OAuth2客户端提供商的名称（例如"google"）。`),
                 ),
                 t.tr(
                     null,
-                    t.td({ className: "min-width" }, "code ", t.em(null, "(required)")),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
-                    t.td(null, "The authorization code returned from the initial request."),
+                    t.td({ className: "min-width" }, "code ", t.em(null, "（必需）")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
+                    t.td(null, "从初始请求返回的授权码。"),
                 ),
                 t.tr(
                     null,
-                    t.td({ className: "min-width" }, "codeVerifier ", t.em(null, "(required)")),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
-                    t.td(null, "The code verifier sent with the initial request as part of the code_challenge."),
+                    t.td({ className: "min-width" }, "codeVerifier ", t.em(null, "（必需）")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
+                    t.td(null, "作为code_challenge一部分随初始请求发送的代码验证器。"),
                 ),
                 t.tr(
                     null,
-                    t.td({ className: "min-width" }, "redirectURL ", t.em(null, "(required)")),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
-                    t.td(null, "The redirect url sent with the initial request."),
+                    t.td({ className: "min-width" }, "redirectURL ", t.em(null, "（必需）")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
+                    t.td(null, "随初始请求发送的重定向URL。"),
                 ),
                 t.tr(
                     null,
-                    t.td({ className: "min-width" }, "createData ", t.em(null, "(optional)")),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
+                    t.td({ className: "min-width" }, "createData ", t.em(null, "（可选）")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
                     t.td(
                         null,
-                        t.p(null, "Optional data that will be used when creating the auth record on OAuth2 sign-up."),
+                        t.p(null, "OAuth2注册时创建认证记录所使用的可选数据。"),
                         t.p(
                             null,
-                            "The created auth record must comply with the same requirements and validations in the regular create action.",
+                            "创建的认证记录必须符合常规创建操作中的相同要求和验证。",
                         ),
                         t.p(
                             null,
-                            "The data can only be in JSON, aka. user uploaded files currently are not supported during OAuth2 sign-ups.",
+                            "数据只能是JSON格式，也就是说OAuth2注册期间目前不支持用户上传的文件。",
                         ),
                     ),
                 ),
@@ -231,9 +231,9 @@ export function docsAuthWithOAuth2(collection) {
                 null,
                 t.tr(
                     null,
-                    t.th({ className: "min-width txt-primary" }, "?query params"),
-                    t.th({ className: "min-width" }, "Type"),
-                    t.th(null, "Description"),
+                    t.th({ className: "min-width txt-primary" }, "?查询参数"),
+                    t.th({ className: "min-width" }, "类型"),
+                    t.th(null, "描述"),
                 ),
             ),
             t.tbody(
@@ -241,19 +241,19 @@ export function docsAuthWithOAuth2(collection) {
                 t.tr(
                     null,
                     t.td({ className: "min-width" }, "expand"),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
                     t.td(null, expandInfo()),
                 ),
                 t.tr(
                     null,
                     t.td({ className: "min-width" }, "fields"),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
                     t.td(null, fieldsInfo()),
                 ),
             ),
         ),
         // responses
-        t.div({ className: "m-t-base m-b-sm" }, t.strong(null, "Example responses")),
+        t.div({ className: "m-t-base m-b-sm" }, t.strong(null, "示例响应")),
         app.components.codeBlockTabs({
             tabs: responses,
         }),

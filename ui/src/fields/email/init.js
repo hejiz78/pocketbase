@@ -6,7 +6,7 @@ window.app = window.app || {};
 window.app.fieldTypes = window.app.fieldTypes || {};
 window.app.fieldTypes.email = {
     icon: "ri-mail-line",
-    label: "Email",
+    label: "邮箱",
     settings,
     input,
     view,

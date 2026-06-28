@@ -1,0 +1,3 @@
+function e(){return t.div({className:`api-fields-info`},t.p(null,`JSON响应中要返回的字段，以逗号分隔的字符串（默认返回所有字段）。例如：`),app.components.codeBlock({value:`// return all root level fields and only
+// "relField.someField" from expand
+?fields=*,expand.relField.someField`}),t.p(null,`使用`,t.code(null,`*`),`来针对特定深度级别的所有键。`),t.p(null,`此外，还支持以下字段修饰符：`),t.ul(null,t.li(null,t.code(null,`:excerpt(maxLength, withEllipsis?)`),t.br(),`返回字段字符串值的简短纯文本版本。例如：`,t.code(null,`?fields=*,someTextField:excerpt(200,true)`))))}export{e as t};

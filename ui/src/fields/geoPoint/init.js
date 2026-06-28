@@ -6,7 +6,7 @@ window.app = window.app || {};
 window.app.fieldTypes = window.app.fieldTypes || {};
 window.app.fieldTypes.geoPoint = {
     icon: "ri-map-pin-2-line",
-    label: "Geo Point",
+    label: "地理坐标",
     settings,
     input,
     view,

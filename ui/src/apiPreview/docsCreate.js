@@ -34,11 +34,11 @@ export function docsCreate(collection) {
             value: `
                 {
                   "status": 400,
-                  "message": "Failed to create record.",
+                  "message": "创建记录失败。",
                   "data": {
                     "${isAuth ? "email" : tableFields.find((f) => !f.primaryKey)?.name || "someField"}": {
                       "code": "validation_required",
-                      "message": "Missing required value."
+                      "message": "缺少必需的值。"
                     }
                   }
                 }
@@ -51,7 +51,7 @@ export function docsCreate(collection) {
             value: `
                 {
                   "status": 403,
-                  "message": "Only superusers can perform this action.",
+                  "message": "只有超级用户才能执行此操作。",
                   "data": {}
                 }
             `,
@@ -64,7 +64,7 @@ export function docsCreate(collection) {
         t.p(null, `Creates a new ${collection.name} record.`),
         t.p(
             null,
-            "Body parameters could be sent as ",
+            "请求体参数可以以",
             t.code(null, "application/json"),
             " or ",
             t.code(null, "multipart/form-data"),
@@ -72,14 +72,14 @@ export function docsCreate(collection) {
         ),
         t.p(
             null,
-            "File upload is supported only via ",
+            "文件上传仅支持通过",
             t.code(null, "multipart/form-data"),
             ". For more info and examples you could check the detailed ",
             t.a({
                 href: import.meta.env.PB_FILE_UPLOAD_DOCS,
                 target: "_blank",
                 rel: "noopener noreferrer",
-                textContent: "Files upload and handling docs",
+                textContent: "文件上传和处理文档",
             }),
             ".",
         ),
@@ -112,7 +112,7 @@ await pb.collection('${collection?.name}').requestVerification('test@example.com
                             href: import.meta.env.PB_JS_SDK_URL,
                             target: "_blank",
                             rel: "noopener noreferrer",
-                            textContent: "JS SDK docs",
+                            textContent: "JS SDK 文档",
                         }),
                     ),
                 },
@@ -141,7 +141,7 @@ await pb.collection('${collection?.name}').requestVerification('test@example.com
                             href: import.meta.env.PB_DART_SDK_URL,
                             target: "_blank",
                             rel: "noopener noreferrer",
-                            textContent: "Dart SDK docs",
+                            textContent: "Dart SDK 文档",
                         }),
                     ),
                 },
@@ -159,14 +159,14 @@ await pb.collection('${collection?.name}').requestVerification('test@example.com
             ],
         }),
         // api
-        t.div({ className: "block m-t-base" }, t.strong(null, "API details")),
+        t.div({ className: "block m-t-base" }, t.strong(null, "API详情")),
         t.div(
             { className: "alert success api-preview-alert" },
             t.span({ className: "label method" }, "POST"),
             t.span({ className: "path" }, `/api/collections/${collection.name}/records`),
             () => {
                 if (isSuperusersOnly) {
-                    return t.small({ className: "extra" }, "Requires superuser Authorization:TOKEN header");
+                    return t.small({ className: "extra" }, "需要超级用户 Authorization:TOKEN 头");
                 }
             },
         ),
@@ -176,9 +176,9 @@ await pb.collection('${collection?.name}').requestVerification('test@example.com
                 null,
                 t.tr(
                     null,
-                    t.th({ className: "min-width txt-primary" }, "Body params"),
-                    t.th({ className: "min-width" }, "Type"),
-                    t.th(null, "Description"),
+                    t.th({ className: "min-width txt-primary" }, "请求体参数"),
+                    t.th({ className: "min-width" }, "类型"),
+                    t.th(null, "描述"),
                 ),
             ),
             t.tbody(
@@ -193,7 +193,7 @@ await pb.collection('${collection?.name}').requestVerification('test@example.com
                             null,
                             t.th(
                                 { colSpan: 99 },
-                                "Auth specific fields",
+                                "认证特定字段",
                             ),
                         ),
                         t.tr(
@@ -203,13 +203,13 @@ await pb.collection('${collection?.name}').requestVerification('test@example.com
                                 "email ",
                                 () => {
                                     if (collection.fields?.find((f) => f.name == "email")?.required) {
-                                        return t.em(null, "(required)");
+                                        return t.em(null, "（必需）");
                                     }
-                                    return t.em(null, "(optional)");
+                                    return t.em(null, "（可选）");
                                 },
                             ),
-                            t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
-                            t.td(null, "Auth record email address."),
+                            t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
+                            t.td(null, "认证记录邮箱地址。"),
                         ),
                         t.tr(
                             null,
@@ -218,17 +218,17 @@ await pb.collection('${collection?.name}').requestVerification('test@example.com
                                 "emailVisibility ",
                                 () => {
                                     if (collection.fields?.find((f) => f.name == "emailVisibility")?.required) {
-                                        return t.em(null, "(required)");
+                                        return t.em(null, "（必需）");
                                     }
-                                    return t.em(null, "(optional)");
+                                    return t.em(null, "（可选）");
                                 },
                             ),
-                            t.td({ className: "min-width" }, t.span({ className: "label" }, "Boolean")),
+                            t.td({ className: "min-width" }, t.span({ className: "label" }, "布尔值")),
                             t.td(
                                 null,
-                                "Whether to show/hide the auth record email when fetching the record data.",
+                                "获取记录数据时是否显示/隐藏认证记录邮箱。",
                                 t.br(),
-                                "Superusers and the owner of the record always have access to the email address.",
+                                "超级用户和记录所有者始终可以访问邮箱地址。",
                             ),
                         ),
                         t.tr(
@@ -236,35 +236,35 @@ await pb.collection('${collection?.name}').requestVerification('test@example.com
                             t.td(
                                 { className: "min-width" },
                                 "password ",
-                                t.em(null, "(required)"),
+                                t.em(null, "（必需）"),
                             ),
-                            t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
-                            t.td(null, "Auth record password."),
+                            t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
+                            t.td(null, "认证记录密码。"),
                         ),
                         t.tr(
                             null,
                             t.td(
                                 { className: "min-width" },
                                 "passwordConfirm ",
-                                t.em(null, "(required)"),
+                                t.em(null, "（必需）"),
                             ),
-                            t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
-                            t.td(null, "Auth record password confirmation."),
+                            t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
+                            t.td(null, "认证记录密码确认。"),
                         ),
                         t.tr(
                             null,
                             t.td(
                                 { className: "min-width" },
                                 "verified ",
-                                t.em(null, "(optional)"),
+                                t.em(null, "（可选）"),
                             ),
-                            t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
+                            t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
                             t.td(
                                 null,
-                                t.p(null, "Indicates whether the auth record is verified or not."),
+                                t.p(null, "指示该认证记录是否已验证。"),
                                 t.p(
                                     null,
-                                    `This field can be set only by superusers or auth records with "Manage" access.`,
+                                    `此字段只能由超级用户或具有"管理"权限的认证记录设置。`,
                                 ),
                             ),
                         ),
@@ -272,7 +272,7 @@ await pb.collection('${collection?.name}').requestVerification('test@example.com
                             null,
                             t.th(
                                 { colSpan: 99 },
-                                "Other fields",
+                                "其他字段",
                             ),
                         ),
                     ];
@@ -294,14 +294,14 @@ await pb.collection('${collection?.name}').requestVerification('test@example.com
                                         const dummyData = app.fieldTypes[f.type]?.dummyData(f, true);
                                         const dummyDataType = typeof dummyData;
 
-                                        if (f.type == "file") return "File";
-                                        if (dummyDataType === "string") return "String";
-                                        if (dummyDataType == "number") return "Number";
-                                        if (dummyDataType == "bool") return "Boolean";
-                                        if (Array.isArray(dummyData)) return "Array";
-                                        if (app.utils.isObject(dummyData)) return "Object";
+                                        if (f.type == "file") return "文件";
+                                        if (dummyDataType === "string") return "字符串";
+                                        if (dummyDataType == "number") return "数字";
+                                        if (dummyDataType == "bool") return "布尔值";
+                                        if (Array.isArray(dummyData)) return "数组";
+                                        if (app.utils.isObject(dummyData)) return "对象";
 
-                                        return "Mixed";
+                                        return "混合";
                                     },
                                 ),
                             ),
@@ -312,12 +312,12 @@ await pb.collection('${collection?.name}').requestVerification('test@example.com
                                 t.br(),
                                 t.small(
                                     { className: "txt-hint" },
-                                    "For more details you could check the ",
+                                    "更多详情请查看",
                                     t.a({
                                         href: import.meta.env.PB_FIELDS_DOCS,
                                         target: "_blank",
                                         rel: "noopener noreferrer",
-                                        textContent: "Fields docs",
+                                        textContent: "字段文档",
                                     }),
                                     ".",
                                 ),
@@ -333,9 +333,9 @@ await pb.collection('${collection?.name}').requestVerification('test@example.com
                 null,
                 t.tr(
                     null,
-                    t.th({ className: "min-width txt-primary" }, "?query params"),
-                    t.th({ className: "min-width" }, "Type"),
-                    t.th(null, "Description"),
+                    t.th({ className: "min-width txt-primary" }, "?查询参数"),
+                    t.th({ className: "min-width" }, "类型"),
+                    t.th(null, "描述"),
                 ),
             ),
             t.tbody(
@@ -343,19 +343,19 @@ await pb.collection('${collection?.name}').requestVerification('test@example.com
                 t.tr(
                     null,
                     t.td({ className: "min-width" }, "expand"),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
                     t.td(null, expandInfo()),
                 ),
                 t.tr(
                     null,
                     t.td({ className: "min-width" }, "fields"),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
                     t.td(null, fieldsInfo()),
                 ),
             ),
         ),
         // responses
-        t.div({ className: "block m-t-base m-b-sm" }, t.strong(null, "Example responses")),
+        t.div({ className: "block m-t-base m-b-sm" }, t.strong(null, "示例响应")),
         app.components.codeBlockTabs({
             tabs: responses,
         }),

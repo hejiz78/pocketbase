@@ -44,7 +44,7 @@ function backupCreateModal(settings) {
                 settings.oncreated(data.name);
             }
 
-            app.toasts.success("Successfully generated new backup.");
+            app.toasts.success("已成功生成新备份。");
 
             app.modals.close(modal);
         } catch (err) {
@@ -63,7 +63,7 @@ function backupCreateModal(settings) {
             onbeforeclose: () => {
                 if (data.isSubmitting) {
                     app.toasts.info(
-                        "The backup was started but may take a while to complete. You can come back later.",
+                        "备份已启动，但可能需要一些时间才能完成。您可以稍后再回来。",
                     );
                 }
             },
@@ -74,7 +74,7 @@ function backupCreateModal(settings) {
         },
         t.header(
             { className: "modal-header" },
-            t.h5({ className: "m-auto txt-center" }, "Initialize new backup"),
+            t.h5({ className: "m-auto txt-center" }, "初始化新备份"),
         ),
         t.form(
             {
@@ -96,11 +96,11 @@ function backupCreateModal(settings) {
                             { className: "content" },
                             t.p(
                                 null,
-                                `Please note that during the backup other concurrent write requests may fail since the database will be temporary "locked" (this usually happens only during the ZIP generation).`,
+                                `请注意，在备份期间，其他并发写入请求可能会失败，因为数据库将被临时"锁定"（这通常仅在ZIP生成期间发生）。`,
                             ),
                             t.p(
                                 { className: "txt-bold" },
-                                `If you are using S3 storage for the collections file upload, you'll have to backup them separately since they are not locally stored and they will not be included in the generated backup!`,
+                                `如果您使用S3存储来上传集合文件，您需要单独备份它们，因为它们不是本地存储的，不会包含在生成的备份中！`,
                             ),
                         ),
                     ),
@@ -109,18 +109,18 @@ function backupCreateModal(settings) {
                     { className: "col-lg-12" },
                     t.div(
                         { className: "field" },
-                        t.label({ htmlFor: uniqueId + "_name" }, "Backup name"),
+                        t.label({ htmlFor: uniqueId + "_name" }, "备份名称"),
                         t.input({
                             id: uniqueId + "_name",
                             name: "name",
                             type: "text",
                             pattern: "^[a-z0-9_-]+\.zip$",
-                            placeholder: "Leave empty to autogenerate",
+                            placeholder: "留空以自动生成",
                             value: () => data.name,
                             oninput: (e) => (data.name = e.target.value),
                         }),
                     ),
-                    t.div({ className: "field-help" }, "Must be in the format [a-z0-9_-].zip"),
+                    t.div({ className: "field-help" }, "必须为 [a-z0-9_-].zip 格式"),
                 ),
             ),
         ),
@@ -133,7 +133,7 @@ function backupCreateModal(settings) {
                     disabled: () => data.isSubmitting,
                     onclick: () => app.modals.close(modal),
                 },
-                t.span({ className: "txt" }, "Cancel"),
+                t.span({ className: "txt" }, "取消"),
             ),
             t.button(
                 {
@@ -142,7 +142,7 @@ function backupCreateModal(settings) {
                     className: () => `btn ${data.isSubmitting ? "loading" : ""}`,
                     disabled: () => data.isSubmitting,
                 },
-                t.span({ className: "txt" }, "Start backup"),
+                t.span({ className: "txt" }, "开始备份"),
             ),
         ),
     );

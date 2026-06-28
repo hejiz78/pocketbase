@@ -41,7 +41,7 @@ function downloadJSON(log) {
 
 function copyJSON(log) {
     app.utils.copyToClipboard(JSON.stringify(log, null, 2));
-    app.toasts.success("Log copied to clipboard!");
+    app.toasts.success("日志已复制到剪贴板！");
 }
 
 function logPreviewModal(logIdOrModel, settings) {
@@ -116,11 +116,11 @@ function logPreviewModal(logIdOrModel, settings) {
         },
         t.header(
             { className: "modal-header" },
-            t.h5(null, "Log details"),
+            t.h5(null, "日志详情"),
             t.button(
                 {
                     className: "btn sm circle transparent m-l-auto",
-                    title: "More options",
+                    title: "更多选项",
                     "html-popovertarget": "log-meta-dropdown",
                 },
                 t.i({ className: "ri-more-line", ariaHidden: true }),
@@ -135,7 +135,7 @@ function logPreviewModal(logIdOrModel, settings) {
                         },
                     },
                     t.i({ className: "ri-braces-line", ariaHidden: true }),
-                    t.span({ className: "txt" }, "Copy JSON"),
+                    t.span({ className: "txt" }, "复制JSON"),
                 );
             }),
         ),
@@ -259,7 +259,7 @@ function logPreviewModal(logIdOrModel, settings) {
                     className: "btn transparent m-r-auto",
                     onclick: () => app.modals.close(modal),
                 },
-                t.span({ className: "txt" }, "Close"),
+                t.span({ className: "txt" }, "关闭"),
             ),
             t.button(
                 {
@@ -268,7 +268,7 @@ function logPreviewModal(logIdOrModel, settings) {
                     onclick: () => downloadJSON(data.log),
                 },
                 t.i({ className: "ri-download-line", ariaHidden: true }),
-                t.span({ className: "txt" }, "Download JSON"),
+                t.span({ className: "txt" }, "下载JSON"),
             ),
         ),
     );

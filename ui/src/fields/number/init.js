@@ -6,7 +6,7 @@ window.app = window.app || {};
 window.app.fieldTypes = window.app.fieldTypes || {};
 window.app.fieldTypes.number = {
     icon: "ri-hashtag",
-    label: "Number",
+    label: "数字",
     settings,
     input,
     view,

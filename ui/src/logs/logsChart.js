@@ -126,8 +126,8 @@ export function logsChart(logsSettings) {
                     logsSettings.zoom = {};
                 },
             },
-            t.div({ className: "content-primary" }, "Reset zoom"),
-            t.div({ className: "content-secondary" }, "(drag the timeline to pan)"),
+            t.div({ className: "content-primary" }, "重置缩放"),
+            t.div({ className: "content-secondary" }, "（拖动时间线平移）"),
         ),
         t.span({
             hidden: () => !logsSettings.isChartLoading,

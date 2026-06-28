@@ -96,7 +96,7 @@ export function collectionsDiffTable(propsArg = {}) {
                     return [
                         t.span({
                             className: "label import-change-label success",
-                            textContent: "Added",
+                            textContent: "新增",
                         }),
                         t.strong({ textContent: () => props.collectionB?.name }),
                     ];
@@ -106,7 +106,7 @@ export function collectionsDiffTable(propsArg = {}) {
                     return [
                         t.span({
                             className: "label import-change-label danger",
-                            textContent: "Deleted",
+                            textContent: "已删除",
                         }),
                         t.strong({ textContent: () => props.collectionA?.name }),
                     ];
@@ -116,7 +116,7 @@ export function collectionsDiffTable(propsArg = {}) {
                     t.span({
                         hidden: () => !data.hasAnyChange,
                         className: "label import-change-label warning",
-                        textContent: "Changed",
+                        textContent: "已更改",
                     }),
                     t.div(
                         { className: "inline-flex gap-5" },
@@ -148,8 +148,8 @@ export function collectionsDiffTable(propsArg = {}) {
                 t.tr(
                     null,
                     t.th({ className: "min-width" }, "Props"),
-                    t.th({ width: "40%" }, "Old"),
-                    t.th({ width: "40%" }, "New"),
+                    t.th({ width: "40%" }, "旧"),
+                    t.th({ width: "40%" }, "新"),
                 ),
             ),
             t.tbody(
@@ -207,7 +207,7 @@ export function collectionsDiffTable(propsArg = {}) {
                                     t.span({ className: "txt" }, "field: ", field.name),
                                     t.span(
                                         { className: "label danger m-l-5" },
-                                        "Deleted - ",
+                                        "已删除 - ",
                                         t.small(null, `All stored data related to '${field.name}' will be deleted!`),
                                     ),
                                 ),
@@ -250,7 +250,7 @@ export function collectionsDiffTable(propsArg = {}) {
                                     t.span({ className: "txt" }, "field: ", field.name),
                                     t.span({
                                         className: `label warning m-l-5 ${!hasFieldChanged ? "hidden" : ""}`,
-                                        textContent: "Changed",
+                                        textContent: "已更改",
                                     }),
                                 ),
                             ),
@@ -290,7 +290,7 @@ export function collectionsDiffTable(propsArg = {}) {
                                 t.th(
                                     { className: "min-width", colSpan: 3 },
                                     t.span({ className: "txt" }, "field: ", field.name),
-                                    t.span({ className: "label success m-l-5" }, "Added"),
+                                    t.span({ className: "label success m-l-5" }, "新增"),
                                 ),
                             ),
                         );

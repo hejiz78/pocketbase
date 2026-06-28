@@ -1,7 +1,7 @@
 import { settingsSidebar } from "../settingsSidebar";
 
 export function pageStorageSettings() {
-    app.store.title = "File storage";
+    app.store.title = "文件存储";
 
     const data = store({
         isLoading: false,
@@ -43,7 +43,7 @@ export function pageStorageSettings() {
             const settings = await app.pb.settings.update(redacted);
             init(settings);
 
-            app.toasts.success("Successfully saved storage settings.");
+            app.toasts.success("已成功保存存储设置。");
         } catch (err) {
             app.checkApiError(err);
         }
@@ -79,7 +79,7 @@ export function pageStorageSettings() {
                 { className: "page-header" },
                 t.nav(
                     { className: "breadcrumbs" },
-                    t.div({ className: "breadcrumb-item" }, "Settings"),
+                    t.div({ className: "breadcrumb-item" }, "设置"),
                     t.div({ className: "breadcrumb-item" }, () => app.store.title),
                 ),
             ),
@@ -104,11 +104,11 @@ export function pageStorageSettings() {
                             { className: "col-lg-12 txt-lg" },
                             t.p(
                                 null,
-                                "By default PocketBase uses and recommends the local file system to store uploaded files because it is more performant, easier to manage and backup.",
+                                "默认情况下，PocketBase使用并推荐使用本地文件系统来存储上传的文件，因为它性能更好、更易于管理和备份。",
                             ),
                             t.p(
                                 null,
-                                "Alternatively, if you have limited disk space available, you could opt to an S3 compatible external storage.",
+                                "另外，如果您的磁盘空间有限，可以选择S3兼容的外部存储。",
                             ),
                         ),
                         t.div(
@@ -124,16 +124,16 @@ export function pageStorageSettings() {
 
                                     return t.div(
                                         { className: "alert info m-t-sm" },
-                                        "If you have existing uploaded files, you'll have to migrate them manually from the ",
-                                        t.strong(null, originalEnabled ? "S3 storage" : "local file system"),
-                                        " to the ",
+                                        "如果您已有上传的文件，您需要手动将它们从 ",
+                                        t.strong(null, originalEnabled ? "S3存储" : "本地文件系统"),
+                                        " 迁移到 ",
                                         t.strong(
                                             null,
-                                            data.formSettings.s3?.enabled ? "S3 storage" : "local file system",
+                                            data.formSettings.s3?.enabled ? "S3存储" : "本地文件系统",
                                         ),
-                                        ".",
+                                        "。",
                                         t.br(),
-                                        "There are several command line tools that can help you, such as: ",
+                                        "有一些命令行工具可以帮助您，例如：",
                                         t.a({
                                             href: "https://github.com/rclone/rclone",
                                             target: "_blank",
@@ -141,7 +141,7 @@ export function pageStorageSettings() {
                                             className: "txt-bold",
                                             textContent: "rclone",
                                         }),
-                                        ", ",
+                                        "、",
                                         t.a({
                                             href: "https://github.com/peak/s5cmd",
                                             target: "_blank",
@@ -149,7 +149,7 @@ export function pageStorageSettings() {
                                             className: "txt-bold",
                                             textContent: "s5cmd",
                                         }),
-                                        ", etc.",
+                                        " 等。",
                                     );
                                 },
                             }),
@@ -167,14 +167,14 @@ export function pageStorageSettings() {
                                         className: "btn transparent secondary",
                                         onclick: reset,
                                     },
-                                    t.span({ className: "txt" }, "Cancel"),
+                                    t.span({ className: "txt" }, "取消"),
                                 ),
                                 t.button(
                                     {
                                         className: () => `btn expanded-lg ${data.isSaving ? "loading" : ""}`,
                                         disabled: () => !data.hasChanges || data.isSaving,
                                     },
-                                    t.span({ className: "txt" }, "Save changes"),
+                                    t.span({ className: "txt" }, "保存更改"),
                                 ),
                             ),
                         ),

@@ -20,8 +20,8 @@ function collectionsOverviewModal(settings = {}) {
     const uniqueId = "overview_modal_" + app.utils.randomString();
 
     const tabs = {
-        "Fields and relations": erd,
-        "Rules": rules,
+        "字段和关联": erd,
+        "规则": rules,
     };
 
     const data = store({
@@ -62,7 +62,7 @@ function collectionsOverviewModal(settings = {}) {
                     { className: "col-12" },
                     t.div(
                         { className: "flex" },
-                        t.h6({ className: "modal-title" }, "Collections overview"),
+                        t.h6({ className: "modal-title" }, "集合概览"),
                         t.div({ className: "flex-fill" }),
                         t.div(
                             { className: "field" },
@@ -73,13 +73,13 @@ function collectionsOverviewModal(settings = {}) {
                                 checked: () => data.showSystemCollections,
                                 onchange: (e) => data.showSystemCollections = e.target.checked,
                             }),
-                            t.label({ htmlFor: uniqueId + ".showSystemCollections" }, "System collections"),
+                            t.label({ htmlFor: uniqueId + ".showSystemCollections" }, "系统集合"),
                         ),
                         t.button(
                             {
                                 type: "button",
                                 className: "btn sm secondary transparent circle modal-close-btn",
-                                title: "Close",
+                                title: "关闭",
                                 onclick: () => app.modals.close(modal),
                             },
                             t.i({ className: "ri-close-line", ariaHidden: true }),
@@ -150,17 +150,17 @@ function erd(data) {
 
 function rules(data) {
     const ruleOptions = [
-        { value: "listRule", label: "List/Search rule" },
-        { value: "viewRule", label: "View rule" },
-        { value: "createRule", label: "Create rule", filter: (c) => c.type != "view" },
-        { value: "updateRule", label: "Update rule", filter: (c) => c.type != "view" },
-        { value: "deleteRule", label: "Delete rule", filter: (c) => c.type != "view" },
-        { value: "authRule", label: "Auth rule", filter: (c) => c.type == "auth" },
-        { value: "manageRule", label: "Manage rule", filter: (c) => c.type == "auth" },
+        { value: "listRule", label: "列表/搜索规则" },
+        { value: "viewRule", label: "查看规则" },
+        { value: "createRule", label: "创建规则", filter: (c) => c.type != "view" },
+        { value: "updateRule", label: "更新规则", filter: (c) => c.type != "view" },
+        { value: "deleteRule", label: "删除规则", filter: (c) => c.type != "view" },
+        { value: "authRule", label: "认证规则", filter: (c) => c.type == "auth" },
+        { value: "manageRule", label: "管理规则", filter: (c) => c.type == "auth" },
         {
             value: "mfaRule",
-            label: "MFA rule",
-            emptyLabel: t.span({ className: "label info" }, "Enabled for everyone"),
+            label: "MFA规则",
+            emptyLabel: t.span({ className: "label info" }, "对所有人启用"),
             rule: (c) => c.mfa?.rule,
             filter: (c) => c.mfa?.enabled && c.type == "auth",
         },
@@ -216,7 +216,7 @@ function rules(data) {
                             null,
                             t.td(
                                 { colSpan: 99, className: "txt-hint" },
-                                t.p(null, "No collections with the selected rule."),
+                                t.p(null, "没有符合所选规则的集合。"),
                             ),
                         );
                     }
@@ -257,7 +257,7 @@ function rules(data) {
                                                 return local.activeRuleOption.nullLabel;
                                             }
 
-                                            return t.span({ className: "label success" }, "Superusers only");
+                                            return t.span({ className: "label success" }, "仅超级用户");
                                         }
 
                                         if (rule === "") {
@@ -265,7 +265,7 @@ function rules(data) {
                                                 return local.activeRuleOption.emptyLabel;
                                             }
 
-                                            return t.span({ className: "label info" }, "Public");
+                                            return t.span({ className: "label info" }, "公开");
                                         }
 
                                         return app.components.codeBlock({

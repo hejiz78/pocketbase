@@ -9,35 +9,35 @@ export function docsRealtime(collection) {
     return t.div(
         { pbEvent: "apiPreviewRealtime", className: "content" },
         // description
-        t.p(null, `Subscribe to realtime changes via Server-Sent Events (SSE).`),
+        t.p(null, `通过服务器发送事件（SSE）订阅实时更改。`),
         t.p(
             null,
-            "Events are sent for ",
+            "事件将针对",
             t.strong(null, "create"),
             ", ",
             t.strong(null, "update"),
             " and ",
             t.strong(null, "delete"),
-            ` record operations (see "Event data format" below).`,
+            `记录操作发送（参见下方"事件数据格式"）。`
         ),
         t.div(
             { className: "alert info" },
-            t.p({ className: "txt-bold" }, "You could subscribe to a single record or to an entire collection."),
+            t.p({ className: "txt-bold" }, "您可以订阅单条记录或整个集合。"),
             t.p(
                 null,
-                "When you subscribe to a ",
-                t.strong(null, "single record"),
-                ", the collection's ",
-                t.strong(null, "View rule"),
-                " will be used to determine whether the subscriber is allowed to receive the event message.",
+                "当您订阅",
+                t.strong(null, "单条记录"),
+                "时，将使用该集合的",
+                t.strong(null, "查看规则"),
+                "来确定是否允许订阅者接收事件消息。",
             ),
             t.p(
                 null,
-                "When you subscribe to an ",
-                t.strong(null, "entire collection"),
-                ", the collection's ",
-                t.strong(null, "List/Search rule"),
-                " will be used to determine whether the subscriber is allowed to receive the event message.",
+                "当您订阅",
+                t.strong(null, "整个集合"),
+                "时，将使用该集合的",
+                t.strong(null, "列表/搜索规则"),
+                "来确定是否允许订阅者接收事件消息。",
             ),
         ),
         app.components.codeBlockTabs({
@@ -86,7 +86,7 @@ export function docsRealtime(collection) {
                             href: import.meta.env.PB_JS_SDK_URL,
                             target: "_blank",
                             rel: "noopener noreferrer",
-                            textContent: "JS SDK docs",
+                            textContent: "JS SDK 文档",
                         }),
                     ),
                 },
@@ -132,7 +132,7 @@ export function docsRealtime(collection) {
                             href: import.meta.env.PB_DART_SDK_URL,
                             target: "_blank",
                             rel: "noopener noreferrer",
-                            textContent: "Dart SDK docs",
+                            textContent: "Dart SDK 文档",
                         }),
                     ),
                 },
@@ -160,7 +160,7 @@ export function docsRealtime(collection) {
             ],
         }),
         // api
-        t.div({ className: "block m-t-base" }, t.strong(null, "API details")),
+        t.div({ className: "block m-t-base" }, t.strong(null, "API详情")),
         t.div(
             { className: "alert api-preview-alert" },
             t.span({ className: "label method" }, "GET/POST"),
@@ -171,11 +171,11 @@ export function docsRealtime(collection) {
                     href: import.meta.env.PB_REALTIME_DOCS,
                     target: "_blank",
                     rel: "noopener noreferrer",
-                    textContent: "Realtime docs",
+                    textContent: "实时通信文档",
                 }),
             ),
         ),
-        t.div({ className: "block m-t-base m-b-sm" }, t.strong(null, "Event data format")),
+        t.div({ className: "block m-t-base m-b-sm" }, t.strong(null, "事件数据格式")),
         app.components.codeBlock({
             value: JSON.stringify(
                 {

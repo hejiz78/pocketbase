@@ -7,14 +7,14 @@ window.app.oauth2.microsoft = function(providerInfo, namePrefix, data) {
 
     return t.div(
         { pbEvent: "oauth2MicrosoftOptions", className: "oauth2-microsoft-options" },
-        t.p({ className: "txt-bold" }, "Azure AD endpoints"),
+        t.p({ className: "txt-bold" }, "Azure AD端点"),
         t.div(
             { className: "grid" },
             t.div(
                 { className: "col-12" },
                 t.div(
                     { className: "field" },
-                    t.label({ htmlFor: uniqueId + ".authURL" }, "Auth URL"),
+                    t.label({ htmlFor: uniqueId + ".authURL" }, "认证URL"),
                     t.input({
                         id: uniqueId + ".authURL",
                         name: namePrefix + ".authURL",
@@ -26,14 +26,14 @@ window.app.oauth2.microsoft = function(providerInfo, namePrefix, data) {
                 ),
                 t.div(
                     { className: "field-help" },
-                    "Ex. https://login.microsoftonline.com/YOUR_DIRECTORY_TENANT_ID/oauth2/v2.0/authorize",
+                    "例如 https://login.microsoftonline.com/您的目录租户ID/oauth2/v2.0/authorize",
                 ),
             ),
             t.div(
                 { className: "col-12" },
                 t.div(
                     { className: "field" },
-                    t.label({ htmlFor: uniqueId + ".tokenURL" }, "Token URL"),
+                    t.label({ htmlFor: uniqueId + ".tokenURL" }, "令牌URL"),
                     t.input({
                         id: uniqueId + ".tokenURL",
                         name: namePrefix + ".tokenURL",
@@ -45,7 +45,7 @@ window.app.oauth2.microsoft = function(providerInfo, namePrefix, data) {
                 ),
                 t.div(
                     { className: "field-help" },
-                    "Ex. https://login.microsoftonline.com/YOUR_DIRECTORY_TENANT_ID/oauth2/v2.0/token",
+                    "例如 https://login.microsoftonline.com/您的目录租户ID/oauth2/v2.0/token",
                 ),
             ),
         ),

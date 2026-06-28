@@ -1,15 +1,15 @@
 export function expandInfo() {
     return t.div(
         { className: "api-expand-info" },
-        t.p(null, "Auto expand record relations. For example:"),
+        t.p(null, "自动展开记录关联。例如："),
         app.components.codeBlock({
             value: `?expand=relField1,relField2.subRelField`,
         }),
         t.p(
             null,
-            "Supports up to 6-levels depth nested relations expansion.",
+            "支持最多6层深度的嵌套关联展开。",
             t.br(),
-            "The expanded relations will be appended to each individual record under the ",
+            "展开的关联将被追加到每条记录的",
             t.code(null, "expand"),
             " property (eg. ",
             t.code(null, `"expand": {"relField1": {...}, ...}`),
@@ -17,7 +17,7 @@ export function expandInfo() {
         ),
         t.p(
             null,
-            "Only the relations to which the request user has permissions to ",
+            "只有请求用户有权限访问的关联才会被展开。",
             t.strong(null, "view"),
             " will be expanded.",
         ),

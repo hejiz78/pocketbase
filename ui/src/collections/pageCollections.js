@@ -61,7 +61,7 @@ export function pageCollections(route) {
         watch(
             () => (app.store.activeCollection?.name || "") + (app.store.activeCollection?.updated || ""),
             (newVal, oldVal) => {
-                app.store.title = app.store.activeCollection?.name || "Collections";
+                app.store.title = app.store.activeCollection?.name || "集合";
 
                 const hasChanged = oldVal && oldVal != newVal;
 
@@ -200,7 +200,7 @@ export function pageCollections(route) {
                 { className: "page-header flex-nowrap" },
                 t.nav(
                     { className: "breadcrumbs" },
-                    t.div(null, "Collections"),
+                    t.div(null, "集合"),
                     () => {
                         if (app.store.activeCollection?.name) {
                             return t.div({
@@ -220,7 +220,7 @@ export function pageCollections(route) {
                         {
                             type: "button",
                             className: "btn circle transparent secondary tooltip-bottom btn-collection-settings",
-                            ariaLabel: app.attrs.tooltip("Collection settings"),
+                            ariaLabel: app.attrs.tooltip("集合设置"),
                             onclick: () => {
                                 app.modals.openCollectionUpsert(app.store.activeCollection, {
                                     ontruncate: () => refreshRecordsList(),
@@ -271,7 +271,7 @@ export function pageCollections(route) {
                                 onclick: () => app.modals.openRecordUpsert(app.store.activeCollection),
                             },
                             t.i({ className: "ri-add-line", ariaHidden: true }),
-                            t.span({ className: "txt", textContent: "New record" }),
+                            t.span({ className: "txt", textContent: "新建记录" }),
                         );
                     },
                 ),
@@ -294,9 +294,9 @@ export function pageCollections(route) {
                     { className: "txt" },
                     () => {
                         if (app.store.collections?.length) {
-                            return "Select collection from the sidebar.";
+                            return "请从侧边栏选择集合。";
                         }
-                        return "No collections found.";
+                        return "未找到集合。";
                     },
                 ),
             ),
@@ -339,7 +339,7 @@ export function pageCollections(route) {
                     {
                         className: () => `total-count ${pageData.isTotalCountLoading ? "faded" : ""}`,
                     },
-                    "Total: ",
+                    "总计：",
                     () => pageData.totalCount,
                 ),
                 app.components.credits(),

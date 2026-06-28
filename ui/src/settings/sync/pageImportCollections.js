@@ -1,7 +1,7 @@
 import { settingsSidebar } from "../settingsSidebar";
 
 export function pageImportCollections(route) {
-    app.store.title = "Import collections";
+    app.store.title = "导入集合";
 
     const uniqueId = "import_" + app.utils.randomString();
 
@@ -252,13 +252,13 @@ export function pageImportCollections(route) {
             await new Promise((r) => setTimeout(r, 0));
 
             if (!data.newCollections.length) {
-                app.toasts.error("Invalid collections configuration.");
+                app.toasts.error("无效的集合配置。");
                 clear();
             }
         };
 
         reader.onerror = (err) => {
-            app.toasts.error("Failed to load the imported JSON.");
+            app.toasts.error("加载导入的JSON失败。");
             console.warn(err);
 
             data.isLoadingFile = false;
@@ -297,7 +297,7 @@ export function pageImportCollections(route) {
                 { className: "page-header" },
                 t.nav(
                     { className: "breadcrumbs" },
-                    t.div({ className: "breadcrumb-item" }, "Settings"),
+                    t.div({ className: "breadcrumb-item" }, "设置"),
                     t.div({ className: "breadcrumb-item" }, () => app.store.title),
                 ),
             ),
@@ -319,14 +319,14 @@ export function pageImportCollections(route) {
                                 htmlFor: fileInput.id,
                                 className: () => `btn sm outline ${data.isLoadingFile ? "loading" : ""}`,
                             },
-                            t.span({ className: "txt" }, "Load from JSON file"),
+                            t.span({ className: "txt" }, "从JSON文件加载"),
                         ),
                         fileInput,
                         t.p(
                             { className: "txt-hint" },
                             t.em(
                                 null,
-                                "You can use the ",
+                                "您可以使用",
                                 t.a({
                                     href: `${import.meta.env.PB_DOCS_URL}/go-migrations/`,
                                     target: "_blank",
@@ -348,7 +348,7 @@ export function pageImportCollections(route) {
                         { className: "col-lg-12" },
                         t.div(
                             { className: "field" },
-                            t.label({ htmlFor: uniqueId + "_collections_field" }, "Collections"),
+                            t.label({ htmlFor: uniqueId + "_collections_field" }, "集合"),
                             t.textarea({
                                 id: uniqueId + "_collections_field",
                                 name: "collections",
@@ -367,7 +367,7 @@ export function pageImportCollections(route) {
                                 className: () =>
                                     `field-help error ${!!data.rawNewCollections && !data.isRawValid ? "" : "hidden"}`,
                             },
-                            "Invalid collections configuration.",
+                            "无效的集合配置。",
                         ),
                     ),
                     t.div(
@@ -381,7 +381,7 @@ export function pageImportCollections(route) {
                                 checked: () => data.mergeWithOldCollections,
                                 onchange: (e) => (data.mergeWithOldCollections = e.target.checked),
                             }),
-                            t.label({ htmlFor: uniqueId + "_merge_checkbox" }, "Merge with the existing collections"),
+                            t.label({ htmlFor: uniqueId + "_merge_checkbox" }, "与现有集合合并"),
                         ),
                     ),
                     t.div(
@@ -392,7 +392,7 @@ export function pageImportCollections(route) {
                             { className: "alert info" },
                             t.div(
                                 { className: "content" },
-                                t.p(null, "Your collections configuration is already up-to-date!"),
+                                t.p(null, "您的集合配置已是最新！"),
                             ),
                         ),
                     ),
@@ -400,7 +400,7 @@ export function pageImportCollections(route) {
                         {
                             className: () => `col-lg-12 ${data.isRawValid && data.hasChanges ? "" : "hidden"}`,
                         },
-                        t.p({ className: "txt-hint txt-bold" }, "Detected changes"),
+                        t.p({ className: "txt-hint txt-bold" }, "检测到的更改"),
                         t.div(
                             { className: "list" },
                             // to delete
@@ -410,7 +410,7 @@ export function pageImportCollections(route) {
                                         { className: "list-item" },
                                         t.span({
                                             className: "label import-change-label danger",
-                                            textContent: "Deleted",
+                                            textContent: "已删除",
                                         }),
                                         t.div(
                                             { className: "inline-flex gap-5" },
@@ -430,7 +430,7 @@ export function pageImportCollections(route) {
                                         { className: "list-item" },
                                         t.span({
                                             className: "label import-change-label warning",
-                                            textContent: "Changed",
+                                            textContent: "已更改",
                                         }),
                                         t.div(
                                             { className: "inline-flex gap-5" },
@@ -466,7 +466,7 @@ export function pageImportCollections(route) {
                                         { className: "list-item" },
                                         t.span({
                                             className: "label import-change-label success",
-                                            textContent: "Added",
+                                            textContent: "新增",
                                         }),
                                         t.div(
                                             { className: "inline-flex gap-5" },
@@ -491,7 +491,7 @@ export function pageImportCollections(route) {
                                 { className: "content" },
                                 t.p(
                                     null,
-                                    "Some of the imported collections share the same name and/or fields but are imported with different IDs.",
+                                    "部分导入的集合共享相同的名称和/或字段，但使用了不同的ID导入。",
                                 ),
                                 t.p(
                                     null,
@@ -499,7 +499,7 @@ export function pageImportCollections(route) {
                                     t.button({
                                         type: "button",
                                         className: "btn warning sm m-l-10",
-                                        textContent: "Replace with original IDs",
+                                        textContent: "使用原始ID替换",
                                         onclick: replaceIds,
                                     }),
                                 ),
@@ -516,7 +516,7 @@ export function pageImportCollections(route) {
                                     className: () => `btn secondary ${!data.rawNewCollections ? "hidden" : ""}`,
                                     onclick: clear,
                                 },
-                                t.span({ className: "txt" }, "Clear"),
+                                t.span({ className: "txt" }, "清除"),
                             ),
                             t.button(
                                 {
@@ -525,7 +525,7 @@ export function pageImportCollections(route) {
                                     disabled: () => !data.canReview,
                                     onclick: review,
                                 },
-                                t.span({ className: "txt" }, "Review"),
+                                t.span({ className: "txt" }, "审查"),
                             ),
                         ),
                     ),

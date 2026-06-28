@@ -22,7 +22,7 @@ export function settings(props) {
                         { className: "field" },
                         t.label(
                             { htmlFor: uniqueId + ".maxSize" },
-                            t.span(null, "Max size "),
+                            t.span(null, "最大大小"),
                             t.small(null, "(bytes)"),
                         ),
                         t.input({
@@ -32,7 +32,7 @@ export function settings(props) {
                             min: 0,
                             step: 1,
                             max: Number.MAX_SAFE_INTEGER,
-                            placeholder: "Default to max ~1MB",
+                            placeholder: "默认最大约1MB",
                             value: () => props.field.maxSize || "",
                             oninput: (e) => {
                                 props.field.maxSize = parseInt(e.target.value, 10);
@@ -44,7 +44,7 @@ export function settings(props) {
                     { className: "col-sm-12" },
                     t.div(
                         { className: "field" },
-                        t.label({ htmlFor: uniqueId + ".help" }, "Help text"),
+                        t.label({ htmlFor: uniqueId + ".help" }, "帮助文本"),
                         t.input({
                             type: "text",
                             id: uniqueId + ".help",
@@ -62,7 +62,7 @@ export function settings(props) {
                             className: () => `btn sm secondary ${local.showInfo ? "" : "transparent"}`,
                             onclick: () => (local.showInfo = !local.showInfo),
                         },
-                        t.span({ className: "txt" }, "String value normalizations"),
+                        t.span({ className: "txt" }, "字符串值规范化"),
                         t.i({
                             className: () => (local.showInfo ? "ri-arrow-up-s-line" : "ri-arrow-down-s-line"),
                             ariaHidden: true,
@@ -74,7 +74,7 @@ export function settings(props) {
                             { className: "alert m-t-10 info" },
                             t.div(
                                 { className: "content" },
-                                "In order to support seamlessly both ",
+                                "为了无缝支持",
                                 t.code(null, "application/json"),
                                 " and ",
                                 t.code(null, "multipart/form-data"),
@@ -99,7 +99,7 @@ export function settings(props) {
                                     ),
                                     t.li(null, `any other string (empty string too) is double quoted`),
                                 ),
-                                "Alternatively, if you want to avoid the string value normalizations, you can wrap your data inside an object, eg. ",
+                                "或者，如果您想避免字符串值规范化，可以将数据包装在对象中，例如",
                                 t.code(null, "{\"data\": anything}"),
                                 ".",
                             ),
@@ -120,7 +120,7 @@ export function settings(props) {
                 }),
                 t.label(
                     { htmlFor: uniqueId + ".required" },
-                    t.span({ className: "txt" }, "Required"),
+                    t.span({ className: "txt" }, "必填"),
                     t.i({
                         className: "ri-information-line link-hint",
                         ariaDescription: app.attrs.tooltip("Requires the field value NOT to be null, '', [], {}."),

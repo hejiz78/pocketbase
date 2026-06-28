@@ -105,7 +105,7 @@ window.app.components.ruleField = function(propsArg = {}) {
             { htmlFor: uniqueId },
             (el) => {
                 if (!props.label) {
-                    return t.span({ className: "txt" }, "Rule");
+                    return t.span({ className: "txt" }, "规则");
                 }
 
                 if (typeof props.label == "function") {
@@ -118,7 +118,7 @@ window.app.components.ruleField = function(propsArg = {}) {
 
                 return props.label;
             },
-            t.span({ hidden: () => !props.isLocked, className: "txt superusers-label" }, "(Superusers only)"),
+            t.span({ hidden: () => !props.isLocked, className: "txt superusers-label" }, "（仅超级用户）"),
         ),
         (el) => {
             if (props.isLocked) {
@@ -129,7 +129,7 @@ window.app.components.ruleField = function(propsArg = {}) {
                         disabled: () => props.disabled,
                         onclick: unlock,
                     },
-                    t.span({ className: "txt" }, "Unlock and set custom rule"),
+                    t.span({ className: "txt" }, "解锁并设置自定义规则"),
                     t.i({ className: "ri-lock-unlock-line", ariaHidden: true }),
                 );
             }
@@ -155,7 +155,7 @@ window.app.components.ruleField = function(propsArg = {}) {
                         onclick: lock,
                     },
                     t.i({ className: "ri-lock-line", ariaHidden: true }),
-                    t.span({ className: "txt" }, "Set superusers only"),
+                    t.span({ className: "txt" }, "仅限超级用户设置"),
                 ),
             ];
         },

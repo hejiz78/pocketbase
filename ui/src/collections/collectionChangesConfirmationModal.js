@@ -163,7 +163,7 @@ window.app.modals.openCollectionChangesConfirmation = async function(
     app.modals.confirm(
         t.div(
             { className: "dangerous-collection-changes-list" },
-            t.h5({ className: "block txt-center m-b-base" }, "Do you really want to save the collection changes?"),
+            t.h5({ className: "block txt-center m-b-base" }, "确定要保存集合更改吗？"),
             // general collection warning
             () => {
                 if (!data.isCollectionRenamed && !data.deletedFields.length && !data.renamedFields.length) {
@@ -174,13 +174,13 @@ window.app.modals.openCollectionChangesConfirmation = async function(
                     { className: "alert warning m-b-base" },
                     t.p(
                         null,
-                        "If the collection participate in another collection rule, filter or view query, you'll have to update it manually!",
+                        "如果该集合参与了另一个集合的规则、筛选器或视图查询，您需要手动更新它！",
                     ),
                     () => {
                         if (data.deletedFields.length) {
                             return t.p(
                                 null,
-                                "All data associated with the removed fields will be permanently deleted!",
+                                "与已删除字段关联的所有数据将被永久删除！",
                             );
                         }
                     },
@@ -196,7 +196,7 @@ window.app.modals.openCollectionChangesConfirmation = async function(
                     { className: "collection-changes-list changes-renamed-collection" },
                     t.li(
                         { className: "list-item" },
-                        "Renamed collection ",
+                        "已重命名集合",
                         t.strong({ className: "label warning" }, oldCollection?.name),
                         t.i({ className: "ri-arrow-right-line txt-sm", ariaHidden: true }),
                         t.strong({ className: "label success" }, newCollection?.name || "N/A"),
@@ -216,7 +216,7 @@ window.app.modals.openCollectionChangesConfirmation = async function(
                             const oldField = oldCollection?.fields?.find?.((f) => f.id == newField.id);
                             return t.li(
                                 { className: "list-item" },
-                                "Renamed field ",
+                                "已重命名字段",
                                 t.strong({ className: "label warning" }, oldField?.name),
                                 t.i({ className: "ri-arrow-right-line txt-sm", ariaHidden: true }),
                                 t.strong({ className: "label success" }, newField.name || "N/A"),
@@ -237,7 +237,7 @@ window.app.modals.openCollectionChangesConfirmation = async function(
                         return data.deletedFields.map((field) => {
                             return t.li(
                                 { className: "list-item" },
-                                "Deleted field ",
+                                "已删除字段",
                                 t.strong({ className: "label danger" }, field.name || "N/A"),
                             );
                         });
@@ -256,7 +256,7 @@ window.app.modals.openCollectionChangesConfirmation = async function(
                         return data.multipleToSingleFields.map((field) => {
                             return t.li(
                                 { className: "list-item" },
-                                "Multiple to single value conversion of field ",
+                                "字段的多值转单值转换",
                                 t.strong({ className: "label warning" }, field.name || field.id),
                                 t.em({ className: "txt-sm" }, " (will keep only the last array item)"),
                             );
@@ -278,21 +278,21 @@ window.app.modals.openCollectionChangesConfirmation = async function(
                                 { className: "list-item" },
                                 t.div(
                                     { className: "content" },
-                                    t.span({ className: "txt" }, "Changed API rule for "),
+                                    t.span({ className: "txt" }, "已更改API规则："),
                                     t.code(null, ruleChange.prop),
                                 ),
-                                t.small({ className: "txt-bold" }, "Old:"),
+                                t.small({ className: "txt-bold" }, "旧值："),
                                 t.div(
                                     { className: "rule-content old-rule" },
                                     ruleChange.oldRule === null
-                                        ? "null (superusers only)"
+                                        ? "null（仅超级用户）"
                                         : (ruleChange.oldRule || "\"\""),
                                 ),
-                                t.small({ className: "txt-bold" }, "New:"),
+                                t.small({ className: "txt-bold" }, "新值："),
                                 t.div(
                                     { className: "rule-content new-rule" },
                                     ruleChange.newRule === null
-                                        ? "null (superusers only)"
+                                        ? "null（仅超级用户）"
                                         : (ruleChange.newRule || "\"\""),
                                 ),
                             );
@@ -312,7 +312,7 @@ window.app.modals.openCollectionChangesConfirmation = async function(
                         return data.conflictingOIDCProviders.map((oidc) => {
                             return t.li(
                                 { className: "list-item" },
-                                "Changed OIDC ",
+                                "已更改OIDC",
                                 oidc.name,
                                 " host ",
                                 t.strong({ className: "label warning" }, oidc.oldHost),
@@ -321,7 +321,7 @@ window.app.modals.openCollectionChangesConfirmation = async function(
                                 t.br(),
                                 t.span(
                                     { className: "txt-hint" },
-                                    "If the old and new OIDC configuration is not for the same provider consider deleting",
+                                    "如果新旧OIDC配置不是同一提供商，请考虑删除",
                                     " all old _externalAuths records associated to the current collection and provider,",
                                     " otherwise it may result in account linking errors.",
                                 ),
@@ -332,7 +332,7 @@ window.app.modals.openCollectionChangesConfirmation = async function(
                                     href: () => {
                                         return `#/collections?collection=_externalAuths&filter=collectionRef%3D%22${newCollection?.id}%22+%26%26+provider%3D%22${oidc.name}%22`;
                                     },
-                                    textContent: "Review existing _externalAuths records",
+                                    textContent: "查看现有的_externalAuths记录",
                                 }),
                             );
                         });
@@ -344,7 +344,7 @@ window.app.modals.openCollectionChangesConfirmation = async function(
         noCallback,
         {
             className: "collection-changes-confirm-modal",
-            yesButton: "Yes, save changes",
+            yesButton: "是的，保存更改",
         },
     );
 };

@@ -56,7 +56,7 @@ export function oauth2Accordion(collection) {
             t.span({ className: "txt", textContent: "OAuth2" }),
             t.span({
                 className: () => `label m-l-auto ${data.config.enabled ? "success" : ""}`,
-                textContent: () => (data.config.enabled ? "Enabled" : "Disabled"),
+                textContent: () => (data.config.enabled ? "已启用" : "已禁用"),
             }),
             () => {
                 if (app.utils.isEmpty(app.store.errors?.oauth2)) {
@@ -65,7 +65,7 @@ export function oauth2Accordion(collection) {
 
                 return t.i({
                     className: "ri-error-warning-fill txt-danger",
-                    ariaDescription: app.attrs.tooltip("Has errors", "left"),
+                    ariaDescription: app.attrs.tooltip("存在错误", "left"),
                 });
             },
         ),
@@ -85,7 +85,7 @@ export function oauth2Accordion(collection) {
                     }),
                     t.label({
                         htmlFor: uniqueId + ".enabled",
-                        textContent: "Enable",
+                        textContent: "启用",
                     }),
                 ),
             ),
@@ -134,7 +134,7 @@ export function oauth2Accordion(collection) {
                                 t.button(
                                     {
                                         type: "button",
-                                        title: "Options",
+                                        title: "选项",
                                         className: "btn secondary transparent sm circle",
                                         "html-popovertarget": providerId + "dropdown",
                                     },
@@ -161,7 +161,7 @@ export function oauth2Accordion(collection) {
                                                 });
                                             },
                                         },
-                                        t.span({ className: "txt" }, "Settings"),
+                                        t.span({ className: "txt" }, "设置"),
                                     ),
                                     t.hr(),
                                     t.button(
@@ -187,7 +187,7 @@ export function oauth2Accordion(collection) {
                                                 );
                                             },
                                         },
-                                        t.span({ className: "txt" }, "Remove"),
+                                        t.span({ className: "txt" }, "移除"),
                                     ),
                                 ),
                             ),
@@ -219,7 +219,7 @@ export function oauth2Accordion(collection) {
                         },
                     },
                     t.i({ className: "ri-add-line", ariaHidden: true }),
-                    t.span({ className: "txt " }, "Add provider"),
+                    t.span({ className: "txt " }, "添加提供商"),
                 ),
             ),
             t.div(
@@ -230,7 +230,7 @@ export function oauth2Accordion(collection) {
                         className: () => `btn secondary sm ${data.showMapping ? "" : "transparent"}`,
                         onclick: () => (data.showMapping = !data.showMapping),
                     },
-                    t.span({ className: "txt" }, "Optional users create fields mapping"),
+                    t.span({ className: "txt" }, "可选的用户创建字段映射"),
                     t.i({
                         className: () => (data.showMapping ? "ri-arrow-drop-up-line" : "ri-arrow-drop-down-line"),
                         ariaHidden: true,
@@ -248,7 +248,7 @@ export function oauth2Accordion(collection) {
                                 app.components.select({
                                     id: uniqueId + ".mappedFields.name",
                                     name: "oauth2.mappedFields.name",
-                                    placeholder: "Select field",
+                                    placeholder: "选择字段",
                                     options: () => data.regularFieldOptions,
                                     value: () => collection.oauth2.mappedFields.name,
                                     onchange: (selectedOpts) => {
@@ -265,7 +265,7 @@ export function oauth2Accordion(collection) {
                                 app.components.select({
                                     id: uniqueId + ".mappedFields.avatarURL",
                                     name: "oauth2.mappedFields.avatarURL",
-                                    placeholder: "Select field",
+                                    placeholder: "选择字段",
                                     options: () => data.regularAndFileFieldOptions,
                                     value: () => collection.oauth2.mappedFields.avatarURL,
                                     onchange: (selectedOpts) => {
@@ -282,7 +282,7 @@ export function oauth2Accordion(collection) {
                                 app.components.select({
                                     id: uniqueId + ".mappedFields.id",
                                     name: "oauth2.mappedFields.id",
-                                    placeholder: "Select field",
+                                    placeholder: "选择字段",
                                     options: () => data.regularFieldOptions,
                                     value: () => collection.oauth2.mappedFields.id,
                                     onchange: (selectedOpts) => {
@@ -299,7 +299,7 @@ export function oauth2Accordion(collection) {
                                 app.components.select({
                                     id: uniqueId + ".mappedFields.username",
                                     name: "oauth2.mappedFields.username",
-                                    placeholder: "Select field",
+                                    placeholder: "选择字段",
                                     options: () => data.regularFieldOptions,
                                     value: () => collection.oauth2.mappedFields.username,
                                     onchange: (selectedOpts) => {

@@ -334,12 +334,12 @@ function registerDirectionButton(editor) {
     // text direction dropdown
     editor.ui.registry.addMenuButton("direction", {
         icon: "visualchars",
-        tooltip: "Direction",
+        tooltip: "文字方向",
         fetch: (callback) => {
             const items = [
                 {
                     type: "menuitem",
-                    text: "LTR content",
+                    text: "从左到右",
                     icon: "ltr",
                     onAction: () => {
                         window?.localStorage?.setItem(lastDirectionKey, "ltr");
@@ -348,7 +348,7 @@ function registerDirectionButton(editor) {
                 },
                 {
                     type: "menuitem",
-                    text: "RTL content",
+                    text: "从右到左",
                     icon: "rtl",
                     onAction: () => {
                         window?.localStorage?.setItem(lastDirectionKey, "rtl");
@@ -364,20 +364,20 @@ function registerDirectionButton(editor) {
 
 function registerMediaButton(editor) {
     editor.ui.registry.addMenuButton("media_picker", {
-        tooltip: "Insert media",
+        tooltip: "插入媒体",
         icon: "embed",
         fetch: (callback) => {
             const items = [
                 {
                     type: "menuitem",
-                    text: "Inline image (Base64)",
+                    text: "内联图像（Base64）",
                     onAction: () => {
                         editor.execCommand("mceImage");
                     },
                 },
                 {
                     type: "menuitem",
-                    text: "Media from collection",
+                    text: "集合中的媒体",
                     onAction: () => {
                         app.modals.openRecordFilePicker({
                             fileTypes: ["image", "audio", "video"],
@@ -416,7 +416,7 @@ function registerMediaButton(editor) {
                 },
                 {
                     type: "menuitem",
-                    text: "Manual embed",
+                    text: "手动嵌入",
                     onAction: () => {
                         tinymce.activeEditor.execCommand("mceMedia");
                     },

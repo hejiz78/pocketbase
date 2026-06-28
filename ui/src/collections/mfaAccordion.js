@@ -27,10 +27,10 @@ export function mfaAccordion(collection) {
         t.summary(
             null,
             t.i({ className: "ri-shield-check-line", ariaHidden: true }),
-            t.span({ className: "txt", textContent: "Multi-factor authentication (MFA)" }),
+            t.span({ className: "txt", textContent: "多因素认证（MFA）" }),
             t.span({
                 className: () => `label m-l-auto ${data.config.enabled ? "success" : ""}`,
-                textContent: () => (data.config.enabled ? "Enabled" : "Disabled"),
+                textContent: () => (data.config.enabled ? "已启用" : "已禁用"),
             }),
             () => {
                 if (!app.store.errors?.mfa) {
@@ -39,7 +39,7 @@ export function mfaAccordion(collection) {
 
                 return t.i({
                     className: "ri-error-warning-fill txt-danger",
-                    ariaDescription: app.attrs.tooltip("Has errors", "left"),
+                    ariaDescription: app.attrs.tooltip("存在错误", "left"),
                 });
             },
         ),
@@ -59,7 +59,7 @@ export function mfaAccordion(collection) {
                                 className: "link-hint",
                                 target: "_blank",
                                 rel: "noopener noreferrer",
-                                textContent: "Learn more.",
+                                textContent: "了解更多。",
                             }),
                         ),
                     ),
@@ -85,7 +85,7 @@ export function mfaAccordion(collection) {
                     }),
                     t.label({
                         htmlFor: uniqueId + ".enabled",
-                        textContent: "Enable",
+                        textContent: "启用",
                     }),
                 ),
             ),
@@ -95,7 +95,7 @@ export function mfaAccordion(collection) {
                     { className: "field" },
                     t.label({
                         htmlFor: uniqueId + ".duration",
-                        textContent: "Max duration between 2 authentications (in seconds)",
+                        textContent: "两次认证之间的最大间隔（秒）",
                     }),
                     t.input({
                         type: "number",
@@ -112,11 +112,11 @@ export function mfaAccordion(collection) {
             t.div(
                 { className: "col-sm-12" },
                 app.components.ruleField({
-                    label: "MFA rule",
+                    label: "MFA规则",
                     id: uniqueId + ".rule",
                     name: "mfa.rule",
                     nullable: false,
-                    placeholder: "Leave empty to require MFA for everyone",
+                    placeholder: "留空表示对所有用户要求MFA",
                     autocomplete: (word) => {
                         return app.utils.collectionAutocompleteKeys(collection, word);
                     },
@@ -125,14 +125,14 @@ export function mfaAccordion(collection) {
                 }),
                 t.div(
                     { className: "field-help" },
-                    t.p(null, "This optional rule could be used to enable/disable MFA per account basis."),
+                    t.p(null, "此可选规则可用于在账户级别启用/禁用MFA。"),
                     t.p(
                         null,
-                        "For example, to require MFA only for accounts with non-empty email you can set it to ",
+                        "例如，要仅对非空邮箱的账户要求MFA，可以设置为",
                         t.code(null, "email != ''"),
                         ".",
                     ),
-                    t.p(null, "Leave the rule empty to require MFA for everyone."),
+                    t.p(null, "将规则留空表示对所有人要求MFA。"),
                 ),
             ),
         ),

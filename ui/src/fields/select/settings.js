@@ -9,8 +9,8 @@ export function settings(props) {
     const uniqueId = "f_" + app.utils.randomString();
 
     const isMultipleOptions = [
-        { label: "Single", value: false },
-        { label: "Multiple", value: true },
+        { label: "单选", value: false },
+        { label: "多选", value: true },
     ];
 
     const optionsDropdown = t.div(
@@ -18,7 +18,7 @@ export function settings(props) {
             popover: "manual",
             className: "dropdown field-select-choices-dropdown",
         },
-        t.div({ className: "field-help m-t-0", style: "font-size: 0.9em" }, "New-line separated choices:"),
+        t.div({ className: "field-help m-t-0", style: "font-size: 0.9em" }, "以换行分隔的选项："),
         t.div(
             { className: "field" },
             t.textarea({
@@ -77,7 +77,7 @@ export function settings(props) {
                 },
                 t.input({
                     type: "text",
-                    placeholder: "Add choices*",
+                    placeholder: "添加选项*",
                     className: "txt-left inline-error",
                     value: () => props.field.values?.join(" • ") || "",
                     name: () => `fields.${props.fieldIndex}.values`,
@@ -116,11 +116,11 @@ export function settings(props) {
                     { className: "col-sm-12", hidden: () => props.field.maxSelect << 0 < 2 },
                     t.div(
                         { className: "field" },
-                        t.label({ htmlFor: uniqueId + ".maxSelect" }, "Max select"),
+                        t.label({ htmlFor: uniqueId + ".maxSelect" }, "最大选择数"),
                         t.input({
                             type: "number",
                             id: uniqueId + ".maxSelect",
-                            placeholder: "Default to single",
+                            placeholder: "默认为单选",
                             step: 1,
                             min: 2,
                             max: () => props.field.values?.length || 2,
@@ -141,7 +141,7 @@ export function settings(props) {
                     { className: "col-sm-12" },
                     t.div(
                         { className: "field" },
-                        t.label({ htmlFor: uniqueId + ".help" }, "Help text"),
+                        t.label({ htmlFor: uniqueId + ".help" }, "帮助文本"),
                         t.input({
                             type: "text",
                             id: uniqueId + ".help",
@@ -165,7 +165,7 @@ export function settings(props) {
                 }),
                 t.label(
                     { htmlFor: uniqueId + ".required" },
-                    t.span({ className: "txt" }, "Required"),
+                    t.span({ className: "txt" }, "必填"),
                     t.small({ className: "txt-hint" }, () => props.field.maxSelect > 1 ? "(!=[])" : "(!='')"),
                     t.i({
                         className: "ri-information-line link-hint",

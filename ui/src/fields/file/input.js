@@ -149,7 +149,7 @@ export function input(props) {
                                 t.button(
                                     {
                                         type: "button",
-                                        ariaDescription: app.attrs.tooltip("Open in new tab"),
+                                        ariaDescription: app.attrs.tooltip("在新标签中打开"),
                                         onclick: async () => {
                                             const token = await app.getFileToken(props.record.collectionId);
                                             const url = app.pb.files.getURL(props.record, nameOrFile, {
@@ -167,7 +167,7 @@ export function input(props) {
                             app.components.uploadedFileThumb({
                                 file: nameOrFile,
                             }),
-                            t.span({ className: "label success" }, "New"),
+                            t.span({ className: "label success" }, "新"),
                             t.span({ className: "txt" }, nameOrFile.name),
                         ];
                     }),
@@ -177,7 +177,7 @@ export function input(props) {
                             {
                                 type: "button",
                                 className: "btn sm secondary transparent circle",
-                                ariaLabel: app.attrs.tooltip("Remove file"),
+                                ariaLabel: app.attrs.tooltip("移除文件"),
                                 hidden: () => isDeleted(nameOrFile),
                                 onclick: () => toDelete(nameOrFile),
                             },
@@ -190,7 +190,7 @@ export function input(props) {
                                 hidden: () => !isDeleted(nameOrFile),
                                 onclick: () => restoreDeleted(nameOrFile),
                             },
-                            t.span({ className: "txt" }, "Restore"),
+                            t.span({ className: "txt" }, "恢复"),
                         ),
                     ),
                 );
@@ -204,7 +204,7 @@ export function input(props) {
             {
                 type: "button",
                 className: "btn sm secondary block",
-                title: () => local.maxReached ? "Max allowed files reached" : undefined,
+                title: () => local.maxReached ? "已达到最大允许文件数" : undefined,
                 disabled: () => local.maxReached,
                 onclick: (e) => {
                     if (!local.maxReached) {
@@ -214,7 +214,7 @@ export function input(props) {
                 },
             },
             t.i({ className: "ri-upload-cloud-line", ariaHidden: true }),
-            t.span({ className: "txt" }, "Upload or drop new file"),
+            t.span({ className: "txt" }, "上传或拖放新文件"),
         ),
     );
 

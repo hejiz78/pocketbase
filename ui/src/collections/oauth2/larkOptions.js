@@ -6,8 +6,8 @@ window.app.oauth2.lark = function(providerInfo, namePrefix, data) {
     const uniqueId = "lark_" + app.utils.randomString();
 
     const domainOptions = [
-        { label: "Feishu (China)", value: "feishu.cn" },
-        { label: "Lark (International)", value: "larksuite.com" },
+        { label: "飞书（中国）", value: "feishu.cn" },
+        { label: "Lark（国际版）", value: "larksuite.com" },
     ];
 
     const local = store({
@@ -40,7 +40,7 @@ window.app.oauth2.lark = function(providerInfo, namePrefix, data) {
                 { className: "col-12" },
                 t.div(
                     { className: "field" },
-                    t.label({ htmlFor: uniqueId + ".site" }, "Site"),
+                    t.label({ htmlFor: uniqueId + ".site" }, "站点"),
                     app.components.select({
                         options: domainOptions,
                         required: true,
@@ -55,7 +55,7 @@ window.app.oauth2.lark = function(providerInfo, namePrefix, data) {
                 { className: "col-12" },
                 t.div(
                     { className: "alert info" },
-                    "Note that the Lark user's ",
+                    "请注意，飞书用户的",
                     t.strong(null, "Union ID"),
                     " will be used for the association with the PocketBase user (see ",
                     t.a({
@@ -63,7 +63,7 @@ window.app.oauth2.lark = function(providerInfo, namePrefix, data) {
                             "https://open.feishu.cn/document/platform-overveiw/basic-concepts/user-identity-introduction/introduction#3f2d4b63",
                         target: "_blank",
                         rel: "noopener noreferrer",
-                        textContent: "Different Types of Lark User IDs",
+                        textContent: "飞书用户ID的不同类型",
                     }),
                     ").",
                 ),

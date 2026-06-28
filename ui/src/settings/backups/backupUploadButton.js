@@ -11,8 +11,8 @@ export function backupUploadButton(onSuccess = null) {
         }
 
         app.modals.confirm(
-            `Note that we don't perform validations for the uploaded backup files. Proceed with extreme caution and only if you trust the source.\n\n`
-                + `Do you really want to upload "${file.name}"?`,
+            `请注意，我们不会对上传的备份文件进行验证。请极其谨慎地操作，仅在信任来源时使用。\n\n`
+                + `您确定要上传 "${file.name}" 吗？`,
             () => {
                 uploadBackup(file);
             },
@@ -39,7 +39,7 @@ export function backupUploadButton(onSuccess = null) {
 
             onSuccess(file);
 
-            app.toasts.success("Successfully uploaded a new backup.");
+            app.toasts.success("已成功上传新备份。");
         } catch (err) {
             if (!err.isAbort) {
                 data.isUploading = false;
@@ -74,7 +74,7 @@ export function backupUploadButton(onSuccess = null) {
         t.button(
             {
                 type: "button",
-                ariaLabel: app.attrs.tooltip("Upload backup"),
+                ariaLabel: app.attrs.tooltip("上传备份"),
                 className: () => `btn sm transparent secondary circle ${data.isUploading ? "loading" : ""}`,
                 disabled: () => data.isUploading,
                 onclick: () => fileInput?.click(),

@@ -347,7 +347,7 @@ window.app.components.erd = function(propsArg = {}) {
                                             if (field.hidden) {
                                                 return t.span(
                                                     { className: "label danger field-hidden-label" },
-                                                    "Hidden",
+                                                    "隐藏",
                                                 );
                                             }
                                         },
@@ -379,7 +379,7 @@ window.app.components.erd = function(propsArg = {}) {
                 {
                     type: "button",
                     className: "btn sm circle secondary",
-                    title: "Zoom in",
+                    title: "放大",
                     onclick: () => {
                         props.scale += 0.05;
                     },
@@ -390,7 +390,7 @@ window.app.components.erd = function(propsArg = {}) {
                 {
                     type: "button",
                     className: "btn sm circle secondary",
-                    title: "Zoom out",
+                    title: "缩小",
                     onclick: () => {
                         props.scale -= 0.05;
                     },

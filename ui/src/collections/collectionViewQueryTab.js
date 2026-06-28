@@ -54,7 +54,7 @@ export function collectionViewQueryTab(upsertData) {
             local.isTesting = false;
         } catch (err) {
             if (!err.isAbort) {
-                local.testError = err.message || "Invalid query.";
+                local.testError = err.message || "无效的查询。";
                 local.isTesting = false;
             }
         }
@@ -91,7 +91,7 @@ export function collectionViewQueryTab(upsertData) {
                             className: "txt-bold link-hint",
                             "html-popovertarget": uniqueId + "caveats_dropdown",
                         },
-                        () => "Query caveats",
+                        () => "查询注意事项",
                     ),
                 ),
                 t.div(
@@ -102,26 +102,26 @@ export function collectionViewQueryTab(upsertData) {
                     },
                     t.ul(
                         null,
-                        t.li(null, "Wildcard columns (*) are not supported."),
+                        t.li(null, "不支持通配符列（*）。"),
                         t.li(
                             null,
-                            "The query must have a unique ",
+                            "查询必须具有唯一的",
                             t.code(null, "id"),
                             " column.",
                             t.br(),
-                            "If your query doesn't have a suitable one, you can use the universal ",
+                            "如果您的查询没有合适的，可以使用通用的",
                             t.code(null, "(ROW_NUMBER() OVER()) as id"),
                             ".",
                         ),
                         t.li(
                             null,
-                            "Expressions must be aliased with a valid formatted field name, e.g. ",
+                            "表达式必须使用有效格式的字段名作为别名，例如",
                             t.code(null, "MAX(balance) as maxBalance"),
                             ".",
                         ),
                         t.li(
                             null,
-                            "Combined/multi-spaced expressions must be wrapped in parenthesis, e.g. ",
+                            "组合/多空格表达式必须用括号包裹，例如",
                             t.code(null, "(MAX(balance) + 1) as maxBalance"),
                             ".",
                         ),
@@ -135,12 +135,12 @@ export function collectionViewQueryTab(upsertData) {
                     { className: "field" },
                     t.label(
                         { htmlFor: uniqueId + ".viewQuery" },
-                        t.span({ className: "txt" }, "Select query"),
+                        t.span({ className: "txt" }, "查询语句"),
                         t.span(
                             {
                                 hidden: () => !local.testError,
                                 className: "query-state",
-                                ariaDescription: app.attrs.tooltip("Invalid query", "left"),
+                                ariaDescription: app.attrs.tooltip("无效的查询", "left"),
                             },
                             t.i({ className: "ri-error-warning-fill txt-danger", ariaHidden: true }),
                         ),
@@ -148,7 +148,7 @@ export function collectionViewQueryTab(upsertData) {
                             {
                                 hidden: () => !!local.testError,
                                 className: "query-state",
-                                ariaDescription: app.attrs.tooltip("Valid query", "left"),
+                                ariaDescription: app.attrs.tooltip("有效的查询", "left"),
                             },
                             t.i({ className: "ri-checkbox-circle-fill txt-success", ariaHidden: true }),
                         ),
@@ -171,7 +171,7 @@ export function collectionViewQueryTab(upsertData) {
                 { className: "col-12" },
                 t.p(
                     { className: "txt-sm txt-bold" },
-                    "Sample output:",
+                    "示例输出：",
                 ),
                 t.div(
                     { className: "view-query-sample-wrapper" },

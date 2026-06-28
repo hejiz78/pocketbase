@@ -2,8 +2,8 @@ export function docsVerification(collection) {
     const baseURL = app.utils.getApiExampleURL();
 
     const actionTabs = [
-        { title: "Request verification", content: request },
-        { title: "Confirm verification", content: confirm },
+        { title: "请求验证", content: request },
+        { title: "确认验证", content: confirm },
     ];
 
     const data = store({
@@ -45,7 +45,7 @@ export function docsVerification(collection) {
                             href: import.meta.env.PB_JS_SDK_URL,
                             target: "_blank",
                             rel: "noopener noreferrer",
-                            textContent: "JS SDK docs",
+                            textContent: "JS SDK 文档",
                         }),
                     ),
                 },
@@ -73,7 +73,7 @@ export function docsVerification(collection) {
                             href: import.meta.env.PB_DART_SDK_URL,
                             target: "_blank",
                             rel: "noopener noreferrer",
-                            textContent: "Dart SDK docs",
+                            textContent: "Dart SDK 文档",
                         }),
                     ),
                 },
@@ -124,11 +124,11 @@ function request(collection) {
             value: `
                 {
                   "status": 400,
-                  "message": "An error occurred while validating the submitted data.",
+                  "message": "验证提交的数据时发生错误。",
                   "data": {
                     "email": {
                       "code": "validation_required",
-                      "message": "Missing required value."
+                      "message": "缺少必需的值。"
                     }
                   }
                 }
@@ -138,7 +138,7 @@ function request(collection) {
 
     return [
         // api
-        t.div({ className: "block" }, t.strong(null, "API details")),
+        t.div({ className: "block" }, t.strong(null, "API详情")),
         t.div(
             { className: "alert success api-preview-alert" },
             t.span({ className: "label method" }, "POST"),
@@ -150,23 +150,23 @@ function request(collection) {
                 null,
                 t.tr(
                     null,
-                    t.th({ className: "min-width txt-primary" }, "Body params"),
-                    t.th({ className: "min-width" }, "Type"),
-                    t.th(null, "Description"),
+                    t.th({ className: "min-width txt-primary" }, "请求体参数"),
+                    t.th({ className: "min-width" }, "类型"),
+                    t.th(null, "描述"),
                 ),
             ),
             t.tbody(
                 null,
                 t.tr(
                     null,
-                    t.td({ className: "min-width" }, "email ", t.em(null, "(required)")),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
-                    t.td(null, "The auth record email address to send the verification request (if exists)."),
+                    t.td({ className: "min-width" }, "email ", t.em(null, "（必需）")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
+                    t.td(null, "用于发送验证请求的认证记录邮箱地址（如果存在）。"),
                 ),
             ),
         ),
         // responses
-        t.div({ className: "block m-t-base m-b-sm" }, t.strong(null, "Example responses")),
+        t.div({ className: "block m-t-base m-b-sm" }, t.strong(null, "示例响应")),
         app.components.codeBlockTabs({
             tabs: responses,
         }),
@@ -184,11 +184,11 @@ function confirm(collection) {
             value: `
                 {
                   "status": 400,
-                  "message": "An error occurred while validating the submitted data.",
+                  "message": "验证提交的数据时发生错误。",
                   "data": {
                     "token": {
                       "code": "validation_required",
-                      "message": "Missing required value."
+                      "message": "缺少必需的值。"
                     }
                   }
                 }
@@ -198,7 +198,7 @@ function confirm(collection) {
 
     return [
         // api
-        t.div({ className: "block" }, t.strong(null, "API details")),
+        t.div({ className: "block" }, t.strong(null, "API详情")),
         t.div(
             { className: "alert success api-preview-alert" },
             t.span({ className: "label method" }, "POST"),
@@ -210,23 +210,23 @@ function confirm(collection) {
                 null,
                 t.tr(
                     null,
-                    t.th({ className: "min-width txt-primary" }, "Body params"),
-                    t.th({ className: "min-width" }, "Type"),
-                    t.th(null, "Description"),
+                    t.th({ className: "min-width txt-primary" }, "请求体参数"),
+                    t.th({ className: "min-width" }, "类型"),
+                    t.th(null, "描述"),
                 ),
             ),
             t.tbody(
                 null,
                 t.tr(
                     null,
-                    t.td({ className: "min-width" }, "token ", t.em(null, "(required)")),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
-                    t.td(null, "The token from the verification request email."),
+                    t.td({ className: "min-width" }, "token ", t.em(null, "（必需）")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
+                    t.td(null, "来自验证请求邮件的令牌。"),
                 ),
             ),
         ),
         // responses
-        t.div({ className: "block m-t-base m-b-sm" }, t.strong(null, "Example responses")),
+        t.div({ className: "block m-t-base m-b-sm" }, t.strong(null, "示例响应")),
         app.components.codeBlockTabs({
             tabs: responses,
         }),

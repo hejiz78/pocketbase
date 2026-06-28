@@ -1,11 +1,11 @@
 import { settingsSidebar } from "../settingsSidebar";
 
 export function pageMailSettings(route) {
-    app.store.title = "Mail settings";
+    app.store.title = "邮件设置";
 
     const tlsOptions = [
-        { label: "Auto (StartTLS)", value: false },
-        { label: "Always", value: true },
+        { label: "自动 (StartTLS)", value: false },
+        { label: "始终", value: true },
     ];
 
     const authMethods = [
@@ -54,7 +54,7 @@ export function pageMailSettings(route) {
             const settings = await app.pb.settings.update(redacted);
             init(settings);
 
-            app.toasts.success("Successfully saved mail settings.");
+            app.toasts.success("已成功保存邮件设置。");
         } catch (err) {
             app.checkApiError(err);
         }
@@ -91,7 +91,7 @@ export function pageMailSettings(route) {
                 { className: "page-header" },
                 t.nav(
                     { className: "breadcrumbs" },
-                    t.div({ className: "breadcrumb-item" }, "Settings"),
+                    t.div({ className: "breadcrumb-item" }, "设置"),
                     t.div({ className: "breadcrumb-item" }, () => app.store.title),
                 ),
             ),
@@ -114,13 +114,13 @@ export function pageMailSettings(route) {
                         },
                         t.div(
                             { className: "col-lg-12 txt-lg" },
-                            t.p(null, "Configure common settings for sending emails."),
+                            t.p(null, "配置发送邮件的常用设置。"),
                         ),
                         t.div(
                             { className: "col-lg-6" },
                             t.div(
                                 { className: "field" },
-                                t.label({ htmlFor: "meta.senderName" }, "Sender name"),
+                                t.label({ htmlFor: "meta.senderName" }, "发件人名称"),
                                 t.input({
                                     id: "meta.senderName",
                                     name: "meta.senderName",
@@ -135,7 +135,7 @@ export function pageMailSettings(route) {
                             { className: "col-lg-6" },
                             t.div(
                                 { className: "field" },
-                                t.label({ htmlFor: "meta.senderAddress" }, "Sender address"),
+                                t.label({ htmlFor: "meta.senderAddress" }, "发件人地址"),
                                 t.input({
                                     id: "meta.senderAddress",
                                     name: "meta.senderAddress",
@@ -162,13 +162,13 @@ export function pageMailSettings(route) {
                                     { htmlFor: "smtp.enabled" },
                                     t.span(
                                         { className: "txt" },
-                                        "Use SMTP mail server ",
-                                        t.strong(null, "(recommended)"),
+                                        "使用SMTP邮件服务器 ",
+                                        t.strong(null, "（推荐）"),
                                     ),
                                     t.i({
                                         className: "ri-information-line link-faded",
                                         ariaDescription: app.attrs.tooltip(
-                                            `By default PocketBase uses the unix "sendmail" command for sending emails. For better emails deliverability it is recommended to use a SMTP mail server.`,
+                                            `默认情况下，PocketBase使用unix的"sendmail"命令发送邮件。为了更好的邮件送达率，建议使用SMTP邮件服务器。`,
                                         ),
                                     }),
                                 ),
@@ -182,7 +182,7 @@ export function pageMailSettings(route) {
                                         { className: "col-lg-4" },
                                         t.div(
                                             { className: "field" },
-                                            t.label({ htmlFor: "smtp.host" }, "SMTP server host"),
+                                            t.label({ htmlFor: "smtp.host" }, "SMTP服务器主机"),
                                             t.input({
                                                 id: "smtp.host",
                                                 name: "smtp.host",
@@ -197,7 +197,7 @@ export function pageMailSettings(route) {
                                         { className: "col-lg-2" },
                                         t.div(
                                             { className: "field" },
-                                            t.label({ htmlFor: "smtp.port" }, "Port"),
+                                            t.label({ htmlFor: "smtp.port" }, "端口"),
                                             t.input({
                                                 id: "smtp.port",
                                                 name: "smtp.port",
@@ -215,7 +215,7 @@ export function pageMailSettings(route) {
                                         { className: "col-lg-3" },
                                         t.div(
                                             { className: "field" },
-                                            t.label({ htmlFor: "smtp.username" }, "Username"),
+                                            t.label({ htmlFor: "smtp.username" }, "用户名"),
                                             t.input({
                                                 id: "smtp.username",
                                                 name: "smtp.username",
@@ -230,7 +230,7 @@ export function pageMailSettings(route) {
                                         { className: "col-lg-3" },
                                         t.div(
                                             { className: "field" },
-                                            t.label({ htmlFor: "smtp.password" }, "Password"),
+                                            t.label({ htmlFor: "smtp.password" }, "密码"),
                                             t.input({
                                                 id: "smtp.password",
                                                 name: "smtp.password",
@@ -263,7 +263,7 @@ export function pageMailSettings(route) {
                                     },
                                     t.span(
                                         { className: "txt" },
-                                        () => data.showMoreOptions ? "Hide more options" : "Show more options",
+                                        () => data.showMoreOptions ? "隐藏更多选项" : "显示更多选项",
                                     ),
                                     t.i({
                                         className: () =>
@@ -278,7 +278,7 @@ export function pageMailSettings(route) {
                                             { className: "col-lg-3" },
                                             t.div(
                                                 { className: "field" },
-                                                t.label({ htmlFor: "smtp.tls" }, "TLS encryption"),
+                                                t.label({ htmlFor: "smtp.tls" }, "TLS加密"),
                                                 app.components.select({
                                                     id: "smtp.tls",
                                                     name: "smtp.tls",
@@ -295,7 +295,7 @@ export function pageMailSettings(route) {
                                             { className: "col-lg-3" },
                                             t.div(
                                                 { className: "field" },
-                                                t.label({ htmlFor: "smtp.authMethod" }, "AUTH method"),
+                                                t.label({ htmlFor: "smtp.authMethod" }, "认证方式"),
                                                 app.components.select({
                                                     id: "smtp.authMethod",
                                                     name: "smtp.authMethod",
@@ -315,11 +315,11 @@ export function pageMailSettings(route) {
                                                 { className: "field" },
                                                 t.label(
                                                     { htmlFor: "smtp.localName" },
-                                                    t.span({ className: "txt" }, "EHLO/HELO domain"),
+                                                    t.span({ className: "txt" }, "EHLO/HELO域名"),
                                                     t.i({
                                                         className: "ri-information-line link-hint tooltip-top",
                                                         ariaDescription: app.attrs.tooltip(
-                                                            "Some SMTP servers, such as the Gmail SMTP-relay, requires a proper domain name in the inital EHLO/HELO exchange and will reject attempts to use localhost.",
+                                                            "某些SMTP服务器（如Gmail SMTP中继）在初始EHLO/HELO交换中需要正确的域名，否则会拒绝使用localhost的连接。",
                                                         ),
                                                     }),
                                                 ),
@@ -327,7 +327,7 @@ export function pageMailSettings(route) {
                                                     id: "smtp.localName",
                                                     name: "smtp.localName",
                                                     type: "text",
-                                                    placeholder: "Default to localhost",
+                                                    placeholder: "默认为localhost",
                                                     value: () => data.formSettings.smtp.localName || "",
                                                     oninput: (e) => data.formSettings.smtp.localName = e.target.value,
                                                 }),
@@ -352,7 +352,7 @@ export function pageMailSettings(route) {
                                                     className: "btn transparent secondary",
                                                     onclick: reset,
                                                 },
-                                                t.span({ className: "txt" }, "Cancel"),
+                                                t.span({ className: "txt" }, "取消"),
                                             ),
                                             t.button(
                                                 {
@@ -360,7 +360,7 @@ export function pageMailSettings(route) {
                                                         `btn expanded-lg ${data.isSaving ? "loading" : ""}`,
                                                     disabled: () => !data.hasChanges || data.isSaving,
                                                 },
-                                                t.span({ className: "txt" }, "Save changes"),
+                                                t.span({ className: "txt" }, "保存更改"),
                                             ),
                                         ];
                                     }
@@ -372,7 +372,7 @@ export function pageMailSettings(route) {
                                             onclick: () => app.modals.openMailTest(),
                                         },
                                         t.i({ className: "ri-mail-check-line", ariaHidden: true }),
-                                        t.span({ className: "txt" }, "Send test email"),
+                                        t.span({ className: "txt" }, "发送测试邮件"),
                                     );
                                 },
                             ),

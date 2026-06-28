@@ -35,7 +35,7 @@ export function collectionFieldsTab(upsertData) {
         t.hr(),
         t.p(
             { className: "txt-bold" },
-            "Unique constraints and indexes (",
+            "唯一约束和索引（",
             () => upsertData.collection.indexes?.length,
             ")",
         ),
@@ -60,7 +60,7 @@ export function collectionFieldsTab(upsertData) {
                     },
                     () => {
                         if (parsed.unique) {
-                            return t.strong(null, "Unique:");
+                            return t.strong(null, "唯一：");
                         }
                     },
                     t.span({ className: "txt" }, () => parsed.columns?.map((c) => c.name).join(", ")),
@@ -74,7 +74,7 @@ export function collectionFieldsTab(upsertData) {
                         onclick: () => app.modals.openIndexUpsert(upsertData.collection),
                     },
                     t.i({ className: "ri-add-line", ariaHidden: true }),
-                    t.span({ className: "txt" }, "New index"),
+                    t.span({ className: "txt" }, "新建索引"),
                 );
             },
         }),

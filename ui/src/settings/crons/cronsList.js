@@ -34,7 +34,7 @@ export function cronsList(propsArg = {}) {
 
         try {
             await app.pb.crons.run(jobId);
-            app.toasts.success(`Successfully triggered "${jobId}".`);
+            app.toasts.success(`已成功触发 "${jobId}"。`);
             data.isRunning[jobId] = false;
         } catch (err) {
             if (!err.isAbort) {
@@ -77,7 +77,7 @@ export function cronsList(propsArg = {}) {
                 hidden: () => data.isLoading || data.crons.length,
                 className: "list-item",
             },
-            t.div({ className: "content block txt-hint" }, "No registered crons found."),
+            t.div({ className: "content block txt-hint" }, "未找到已注册的定时任务。"),
         ),
         () => {
             return data.crons.map((cron) => {
@@ -97,7 +97,7 @@ export function cronsList(propsArg = {}) {
                         t.button(
                             {
                                 type: "button",
-                                ariaLabel: app.attrs.tooltip("Run"),
+                                ariaLabel: app.attrs.tooltip("运行"),
                                 className: () =>
                                     `btn sm circle secondary transparent ${data.isRunning[cron.id] ? "loading" : ""}`,
                                 disabled: () => data.isRunning[cron.id],

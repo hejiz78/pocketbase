@@ -46,10 +46,10 @@ export function passwordAuthAccordion(collection) {
         t.summary(
             null,
             t.i({ className: "ri-lock-password-line", ariaHidden: true }),
-            t.span({ className: "txt", textContent: "Identity/Password" }),
+            t.span({ className: "txt", textContent: "身份/密码" }),
             t.span({
                 className: () => `label m-l-auto ${data.config.enabled ? "success" : ""}`,
-                textContent: () => (data.config.enabled ? "Enabled" : "Disabled"),
+                textContent: () => (data.config.enabled ? "已启用" : "已禁用"),
             }),
             () => {
                 if (!app.store.errors?.passwordAuth) {
@@ -58,7 +58,7 @@ export function passwordAuthAccordion(collection) {
 
                 return t.i({
                     className: "ri-error-warning-fill txt-danger",
-                    ariaDescription: app.attrs.tooltip("Has errors", "left"),
+                    ariaDescription: app.attrs.tooltip("存在错误", "left"),
                 });
             },
         ),
@@ -78,7 +78,7 @@ export function passwordAuthAccordion(collection) {
                     }),
                     t.label({
                         htmlFor: uniqueId + ".enabled",
-                        textContent: "Enable",
+                        textContent: "启用",
                     }),
                 ),
             ),
@@ -88,7 +88,7 @@ export function passwordAuthAccordion(collection) {
                     { className: "field" },
                     t.label({
                         htmlFor: uniqueId + ".identityFields",
-                        textContent: "Identity fields",
+                        textContent: "身份字段",
                     }),
                     app.components.select({
                         id: uniqueId + ".identityFields",
@@ -104,7 +104,7 @@ export function passwordAuthAccordion(collection) {
                 ),
                 t.div(
                     { className: "field-help" },
-                    "Only non-hidden fields with UNIQUE index constraint can be selected.",
+                    "只能选择具有唯一索引约束的非隐藏字段。",
                 ),
             ),
         ),

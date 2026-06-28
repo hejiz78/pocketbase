@@ -5,18 +5,18 @@ export function tokenOptionsAccordion(collection) {
         get tokensList() {
             if (collection?.name === "_superusers") {
                 return [
-                    { key: "authToken", label: "Auth" },
-                    { key: "passwordResetToken", label: "Password reset" },
-                    { key: "fileToken", label: "Protected file" },
+                    { key: "authToken", label: "认证" },
+                    { key: "passwordResetToken", label: "密码重置" },
+                    { key: "fileToken", label: "受保护文件" },
                 ];
             }
 
             return [
-                { key: "authToken", label: "Auth" },
-                { key: "verificationToken", label: "Email verification" },
-                { key: "passwordResetToken", label: "Password reset" },
-                { key: "emailChangeToken", label: "Email change" },
-                { key: "fileToken", label: "Protected file" },
+                { key: "authToken", label: "认证" },
+                { key: "verificationToken", label: "邮箱验证" },
+                { key: "passwordResetToken", label: "密码重置" },
+                { key: "emailChangeToken", label: "邮箱变更" },
+                { key: "fileToken", label: "受保护文件" },
             ];
         },
     });
@@ -30,7 +30,7 @@ export function tokenOptionsAccordion(collection) {
         t.summary(
             null,
             t.i({ className: "ri-key-2-line", ariaHidden: true }),
-            t.span({ className: "txt", textContent: "Token options (invalidate, duration)" }),
+            t.span({ className: "txt", textContent: "令牌选项（失效、时长）" }),
         ),
         t.div({ className: "grid sm" }, () => {
             return data.tokensList.map((token) => {
@@ -60,7 +60,7 @@ export function tokenOptionsAccordion(collection) {
                         t.button({
                             type: "button",
                             className: () => `link-hint ${collection[token.key].secret ? "txt-success" : ""}`,
-                            textContent: "Invalidate all previously issued tokens",
+                            textContent: "使所有之前签发的令牌失效",
                             onclick: () => {
                                 // toggle
                                 if (collection[token.key].secret) {

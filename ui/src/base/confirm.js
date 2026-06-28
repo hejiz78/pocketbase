@@ -10,7 +10,7 @@ window.app.modals = window.app.modals || {};
  *
  * @example
  * ```js
- * app.modals.confirm("Are you sure?", () => console.log("confirmed"))
+ * app.modals.confirm("确定吗？", () => console.log("confirmed"))
  * ```
  *
  * @param {string|Element} textOrElem The confirmation message.

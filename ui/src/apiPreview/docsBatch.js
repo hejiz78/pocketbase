@@ -29,19 +29,19 @@ export function docsBatch(collection) {
             value: `
                 {
                   "status": 400,
-                  "message": "Batch transaction failed.",
+                  "message": "批量事务失败。",
                   "data": {
                     "requests": {
                       "1": {
                         "code": "batch_request_failed",
-                        "message": "Batch request failed.",
+                        "message": "批量请求失败。",
                         "response": {
                           "status": 400,
-                          "message": "Failed to create record.",
+                          "message": "创建记录失败。",
                           "data": {
                             "id": {
                               "code": "validation_min_text_constraint",
-                              "message": "Must be at least 3 character(s).",
+                              "message": "必须至少3个字符。",
                               "params": { "min": 3 }
                             }
                           }
@@ -57,7 +57,7 @@ export function docsBatch(collection) {
             value: `
                 {
                   "status": 403,
-                  "message": "Batch requests are not allowed.",
+                  "message": "不允许批量请求。",
                   "data": {}
                 }
             `,
@@ -67,23 +67,23 @@ export function docsBatch(collection) {
     return t.div(
         { pbEvent: "apiPreviewBatch", className: "content" },
         // description
-        t.p(null, `Batch and transactional create/update/upsert/delete of multiple records in a single request.`),
+        t.p(null, `在单个请求中批量执行多条记录的创建/更新/插入/删除操作（事务性）。`),
         t.div(
             { className: "alert warning" },
             t.p(
                 { className: "txt-bold" },
-                "The batch Web API need to be explicitly enabled and configured from the ",
+                "批量Web API需要显式启用并从以下位置配置：",
                 t.a({
                     href: "#/settings",
                     target: "_blank",
-                    title: "Open in new tab",
-                    textContent: "App settings",
+                    title: "在新标签中打开",
+                    textContent: "应用设置",
                 }),
                 ".",
             ),
             t.p(
                 null,
-                "Because this endpoint process the requests in a single DB transaction it could degrade the performance of your application if not used with proper care and configuration (use smaller max processing and body size limits, avoid large file uploads over slow S3 networks and custom hooks that communicate with slow external APIs).",
+                "由于此端点在单个数据库事务中处理请求，如果使用不当和配置不合理，可能会降低应用程序的性能（使用较小的最大处理时间和请求体大小限制，避免在慢速S3网络上进行大文件上传，以及避免使用与慢速外部API通信的自定义钩子）。",
             ),
         ),
         app.components.codeBlockTabs({
@@ -115,7 +115,7 @@ export function docsBatch(collection) {
                             href: import.meta.env.PB_JS_SDK_URL,
                             target: "_blank",
                             rel: "noopener noreferrer",
-                            textContent: "JS SDK docs",
+                            textContent: "JS SDK 文档",
                         }),
                     ),
                 },
@@ -144,7 +144,7 @@ export function docsBatch(collection) {
                             href: import.meta.env.PB_DART_SDK_URL,
                             target: "_blank",
                             rel: "noopener noreferrer",
-                            textContent: "Dart SDK docs",
+                            textContent: "Dart SDK 文档",
                         }),
                     ),
                 },
@@ -162,7 +162,7 @@ export function docsBatch(collection) {
             ],
         }),
         // api
-        t.div({ className: "block m-t-sm" }, t.strong(null, "API details")),
+        t.div({ className: "block m-t-sm" }, t.strong(null, "API详情")),
         t.div(
             { className: "alert success api-preview-alert" },
             t.span({ className: "label method" }, "POST"),
@@ -170,15 +170,15 @@ export function docsBatch(collection) {
         ),
         t.p(
             null,
-            "The request accepts only 1 required ",
+            "该请求仅接受1个必需的",
             t.code(null, "requests: Array<Request>"),
             " parameter that defines the list of the batch requests to process.",
         ),
         t.p(
             null,
-            "When using the official SDKs the batch requests are transparently constructed by their service handler.",
+            "使用官方SDK时，批量请求由其服务处理器透明构建。",
         ),
-        t.p(null, "For the cases when you don't use the SDKs, the she supported batch request actions are:"),
+        t.p(null, "当不使用SDK时，支持的批量请求操作有："),
         t.ul(
             null,
             t.li(null, "record create - ", t.code(null, "POST /api/collections/{collection}/records")),
@@ -192,11 +192,11 @@ export function docsBatch(collection) {
             ),
             t.li(null, "record delete - ", t.code(null, "DELETE /api/collections/{collection}/records/{id}")),
         ),
-        t.p(null, "Each batch ", t.em(null, "Request"), " element has the following properties:"),
+        t.p(null, "每个批量", t.em(null, "请求"), "元素具有以下属性："),
         t.ul(
             null,
-            t.li(null, t.code(null, "url"), t.em(null, " (could include query parameters)")),
-            t.li(null, t.code(null, "method"), t.em(null, " (GET, POST, PUT, PATCH, DELETE)")),
+            t.li(null, t.code(null, "url"), t.em(null, "（可包含查询参数）")),
+            t.li(null, t.code(null, "method"), t.em(null, "（GET, POST, PUT, PATCH, DELETE）")),
             t.li(
                 null,
                 t.code(null, "headers"),
@@ -210,7 +210,7 @@ export function docsBatch(collection) {
                 null,
                 t.code(null, "body"),
                 t.br(),
-                "When the batch request is send as ",
+                "当批量请求以",
                 t.code(null, "multipart/form-data"),
                 ", the regular batch action fields are expected to be submitted as serialized json under the ",
                 t.code(null, "@jsonPayload"),
@@ -220,7 +220,7 @@ export function docsBatch(collection) {
                 t.code(null, "requests[N].fileField"),
                 ".",
                 t.br(),
-                "Again this is handled transparently by the official SDKs, but for example if you prefer to manually construct a JS ",
+                "这同样由官方SDK透明处理，但例如如果您更喜欢手动构建JS",
                 t.code(null, "FormData"),
                 " body, then it could look something like:",
                 app.components.codeBlock({
@@ -255,7 +255,7 @@ export function docsBatch(collection) {
             ),
         ),
         // responses
-        t.div({ className: "block m-t-base m-b-sm" }, t.strong(null, "Example responses")),
+        t.div({ className: "block m-t-base m-b-sm" }, t.strong(null, "示例响应")),
         app.components.codeBlockTabs({
             tabs: responses,
         }),

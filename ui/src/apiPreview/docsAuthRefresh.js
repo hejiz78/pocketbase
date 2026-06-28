@@ -26,7 +26,7 @@ export function docsAuthRefresh(collection) {
             value: `
                 {
                   "status": 401,
-                  "message": "The request requires valid record authorization token to be set.",
+                  "message": "该请求需要设置有效的记录授权令牌。",
                   "data": {}
                 }
             `,
@@ -36,7 +36,7 @@ export function docsAuthRefresh(collection) {
             value: `
                 {
                   "status": 403,
-                  "message": "The authorized record model is not allowed to perform this action.",
+                  "message": "已授权的记录模型不允许执行此操作。",
                   "data": {}
                 }
             `,
@@ -46,7 +46,7 @@ export function docsAuthRefresh(collection) {
             value: `
                 {
                   "status": 404,
-                  "message": "Missing auth record context.",
+                  "message": "缺少认证记录上下文。",
                   "data": {}
                 }
             `,
@@ -59,12 +59,12 @@ export function docsAuthRefresh(collection) {
             className: "content",
         },
         // description
-        t.p(null, "Returns a new auth response (token and record data) for an already authenticated record."),
+        t.p(null, "为已认证的记录返回新的认证响应（令牌和记录数据）。"),
         t.p(
             null,
-            "This method is usually called by users on page/screen reload to ensure that the previously stored data in ",
+            "此方法通常由用户在页面/屏幕重新加载时调用，以确保之前存储在",
             t.code(null, "pb.authStore"),
-            " is still valid and up-to-date.",
+            "中的数据仍然有效且为最新。",
         ),
         app.components.codeBlockTabs({
             className: "sdk-examples m-t-sm",
@@ -93,7 +93,7 @@ export function docsAuthRefresh(collection) {
                             href: import.meta.env.PB_JS_SDK_URL,
                             target: "_blank",
                             rel: "noopener noreferrer",
-                            textContent: "JS SDK docs",
+                            textContent: "JS SDK 文档",
                         }),
                     ),
                 },
@@ -120,7 +120,7 @@ export function docsAuthRefresh(collection) {
                             href: import.meta.env.PB_DART_SDK_URL,
                             target: "_blank",
                             rel: "noopener noreferrer",
-                            textContent: "Dart SDK docs",
+                            textContent: "Dart SDK 文档",
                         }),
                     ),
                 },
@@ -136,12 +136,12 @@ export function docsAuthRefresh(collection) {
             ],
         }),
         // api
-        t.div({ className: "m-t-base" }, t.strong(null, "API details")),
+        t.div({ className: "m-t-base" }, t.strong(null, "API详情")),
         t.div(
             { className: "alert success api-preview-alert" },
             t.span({ className: "label method" }, "POST"),
             t.span({ className: "path" }, `/api/collections/${collection.name}/auth-refresh`),
-            t.small({ className: "extra" }, "Requires", t.br(), "Authorization:TOKEN header"),
+            t.small({ className: "extra" }, "需要", t.br(), "Authorization:TOKEN 请求头"),
         ),
         t.table(
             { className: "api-preview-table query-params" },
@@ -149,9 +149,9 @@ export function docsAuthRefresh(collection) {
                 null,
                 t.tr(
                     null,
-                    t.th({ className: "min-width txt-primary" }, "?query params"),
-                    t.th({ className: "min-width" }, "Type"),
-                    t.th(null, "Description"),
+                    t.th({ className: "min-width txt-primary" }, "?查询参数"),
+                    t.th({ className: "min-width" }, "类型"),
+                    t.th(null, "描述"),
                 ),
             ),
             t.tbody(
@@ -159,19 +159,19 @@ export function docsAuthRefresh(collection) {
                 t.tr(
                     null,
                     t.td({ className: "min-width" }, "expand"),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
                     t.td(null, expandInfo()),
                 ),
                 t.tr(
                     null,
                     t.td({ className: "min-width" }, "fields"),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
                     t.td(null, fieldsInfo()),
                 ),
             ),
         ),
         // responses
-        t.div({ className: "m-t-base m-b-sm" }, t.strong(null, "Example responses")),
+        t.div({ className: "m-t-base m-b-sm" }, t.strong(null, "示例响应")),
         app.components.codeBlockTabs({
             tabs: responses,
         }),

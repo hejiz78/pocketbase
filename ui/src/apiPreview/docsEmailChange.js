@@ -2,8 +2,8 @@ export function docsEmailChange(collection) {
     const baseURL = app.utils.getApiExampleURL();
 
     const actionTabs = [
-        { title: "Request email change", content: request },
-        { title: "Confirm email change", content: confirm },
+        { title: "请求邮箱变更", content: request },
+        { title: "确认邮箱变更", content: confirm },
     ];
 
     const data = store({
@@ -19,7 +19,7 @@ export function docsEmailChange(collection) {
         t.p(null, `Sends ${collection.name} email change request.`),
         t.p(
             null,
-            "On successful email change all previously issued auth tokens for the specific record will be invalidated (and the user will be marked as verified if not already).",
+            "邮箱变更成功后，该特定记录之前发出的所有认证令牌将失效（如果用户尚未验证，将被标记为已验证）。",
         ),
         app.components.codeBlockTabs({
             className: "sdk-examples m-t-sm",
@@ -59,7 +59,7 @@ export function docsEmailChange(collection) {
                             href: import.meta.env.PB_JS_SDK_URL,
                             target: "_blank",
                             rel: "noopener noreferrer",
-                            textContent: "JS SDK docs",
+                            textContent: "JS SDK 文档",
                         }),
                     ),
                 },
@@ -97,7 +97,7 @@ export function docsEmailChange(collection) {
                             href: import.meta.env.PB_DART_SDK_URL,
                             target: "_blank",
                             rel: "noopener noreferrer",
-                            textContent: "Dart SDK docs",
+                            textContent: "Dart SDK 文档",
                         }),
                     ),
                 },
@@ -152,11 +152,11 @@ function request(collection) {
             value: `
                 {
                   "status": 400,
-                  "message": "An error occurred while validating the submitted data.",
+                  "message": "验证提交的数据时发生错误。",
                   "data": {
                     "newEmail": {
                       "code": "validation_required",
-                      "message": "Missing required value."
+                      "message": "缺少必需的值。"
                     }
                   }
                 }
@@ -167,7 +167,7 @@ function request(collection) {
             value: `
                 {
                   "status": 401,
-                  "message": "The request requires valid record authorization token to be set.",
+                  "message": "该请求需要设置有效的记录授权令牌。",
                   "data": {}
                 }
             `,
@@ -177,7 +177,7 @@ function request(collection) {
             value: `
                 {
                   "status": 403,
-                  "message": "The authorized record model is not allowed to perform this action.",
+                  "message": "已授权的记录模型不允许执行此操作。",
                   "data": {}
                 }
             `,
@@ -186,12 +186,12 @@ function request(collection) {
 
     return [
         // api
-        t.div({ className: "block" }, t.strong(null, "API details")),
+        t.div({ className: "block" }, t.strong(null, "API详情")),
         t.div(
             { className: "alert success api-preview-alert" },
             t.span({ className: "label method" }, "POST"),
             t.span({ className: "path" }, `/api/collections/${collection.name}/request-email-change`),
-            t.small({ className: "extra" }, "Requires", t.br(), "Authorization:TOKEN header"),
+            t.small({ className: "extra" }, "需要", t.br(), "Authorization:TOKEN 请求头"),
         ),
         t.table(
             { className: "api-preview-table body-params" },
@@ -199,23 +199,23 @@ function request(collection) {
                 null,
                 t.tr(
                     null,
-                    t.th({ className: "min-width txt-primary" }, "Body params"),
-                    t.th({ className: "min-width" }, "Type"),
-                    t.th(null, "Description"),
+                    t.th({ className: "min-width txt-primary" }, "请求体参数"),
+                    t.th({ className: "min-width" }, "类型"),
+                    t.th(null, "描述"),
                 ),
             ),
             t.tbody(
                 null,
                 t.tr(
                     null,
-                    t.td({ className: "min-width" }, "newEmail ", t.em(null, "(required)")),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
-                    t.td(null, "The new email address to send the change email request."),
+                    t.td({ className: "min-width" }, "newEmail ", t.em(null, "（必需）")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
+                    t.td(null, "用于发送邮箱变更请求的新邮箱地址。"),
                 ),
             ),
         ),
         // responses
-        t.div({ className: "block m-t-base m-b-sm" }, t.strong(null, "Example responses")),
+        t.div({ className: "block m-t-base m-b-sm" }, t.strong(null, "示例响应")),
         app.components.codeBlockTabs({
             tabs: responses,
         }),
@@ -233,11 +233,11 @@ function confirm(collection) {
             value: `
                 {
                   "status": 400,
-                  "message": "An error occurred while validating the submitted data.",
+                  "message": "验证提交的数据时发生错误。",
                   "data": {
                     "token": {
                       "code": "validation_required",
-                      "message": "Missing required value."
+                      "message": "缺少必需的值。"
                     }
                   }
                 }
@@ -247,7 +247,7 @@ function confirm(collection) {
 
     return [
         // api
-        t.div({ className: "block" }, t.strong(null, "API details")),
+        t.div({ className: "block" }, t.strong(null, "API详情")),
         t.div(
             { className: "alert success api-preview-alert" },
             t.span({ className: "label method" }, "POST"),
@@ -259,29 +259,29 @@ function confirm(collection) {
                 null,
                 t.tr(
                     null,
-                    t.th({ className: "min-width txt-primary" }, "Body params"),
-                    t.th({ className: "min-width" }, "Type"),
-                    t.th(null, "Description"),
+                    t.th({ className: "min-width txt-primary" }, "请求体参数"),
+                    t.th({ className: "min-width" }, "类型"),
+                    t.th(null, "描述"),
                 ),
             ),
             t.tbody(
                 null,
                 t.tr(
                     null,
-                    t.td({ className: "min-width" }, "token ", t.em(null, "(required)")),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
-                    t.td(null, "The token from the change email request email."),
+                    t.td({ className: "min-width" }, "token ", t.em(null, "（必需）")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
+                    t.td(null, "来自邮箱变更请求邮件的令牌。"),
                 ),
                 t.tr(
                     null,
-                    t.td({ className: "min-width" }, "password ", t.em(null, "(required)")),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
-                    t.td(null, "The account password to confirm the email change."),
+                    t.td({ className: "min-width" }, "password ", t.em(null, "（必需）")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
+                    t.td(null, "用于确认邮箱变更的账户密码。"),
                 ),
             ),
         ),
         // responses
-        t.div({ className: "block m-t-base m-b-sm" }, t.strong(null, "Example responses")),
+        t.div({ className: "block m-t-base m-b-sm" }, t.strong(null, "示例响应")),
         app.components.codeBlockTabs({
             tabs: responses,
         }),

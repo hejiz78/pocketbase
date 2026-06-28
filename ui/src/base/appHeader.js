@@ -24,7 +24,7 @@ export function appHeader() {
             },
             t.a(
                 { href: "#/", className: "logo" },
-                t.img({ src: () => app.store.headerLogo, alt: "App logo" }),
+                t.img({ src: () => app.store.headerLogo, alt: "应用标志" }),
             ),
             t.nav(
                 {

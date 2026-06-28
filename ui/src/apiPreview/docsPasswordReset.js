@@ -2,8 +2,8 @@ export function docsPasswordReset(collection) {
     const baseURL = app.utils.getApiExampleURL();
 
     const actionTabs = [
-        { title: "Request password reset", content: request },
-        { title: "Confirm password reset", content: confirm },
+        { title: "请求密码重置", content: request },
+        { title: "确认密码重置", content: confirm },
     ];
 
     const data = store({
@@ -19,7 +19,7 @@ export function docsPasswordReset(collection) {
         t.p(null, `Sends ${collection.name} password reset email request.`),
         t.p(
             null,
-            "On successful password reset all previously issued auth tokens for the specific record will be invalidated (and the user will be marked as verified if not already).",
+            "密码重置成功后，该特定记录之前发出的所有认证令牌将失效（如果用户尚未验证，将被标记为已验证）。",
         ),
         app.components.codeBlockTabs({
             className: "sdk-examples m-t-sm",
@@ -55,7 +55,7 @@ export function docsPasswordReset(collection) {
                             href: import.meta.env.PB_JS_SDK_URL,
                             target: "_blank",
                             rel: "noopener noreferrer",
-                            textContent: "JS SDK docs",
+                            textContent: "JS SDK 文档",
                         }),
                     ),
                 },
@@ -89,7 +89,7 @@ export function docsPasswordReset(collection) {
                             href: import.meta.env.PB_DART_SDK_URL,
                             target: "_blank",
                             rel: "noopener noreferrer",
-                            textContent: "Dart SDK docs",
+                            textContent: "Dart SDK 文档",
                         }),
                     ),
                 },
@@ -143,11 +143,11 @@ function request(collection) {
             value: `
                 {
                   "status": 400,
-                  "message": "An error occurred while validating the submitted data.",
+                  "message": "验证提交的数据时发生错误。",
                   "data": {
                     "email": {
                       "code": "validation_required",
-                      "message": "Missing required value."
+                      "message": "缺少必需的值。"
                     }
                   }
                 }
@@ -157,7 +157,7 @@ function request(collection) {
 
     return [
         // api
-        t.div({ className: "block" }, t.strong(null, "API details")),
+        t.div({ className: "block" }, t.strong(null, "API详情")),
         t.div(
             { className: "alert success api-preview-alert" },
             t.span({ className: "label method" }, "POST"),
@@ -169,23 +169,23 @@ function request(collection) {
                 null,
                 t.tr(
                     null,
-                    t.th({ className: "min-width txt-primary" }, "Body params"),
-                    t.th({ className: "min-width" }, "Type"),
-                    t.th(null, "Description"),
+                    t.th({ className: "min-width txt-primary" }, "请求体参数"),
+                    t.th({ className: "min-width" }, "类型"),
+                    t.th(null, "描述"),
                 ),
             ),
             t.tbody(
                 null,
                 t.tr(
                     null,
-                    t.td({ className: "min-width" }, "email ", t.em(null, "(required)")),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
-                    t.td(null, "The auth record email address to send the password reset request (if exists)."),
+                    t.td({ className: "min-width" }, "email ", t.em(null, "（必需）")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
+                    t.td(null, "用于发送密码重置请求的认证记录邮箱地址（如果存在）。"),
                 ),
             ),
         ),
         // responses
-        t.div({ className: "block m-t-base m-b-sm" }, t.strong(null, "Example responses")),
+        t.div({ className: "block m-t-base m-b-sm" }, t.strong(null, "示例响应")),
         app.components.codeBlockTabs({
             tabs: responses,
         }),
@@ -203,11 +203,11 @@ function confirm(collection) {
             value: `
                 {
                   "status": 400,
-                  "message": "An error occurred while validating the submitted data.",
+                  "message": "验证提交的数据时发生错误。",
                   "data": {
                     "token": {
                       "code": "validation_required",
-                      "message": "Missing required value."
+                      "message": "缺少必需的值。"
                     }
                   }
                 }
@@ -217,7 +217,7 @@ function confirm(collection) {
 
     return [
         // api
-        t.div({ className: "block" }, t.strong(null, "API details")),
+        t.div({ className: "block" }, t.strong(null, "API详情")),
         t.div(
             { className: "alert success api-preview-alert" },
             t.span({ className: "label method" }, "POST"),
@@ -229,35 +229,35 @@ function confirm(collection) {
                 null,
                 t.tr(
                     null,
-                    t.th({ className: "min-width txt-primary" }, "Body params"),
-                    t.th({ className: "min-width" }, "Type"),
-                    t.th(null, "Description"),
+                    t.th({ className: "min-width txt-primary" }, "请求体参数"),
+                    t.th({ className: "min-width" }, "类型"),
+                    t.th(null, "描述"),
                 ),
             ),
             t.tbody(
                 null,
                 t.tr(
                     null,
-                    t.td({ className: "min-width" }, "token ", t.em(null, "(required)")),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
-                    t.td(null, "The token from the password reset request email."),
+                    t.td({ className: "min-width" }, "token ", t.em(null, "（必需）")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
+                    t.td(null, "来自密码重置请求邮件的令牌。"),
                 ),
                 t.tr(
                     null,
-                    t.td({ className: "min-width" }, "password ", t.em(null, "(required)")),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
-                    t.td(null, "The new password to set."),
+                    t.td({ className: "min-width" }, "password ", t.em(null, "（必需）")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
+                    t.td(null, "要设置的新密码。"),
                 ),
                 t.tr(
                     null,
-                    t.td({ className: "min-width" }, "passwordConfirm ", t.em(null, "(required)")),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
-                    t.td(null, "Confirmation of the new password."),
+                    t.td({ className: "min-width" }, "passwordConfirm ", t.em(null, "（必需）")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
+                    t.td(null, "新密码的确认。"),
                 ),
             ),
         ),
         // responses
-        t.div({ className: "block m-t-base m-b-sm" }, t.strong(null, "Example responses")),
+        t.div({ className: "block m-t-base m-b-sm" }, t.strong(null, "示例响应")),
         app.components.codeBlockTabs({
             tabs: responses,
         }),

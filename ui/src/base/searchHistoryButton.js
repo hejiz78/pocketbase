@@ -77,12 +77,12 @@ window.app.components.searchHistoryButton = function(propsArg = {}) {
                 return false;
             },
         },
-        t.div({ className: "block p-5" }, t.small({ className: "txt-hint" }, "Search history")),
+        t.div({ className: "block p-5" }, t.small({ className: "txt-hint" }, "搜索历史")),
         () => {
             if (!history.items?.length) {
                 return t.div(
                     { rid: "no-history", className: "block p-5" },
-                    t.span(null, "Your recent searches will show up here."),
+                    t.span(null, "您最近的搜索将显示在这里。"),
                 );
             }
 
@@ -116,7 +116,7 @@ window.app.components.searchHistoryButton = function(propsArg = {}) {
                         {
                             role: "button",
                             className: "remove-btn link-hint m-l-auto p-l-5 p-r-5",
-                            title: "Clear",
+                            title: "清除",
                             onauxclick: (e) => {
                                 e.stopPropagation();
                                 return false;
@@ -141,7 +141,7 @@ window.app.components.searchHistoryButton = function(propsArg = {}) {
             hidden: () => props.hidden,
             inert: () => props.inert,
             type: "button",
-            title: "Search history",
+            title: "搜索历史",
             className: () => props.btnClassName,
             "html-popovertarget": uniqueId,
             onunmount: () => {

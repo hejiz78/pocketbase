@@ -5,7 +5,7 @@ import { superuserAccordion } from "./superuserAccordion";
 import { trustedProxyAccordion } from "./trustedProxyAccordion";
 
 export function pageApplicationSettings() {
-    app.store.title = "Application settings";
+    app.store.title = "应用设置";
 
     const data = store({
         isLoading: false,
@@ -63,14 +63,14 @@ export function pageApplicationSettings() {
                 { className: "txt-center" },
                 t.h6(
                     null,
-                    "The ONLY allowed superuser IPs will change to: ",
+                    "唯一允许的超级用户IP将更改为：",
                     t.br(),
                     t.strong(null, superuserIPs.join(", ")),
                 ),
-                t.p(null, "Please make sure that your IP is in the list or you'll be locked."),
+                t.p(null, "请确保您的IP在列表中，否则您将被锁定。"),
                 t.p(
                     { className: "txt-hint" },
-                    "In case of lockout, you can reset the setting with the ",
+                    "如果被锁定，您可以使用 ",
                     t.a(
                         {
                             href: import.meta.env.PB_SUPERUSER_IPS_RESET_DOCS,
@@ -84,12 +84,12 @@ export function pageApplicationSettings() {
                             t.i({ ariaHidden: true, className: "ri-arrow-right-up-line txt-sm" }),
                         ),
                     ),
-                    " console command.",
+                    " 控制台命令重置该设置。",
                 ),
             ),
             () => save(),
             null,
-            { yesButton: "Yes, save changes" },
+            { yesButton: "是的，保存更改" },
         );
     }
 
@@ -118,7 +118,7 @@ export function pageApplicationSettings() {
 
             init(updatedSettings);
 
-            app.toasts.success("Successfully saved application settings.");
+            app.toasts.success("已成功保存应用设置。");
         } catch (err) {
             app.checkApiError(err);
         }
@@ -168,8 +168,8 @@ export function pageApplicationSettings() {
                 { className: "page-header" },
                 t.nav(
                     { className: "breadcrumbs" },
-                    t.div({ className: "breadcrumb-item" }, "Settings"),
-                    t.div({ className: "breadcrumb-item" }, "Application"),
+                    t.div({ className: "breadcrumb-item" }, "设置"),
+                    t.div({ className: "breadcrumb-item" }, "应用"),
                 ),
             ),
             t.div(
@@ -193,7 +193,7 @@ export function pageApplicationSettings() {
                             { className: "col-md-5" },
                             t.div(
                                 { className: "field" },
-                                t.label({ htmlFor: "meta.appName" }, "Application name"),
+                                t.label({ htmlFor: "meta.appName" }, "应用名称"),
                                 t.input({
                                     id: "meta.appName",
                                     name: "meta.appName",
@@ -208,7 +208,7 @@ export function pageApplicationSettings() {
                             { className: "col-md-5" },
                             t.div(
                                 { className: "field" },
-                                t.label({ htmlFor: "meta.appURL" }, "Application URL"),
+                                t.label({ htmlFor: "meta.appURL" }, "应用URL"),
                                 t.input({
                                     id: "meta.appURL",
                                     name: "meta.appURL",
@@ -249,11 +249,11 @@ export function pageApplicationSettings() {
                                 }),
                                 t.label(
                                     { htmlFor: "meta.hideControls" },
-                                    t.span({ className: "txt" }, "Hide/Lock collection and record controls"),
+                                    t.span({ className: "txt" }, "隐藏/锁定集合和记录控件"),
                                     t.i({
                                         className: "ri-information-line link-hint",
                                         ariaDescription: app.attrs.tooltip(
-                                            "To prevent accidental changes when in production environment, collections create and update buttons will be hidden.\nRecords update will also require an extra unlock step before save.",
+                                            "为防止在生产环境中意外更改，集合的创建和更新按钮将被隐藏。\n记录的更新在保存前还需要额外的解锁步骤。",
                                         ),
                                     }),
                                 ),
@@ -273,14 +273,14 @@ export function pageApplicationSettings() {
                                         hidden: () => !data.hasChanges,
                                         onclick: reset,
                                     },
-                                    t.span({ className: "txt" }, "Cancel"),
+                                    t.span({ className: "txt" }, "取消"),
                                 ),
                                 t.button(
                                     {
                                         className: () => `btn expanded-lg ${data.isSaving ? "loading" : ""}`,
                                         disabled: () => !data.hasChanges || data.isSaving,
                                     },
-                                    t.span({ className: "txt" }, "Save changes"),
+                                    t.span({ className: "txt" }, "保存更改"),
                                 ),
                             ),
                         ),
@@ -331,7 +331,7 @@ function accentColorField(pageData) {
     return t.div(
         {
             className: "field",
-            ariaDescription: app.attrs.tooltip(() => local.isTooLight ? "Invalid - color is too light" : ""),
+            ariaDescription: app.attrs.tooltip(() => local.isTooLight ? "无效 - 颜色太浅" : ""),
             onunmount: () => {
                 clearTimeout(colorChangeTimeoutId);
                 changeAccentColor(pageData.formSettings.meta.accentColor);
@@ -340,7 +340,7 @@ function accentColorField(pageData) {
         },
         t.label(
             { htmlFor: uniqueId },
-            t.span({ className: "txt" }, "Accent"),
+            t.span({ className: "txt" }, "主题色"),
             t.i({
                 hidden: () => !local.isTooLight,
                 className: "txt-warning ri-alert-line",

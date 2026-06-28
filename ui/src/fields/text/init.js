@@ -6,7 +6,7 @@ window.app = window.app || {};
 window.app.fieldTypes = window.app.fieldTypes || {};
 window.app.fieldTypes.text = {
     icon: "ri-text",
-    label: "Plain text",
+    label: "纯文本",
     settings,
     input,
     view,

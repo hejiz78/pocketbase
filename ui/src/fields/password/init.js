@@ -4,6 +4,6 @@ window.app = window.app || {};
 window.app.fieldTypes = window.app.fieldTypes || {};
 window.app.fieldTypes.password = {
     icon: "ri-lock-password-line",
-    label: "Password",
+    label: "密码",
     settings,
 };

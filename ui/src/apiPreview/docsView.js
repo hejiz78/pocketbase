@@ -27,7 +27,7 @@ export function docsView(collection) {
             value: `
                 {
                   "status": 403,
-                  "message": "Only superusers can access this action.",
+                  "message": "只有超级用户才能访问此操作。",
                   "data": {}
                 }
             `,
@@ -38,7 +38,7 @@ export function docsView(collection) {
         value: `
             {
               "status": 404,
-              "message": "The requested resource wasn't found.",
+              "message": "未找到请求的资源。",
               "data": {}
             }
         `,
@@ -72,7 +72,7 @@ export function docsView(collection) {
                             href: import.meta.env.PB_JS_SDK_URL,
                             target: "_blank",
                             rel: "noopener noreferrer",
-                            textContent: "JS SDK docs",
+                            textContent: "JS SDK 文档",
                         }),
                     ),
                 },
@@ -96,7 +96,7 @@ export function docsView(collection) {
                             href: import.meta.env.PB_DART_SDK_URL,
                             target: "_blank",
                             rel: "noopener noreferrer",
-                            textContent: "Dart SDK docs",
+                            textContent: "Dart SDK 文档",
                         }),
                     ),
                 },
@@ -112,14 +112,14 @@ export function docsView(collection) {
             ],
         }),
         // api
-        t.div({ className: "block m-t-base" }, t.strong(null, "API details")),
+        t.div({ className: "block m-t-base" }, t.strong(null, "API详情")),
         t.div(
             { className: "alert info api-preview-alert" },
             t.span({ className: "label method" }, "GET"),
             t.span({ className: "path" }, `/api/collections/${collection.name}/records/`, t.strong(null, ":id")),
             () => {
                 if (isSuperusersOnly) {
-                    return t.small({ className: "extra" }, "Requires superuser Authorization:TOKEN header");
+                    return t.small({ className: "extra" }, "需要超级用户 Authorization:TOKEN 头");
                 }
             },
         ),
@@ -130,8 +130,8 @@ export function docsView(collection) {
                 t.tr(
                     null,
                     t.th({ className: "min-width txt-primary" }, "Path params"),
-                    t.th({ className: "min-width" }, "Type"),
-                    t.th(null, "Description"),
+                    t.th({ className: "min-width" }, "类型"),
+                    t.th(null, "描述"),
                 ),
             ),
             t.tbody(
@@ -139,8 +139,8 @@ export function docsView(collection) {
                 t.tr(
                     null,
                     t.td({ className: "min-width" }, "id"),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
-                    t.td(null, "ID of the record to view."),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
+                    t.td(null, "要查看的记录ID。"),
                 ),
             ),
         ),
@@ -150,9 +150,9 @@ export function docsView(collection) {
                 null,
                 t.tr(
                     null,
-                    t.th({ className: "min-width txt-primary" }, "?query params"),
-                    t.th({ className: "min-width" }, "Type"),
-                    t.th(null, "Description"),
+                    t.th({ className: "min-width txt-primary" }, "?查询参数"),
+                    t.th({ className: "min-width" }, "类型"),
+                    t.th(null, "描述"),
                 ),
             ),
             t.tbody(
@@ -160,19 +160,19 @@ export function docsView(collection) {
                 t.tr(
                     null,
                     t.td({ className: "min-width" }, "expand"),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
                     t.td(null, expandInfo()),
                 ),
                 t.tr(
                     null,
                     t.td({ className: "min-width" }, "fields"),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
                     t.td(null, fieldsInfo()),
                 ),
             ),
         ),
         // responses
-        t.div({ className: "block m-t-base m-b-sm" }, t.strong(null, "Example responses")),
+        t.div({ className: "block m-t-base m-b-sm" }, t.strong(null, "示例响应")),
         app.components.codeBlockTabs({
             tabs: responses,
         }),

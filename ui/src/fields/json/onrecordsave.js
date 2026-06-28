@@ -17,7 +17,7 @@ export function onrecordsave(props) {
         throw new ClientResponseError({
             status: 400,
             response: {
-                message: "Invalid JSON data",
+                message: "无效的JSON数据",
                 data: {
                     [props.field.name]: {
                         code: "invalid_json",

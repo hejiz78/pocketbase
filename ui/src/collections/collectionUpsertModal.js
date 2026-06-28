@@ -32,23 +32,23 @@ window.app.collectionTypes = {
     "base": {
         "icon": "ri-folder-2-line",
         "tabs": {
-            "Fields": collectionFieldsTab,
-            "API rules": collectionRulesTab,
+            "字段": collectionFieldsTab,
+            "API规则": collectionRulesTab,
         },
     },
     "view": {
         "icon": "ri-table-line",
         "tabs": {
-            "Query": collectionViewQueryTab,
-            "API rules": collectionRulesTab,
+            "查询": collectionViewQueryTab,
+            "API规则": collectionRulesTab,
         },
     },
     "auth": {
         "icon": "ri-group-line",
         "tabs": {
-            "Fields": collectionFieldsTab,
-            "API rules": collectionRulesTab,
-            "Options": collectionAuthOptionsTab,
+            "字段": collectionFieldsTab,
+            "API规则": collectionRulesTab,
+            "选项": collectionAuthOptionsTab,
         },
     },
 };
@@ -946,17 +946,17 @@ function deleteDropdownItem(data, modalSettings) {
                         ),
                         t.div(
                             { className: "confirm-collection-label txt-bold m-t-sm m-b-sm" },
-                            "Type the collection name ",
+                            "请输入集合名称",
                             t.div(
                                 { className: "label" },
                                 () => data.originalCollection.name,
                                 app.components.copyButton(() => data.originalCollection?.name),
                             ),
-                            " to confirm:",
+                            "以确认：",
                         ),
                         t.div(
                             { className: "field" },
-                            t.label({ htmlFor: uniqueId + ".confirm_name" }, "Collection name"),
+                            t.label({ htmlFor: uniqueId + ".confirm_name" }, "集合名称"),
                             t.input({
                                 id: uniqueId + ".confirm_name",
                                 type: "text",
@@ -984,6 +984,6 @@ function deleteDropdownItem(data, modalSettings) {
             },
         },
         t.i({ className: "ri-delete-bin-7-line", ariaHidden: true }),
-        t.span({ className: "txt" }, "Delete"),
+        t.span({ className: "txt" }, "删除"),
     );
 }

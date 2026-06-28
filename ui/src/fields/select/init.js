@@ -6,7 +6,7 @@ window.app = window.app || {};
 window.app.fieldTypes = window.app.fieldTypes || {};
 window.app.fieldTypes.select = {
     icon: "ri-list-check",
-    label: "Select",
+    label: "选择",
     settings,
     input,
     view,

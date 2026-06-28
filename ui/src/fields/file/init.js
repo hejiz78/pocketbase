@@ -8,7 +8,7 @@ window.app = window.app || {};
 window.app.fieldTypes = window.app.fieldTypes || {};
 window.app.fieldTypes.file = {
     icon: "ri-image-line",
-    label: "File",
+    label: "文件",
     settings,
     input,
     view,

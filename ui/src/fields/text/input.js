@@ -48,7 +48,7 @@ export function input(props) {
                         name: () => props.field.name,
                         required: () => local.isRequired,
                         disabled: () => local.isDisabled,
-                        placeholder: () => (local.hasAutogenerate ? "Leave empty to autogenerate..." : ""),
+                        placeholder: () => (local.hasAutogenerate ? "留空以自动生成..." : ""),
                         value: () => props.record[props.field.name] || "",
                         oninput: (e) => (props.record[props.field.name] = e.target.value || ""),
                     }),

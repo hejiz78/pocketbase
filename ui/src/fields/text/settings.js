@@ -18,10 +18,10 @@ export function settings(props) {
                         { className: "field" },
                         t.label(
                             { htmlFor: uniqueId + ".min" },
-                            t.span({ className: "txt" }, "Min length"),
+                            t.span({ className: "txt" }, "最小长度"),
                             t.i({
                                 className: "ri-information-line link-hint",
-                                ariaDescription: app.attrs.tooltip("Clear the field or set it to 0 for no limit."),
+                                ariaDescription: app.attrs.tooltip("清除该字段或设为0表示无限制。"),
                             }),
                         ),
                         t.input({
@@ -31,7 +31,7 @@ export function settings(props) {
                             step: 1,
                             min: 0,
                             max: Number.MAX_SAFE_INTEGER,
-                            placeholder: "No min limit",
+                            placeholder: "无最小限制",
                             value: () => props.field.min || "",
                             oninput: (e) => {
                                 props.field.min = parseInt(e.target.value, 10);
@@ -45,11 +45,11 @@ export function settings(props) {
                         { className: "field" },
                         t.label(
                             { htmlFor: uniqueId + ".max" },
-                            t.span({ className: "txt" }, "Max length"),
+                            t.span({ className: "txt" }, "最大长度"),
                             t.i({
                                 className: "ri-information-line link-hint",
                                 ariaDescription: app.attrs.tooltip(
-                                    "Clear the field or set it to 0 to fallback to the default limit.",
+                                    "清除该字段或设为0以使用默认限制。",
                                 ),
                             }),
                         ),
@@ -60,7 +60,7 @@ export function settings(props) {
                             step: 1,
                             min: () => props.field.min || 0,
                             max: Number.MAX_SAFE_INTEGER,
-                            placeholder: "Default to max 5000 characters",
+                            placeholder: "默认最大5000个字符",
                             value: () => props.field.max || "",
                             oninput: (e) => {
                                 props.field.max = parseInt(e.target.value, 10);
@@ -74,13 +74,13 @@ export function settings(props) {
                         { className: "field" },
                         t.label(
                             { htmlFor: uniqueId + ".pattern" },
-                            t.span({ className: "txt" }, "Validation pattern"),
+                            t.span({ className: "txt" }, "验证正则表达式"),
                             () => {
                                 if (props.field.primaryKey) {
                                     return t.i({
                                         className: "ri-information-line link-hint",
                                         ariaDescription: app.attrs.tooltip(
-                                            "All record ids have forbidden characters and unique case-insensitive (ASCII) validations in addition to the user defined regex pattern.",
+                                            "除了用户定义的正则表达式外，所有记录ID都有禁止字符和唯一的不区分大小写（ASCII）验证。",
                                         ),
                                     });
                                 }
@@ -94,7 +94,7 @@ export function settings(props) {
                             oninput: (e) => (props.field.pattern = e.target.value),
                         }),
                     ),
-                    t.div({ className: "field-help" }, "Ex. ", t.code(null, "^[a-z0-9]+$")),
+                    t.div({ className: "field-help" }, "例如", t.code(null, "^[a-z0-9]+$")),
                 ),
                 t.div(
                     { className: "col-sm-6" },
@@ -102,11 +102,11 @@ export function settings(props) {
                         { className: "field" },
                         t.label(
                             { htmlFor: uniqueId + ".autogeneratePattern" },
-                            t.span({ className: "txt" }, "Autogenerate pattern"),
+                            t.span({ className: "txt" }, "自动生成正则表达式"),
                             t.i({
                                 className: "ri-information-line link-hint",
                                 ariaDescription: app.attrs.tooltip(
-                                    "Set and autogenerate text matching the pattern on missing record create value.",
+                                    "在记录创建值缺失时，根据模式设置并自动生成文本。",
                                 ),
                             }),
                         ),
@@ -118,13 +118,13 @@ export function settings(props) {
                             oninput: (e) => (props.field.autogeneratePattern = e.target.value),
                         }),
                     ),
-                    t.div({ className: "field-help" }, "Ex. ", t.code(null, "[a-z0-9]{30}")),
+                    t.div({ className: "field-help" }, "例如", t.code(null, "[a-z0-9]{30}")),
                 ),
                 t.div(
                     { className: "col-sm-12" },
                     t.div(
                         { className: "field" },
-                        t.label({ htmlFor: uniqueId + ".help" }, "Help text"),
+                        t.label({ htmlFor: uniqueId + ".help" }, "帮助文本"),
                         t.input({
                             type: "text",
                             id: uniqueId + ".help",
@@ -148,11 +148,11 @@ export function settings(props) {
                 }),
                 t.label(
                     { htmlFor: uniqueId + ".required" },
-                    t.span({ className: "txt" }, "Required"),
+                    t.span({ className: "txt" }, "必填"),
                     t.small({ className: "txt-hint" }, "(!='')"),
                     t.i({
                         className: "ri-information-line link-hint",
-                        ariaDescription: app.attrs.tooltip("Requires the field value to be nonempty string."),
+                        ariaDescription: app.attrs.tooltip("要求字段值为非空字符串。"),
                     }),
                 ),
             ),

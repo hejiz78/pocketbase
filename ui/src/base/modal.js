@@ -29,7 +29,7 @@ let oldActiveElem;
  *         },
  *     },
  *     t.header({ className: "modal-header" },
- *         t.h5({ className: "m-auto" }, "Logs settings"),
+ *         t.h5({ className: "m-auto" }, "日志设置"),
  *     ),
  *     t.form(
  *         {
@@ -49,7 +49,7 @@ let oldActiveElem;
  *                 className: "btn transparent m-r-auto",
  *                 onclick: () => app.modals.close(),
  *             },
- *             t.span({ className: "txt" }, "Close"),
+ *             t.span({ className: "txt" }, "关闭"),
  *         ),
  *         t.button(
  *             {
@@ -57,7 +57,7 @@ let oldActiveElem;
  *                 type: "submit",
  *                 className: "btn",
  *             },
- *             t.span({ className: "txt" }, "Save changes"),
+ *             t.span({ className: "txt" }, "保存更改"),
  *         ),
  *     ),
  * );

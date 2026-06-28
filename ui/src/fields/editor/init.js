@@ -6,7 +6,7 @@ window.app = window.app || {};
 window.app.fieldTypes = window.app.fieldTypes || {};
 window.app.fieldTypes.editor = {
     icon: "ri-edit-2-line",
-    label: "Rich editor",
+    label: "富文本编辑器",
     settings,
     input,
     view,
@@ -14,6 +14,6 @@ window.app.fieldTypes.editor = {
         return ["lower"];
     },
     dummyData: (f, forSubmit = false) => {
-        return "Lorem ipsum dolor sit amet...";
+        return "请输入内容...";
     },
 };

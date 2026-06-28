@@ -5,8 +5,8 @@ export function docsAuthWithOTP(collection) {
     const baseURL = app.utils.getApiExampleURL();
 
     const actionTabs = [
-        { title: "OTP request", content: otpRequest },
-        { title: "OTP auth", content: otpAuth },
+        { title: "OTP请求", content: otpRequest },
+        { title: "OTP认证", content: otpAuth },
     ];
 
     const data = store({
@@ -19,14 +19,14 @@ export function docsAuthWithOTP(collection) {
             className: "content",
         },
         // description
-        t.p(null, "Authenticate with an one-time/short-lived password (OTP)."),
+        t.p(null, "使用一次性/短期密码（OTP）进行认证。"),
         t.p(
             null,
-            "On successful authentication the user will be also marked as verified (if the OTP source is email and the user is not verified already).",
+            "认证成功后，用户将被标记为已验证（如果OTP来源是邮箱且用户尚未验证）。",
         ),
         t.p(
             null,
-            "Note that when requesting an OTP we return an ",
+            "请注意，请求OTP时会返回一个",
             t.code(null, "otpId"),
             " even if a user with the provided email doesn't exist as a very basic enumeration protection.",
         ),
@@ -69,7 +69,7 @@ export function docsAuthWithOTP(collection) {
                             href: import.meta.env.PB_JS_SDK_URL,
                             target: "_blank",
                             rel: "noopener noreferrer",
-                            textContent: "JS SDK docs",
+                            textContent: "JS SDK 文档",
                         }),
                     ),
                 },
@@ -108,7 +108,7 @@ export function docsAuthWithOTP(collection) {
                             href: import.meta.env.PB_DART_SDK_URL,
                             target: "_blank",
                             rel: "noopener noreferrer",
-                            textContent: "Dart SDK docs",
+                            textContent: "Dart SDK 文档",
                         }),
                     ),
                 },
@@ -163,11 +163,11 @@ function otpRequest(collection) {
             value: `
                 {
                   "status": 400,
-                  "message": "An error occurred while validating the submitted data.",
+                  "message": "验证提交的数据时发生错误。",
                   "data": {
                     "email": {
                       "code": "validation_is_email",
-                      "message": "Must be a valid email address."
+                      "message": "必须是有效的邮箱地址。"
                     }
                   }
                 }
@@ -178,7 +178,7 @@ function otpRequest(collection) {
             value: `
                 {
                   "status": 429,
-                  "message": "You've send too many OTP requests, please try again later.",
+                  "message": "您发送了太多OTP请求，请稍后再试。",
                   "data": {}
                 }
             `,
@@ -187,7 +187,7 @@ function otpRequest(collection) {
 
     return [
         // api
-        t.div(null, t.strong(null, "API details")),
+        t.div(null, t.strong(null, "API详情")),
         t.div(
             { className: "alert success api-preview-alert" },
             t.span({ className: "label method" }, "POST"),
@@ -199,23 +199,23 @@ function otpRequest(collection) {
                 null,
                 t.tr(
                     null,
-                    t.th({ className: "min-width txt-primary" }, "Body params"),
-                    t.th({ className: "min-width" }, "Type"),
-                    t.th(null, "Description"),
+                    t.th({ className: "min-width txt-primary" }, "请求体参数"),
+                    t.th({ className: "min-width" }, "类型"),
+                    t.th(null, "描述"),
                 ),
             ),
             t.tbody(
                 null,
                 t.tr(
                     null,
-                    t.td({ className: "min-width" }, "email ", t.em(null, "(required)")),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
-                    t.td(null, "The auth record email address to send the OTP request (if exists)."),
+                    t.td({ className: "min-width" }, "email ", t.em(null, "（必需）")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
+                    t.td(null, "用于发送OTP请求的认证记录邮箱地址（如果存在）。"),
                 ),
             ),
         ),
         // responses
-        t.div({ className: "m-t-base m-b-sm" }, t.strong(null, "Example responses")),
+        t.div({ className: "m-t-base m-b-sm" }, t.strong(null, "示例响应")),
         app.components.codeBlockTabs({
             tabs: responses,
         }),
@@ -245,11 +245,11 @@ function otpAuth(collection) {
             value: `
                 {
                   "status": 400,
-                  "message": "Failed to authenticate.",
+                  "message": "认证失败。",
                   "data": {
                     "otpId": {
                       "code": "validation_required",
-                      "message": "Missing required value."
+                      "message": "缺少必需的值。"
                     }
                   }
                 }
@@ -259,7 +259,7 @@ function otpAuth(collection) {
 
     return [
         // api
-        t.div(null, t.strong(null, "API details")),
+        t.div(null, t.strong(null, "API详情")),
         t.div(
             { className: "alert success api-preview-alert" },
             t.span({ className: "label method" }, "POST"),
@@ -271,24 +271,24 @@ function otpAuth(collection) {
                 null,
                 t.tr(
                     null,
-                    t.th({ className: "min-width txt-primary" }, "Body params"),
-                    t.th({ className: "min-width" }, "Type"),
-                    t.th(null, "Description"),
+                    t.th({ className: "min-width txt-primary" }, "请求体参数"),
+                    t.th({ className: "min-width" }, "类型"),
+                    t.th(null, "描述"),
                 ),
             ),
             t.tbody(
                 null,
                 t.tr(
                     null,
-                    t.td({ className: "min-width" }, "otpId ", t.em(null, "(required)")),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
-                    t.td(null, "The id of the OTP request."),
+                    t.td({ className: "min-width" }, "otpId ", t.em(null, "（必需）")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
+                    t.td(null, "OTP请求的ID。"),
                 ),
                 t.tr(
                     null,
-                    t.td({ className: "min-width" }, "password ", t.em(null, "(required)")),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
-                    t.td(null, "The one-time/short-lived password from the OTP request."),
+                    t.td({ className: "min-width" }, "password ", t.em(null, "（必需）")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
+                    t.td(null, "OTP请求中的一次性/短期密码。"),
                 ),
             ),
         ),
@@ -298,9 +298,9 @@ function otpAuth(collection) {
                 null,
                 t.tr(
                     null,
-                    t.th({ className: "min-width txt-primary" }, "?query params"),
-                    t.th({ className: "min-width" }, "Type"),
-                    t.th(null, "Description"),
+                    t.th({ className: "min-width txt-primary" }, "?查询参数"),
+                    t.th({ className: "min-width" }, "类型"),
+                    t.th(null, "描述"),
                 ),
             ),
             t.tbody(
@@ -308,19 +308,19 @@ function otpAuth(collection) {
                 t.tr(
                     null,
                     t.td({ className: "min-width" }, "expand"),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
                     t.td(null, expandInfo()),
                 ),
                 t.tr(
                     null,
                     t.td({ className: "min-width" }, "fields"),
-                    t.td({ className: "min-width" }, t.span({ className: "label" }, "String")),
+                    t.td({ className: "min-width" }, t.span({ className: "label" }, "字符串")),
                     t.td(null, fieldsInfo()),
                 ),
             ),
         ),
         // responses
-        t.div({ className: "m-t-base m-b-sm" }, t.strong(null, "Example responses")),
+        t.div({ className: "m-t-base m-b-sm" }, t.strong(null, "示例响应")),
         app.components.codeBlockTabs({
             tabs: responses,
         }),
