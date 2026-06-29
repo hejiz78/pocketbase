@@ -325,7 +325,7 @@ window.app.components.fieldSettings = function(data, settingsArg = {}) {
                         t.span({ className: "txt" }, "隐藏"),
                         t.i({
                             className: "ri-information-line link-hint",
-                            ariaDescription: app.attrs.tooltip("Hide from the JSON API response and filters."),
+                            ariaDescription: app.attrs.tooltip("从JSON API响应和筛选器中隐藏。"),
                         }),
                     ),
                 );

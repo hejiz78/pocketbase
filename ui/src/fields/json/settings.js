@@ -123,7 +123,7 @@ export function settings(props) {
                     t.span({ className: "txt" }, "必填"),
                     t.i({
                         className: "ri-information-line link-hint",
-                        ariaDescription: app.attrs.tooltip("Requires the field value NOT to be null, '', [], {}."),
+                        ariaDescription: app.attrs.tooltip("要求字段值不能为null、空字符串、空数组或空对象。"),
                     }),
                 ),
             ),

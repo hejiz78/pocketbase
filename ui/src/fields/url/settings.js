@@ -22,7 +22,7 @@ export function settings(props) {
                             t.i({
                                 className: "ri-information-line link-hint",
                                 ariaDescription: app.attrs.tooltip(
-                                    `List of domains that are NOT allowed.\nThis field is disabled if "仅允许域名" is set.`,
+                                    `不允许的域名列表。\n如果设置了"仅允许域名"，此字段将被禁用。`,
                                 ),
                             }),
                         ),
@@ -49,7 +49,7 @@ export function settings(props) {
                             t.i({
                                 className: "ri-information-line link-hint",
                                 ariaDescription: app.attrs.tooltip(
-                                    `List of domains that are ONLY allowed.\nThis field is disabled if "排除域名" is set.`,
+                                    `仅允许的域名列表。\n如果设置了"排除域名"，此字段将被禁用。`,
                                 ),
                             }),
                         ),

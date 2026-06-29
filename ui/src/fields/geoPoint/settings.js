@@ -44,7 +44,7 @@ export function settings(props) {
                     t.small({ className: "txt-hint" }, "(=true)"),
                     t.i({
                         className: "ri-information-line link-hint",
-                        ariaDescription: app.attrs.tooltip("Requires the field value to be true."),
+                        ariaDescription: app.attrs.tooltip("要求字段值必须为true。"),
                     }),
                 ),
             ),

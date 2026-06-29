@@ -35,7 +35,7 @@ window.app.components.ruleField = function(propsArg = {}) {
         help: undefined,
         value: null,
         nullable: true,
-        placeholder: "Leave empty to grant everyone access...",
+        placeholder: "留空表示允许所有人访问...",
         autocomplete: (word) => [],
         oninput: (newVal) => {},
         onmount: (el) => {},
